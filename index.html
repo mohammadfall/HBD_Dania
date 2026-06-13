@@ -48,6 +48,19 @@
             from { opacity: 0; transform: translateY(15px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
+        
+        /* تنسيق الصورة في الصفحة الأولى */
+        .intro-image {
+            width: 100%;
+            max-width: 220px; /* حجم الصورة */
+            border-radius: 50%; /* خليتها دائرية عشان تطلع أحلى، إذا بدك اياها مربعة امسح هاد السطر */
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.2);
+            border: 4px solid white;
+            object-fit: cover;
+            aspect-ratio: 1/1; /* بخلي الصورة متساوية الأبعاد */
+        }
+
         h1 { font-size: 2.2em; margin-bottom: 10px; color: #d81b60; }
         p { font-size: 1.2em; line-height: 1.8; color: #555; }
         
@@ -55,7 +68,8 @@
         .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 15px; /* مسافة بين الزرين */
+            align-items: center; /* لترتيب الأزرار جنب بعض بشكل مرتب */
+            gap: 15px; 
             margin-top: 25px;
             flex-wrap: wrap;
         }
@@ -77,11 +91,13 @@
             transform: scale(1.05); 
         }
         
-        /* زر الرجوع (لون مختلف وأهدى) */
+        /* زر الرجوع (صار أصغر وأرتب) */
         .btn-back {
             background: #f48fb1;
             color: white;
             box-shadow: none;
+            padding: 8px 16px; /* حشوة أقل = زر أصغر */
+            font-size: 0.9em; /* خط أصغر */
         }
         .btn-back:hover {
             background: #f06292;
@@ -109,7 +125,10 @@
     <div id="hearts-container"></div>
 
     <div class="container">
+        
         <div id="step1" class="step active">
+            <img src="URL_HERE" alt="صورة دانية" class="intro-image">
+            
             <h1>كل عام وأنتِ بألف خير يا دانية 💖</h1>
             <p>اليوم مش أي يوم، اليوم مميز جداً...</p>
             <div class="buttons-container">
@@ -154,7 +173,6 @@
             document.getElementById('step' + (current + 1)).classList.add('active');
         }
 
-        // دالة الرجوع للخلف
         function prevStep(current) {
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current - 1)).classList.add('active');
