@@ -10,10 +10,9 @@
             margin: 0; 
             overflow-x: hidden; 
             font-family: 'Tajawal', sans-serif; 
-            background: linear-gradient(135deg, #fce4ec, #f8bbd0); /* خلفية متدرجة ناعمة */
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0); 
             color: #880e4f; 
         }
-        /* تصميم القلوب المتحركة */
         .heart { 
             position: absolute; 
             font-size: 20px; 
@@ -26,7 +25,6 @@
             50% { opacity: 1; } 
             100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } 
         }
-        /* تصميم الصندوق الأبيض */
         .container { 
             text-align: center; 
             max-width: 600px; 
@@ -39,31 +37,37 @@
             position: relative; 
             z-index: 10;
         }
-        /* تصميم الشاشات المتنقلة */
         .step { 
             display: none; 
-            animation: fadeIn 1s ease-in-out; 
+            animation: fadeIn 0.8s ease-in-out; 
         }
         .step.active { 
             display: block; 
         }
         @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
+            from { opacity: 0; transform: translateY(15px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
         h1 { font-size: 2.2em; margin-bottom: 10px; color: #d81b60; }
         p { font-size: 1.2em; line-height: 1.8; color: #555; }
-        /* تصميم الأزرار */
+        
+        /* تنسيق الأزرار */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* مسافة بين الزرين */
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
         .btn { 
             background: #d81b60; 
             color: white; 
             border: none; 
-            padding: 15px 30px; 
+            padding: 12px 25px; 
             font-size: 1.1em; 
             border-radius: 30px; 
             cursor: pointer; 
             transition: 0.3s; 
-            margin-top: 20px; 
             font-family: 'Tajawal', sans-serif;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
@@ -71,9 +75,18 @@
         .btn:hover { 
             background: #ad1457; 
             transform: scale(1.05); 
-            box-shadow: 0 6px 15px rgba(216, 27, 96, 0.5); 
         }
-        /* تصميم مكان الفيديو */
+        
+        /* زر الرجوع (لون مختلف وأهدى) */
+        .btn-back {
+            background: #f48fb1;
+            color: white;
+            box-shadow: none;
+        }
+        .btn-back:hover {
+            background: #f06292;
+        }
+
         .video-container { 
             position: relative; 
             padding-bottom: 56.25%; 
@@ -99,13 +112,18 @@
         <div id="step1" class="step active">
             <h1>كل عام وأنتِ بألف خير يا دانية 💖</h1>
             <p>اليوم مش أي يوم، اليوم مميز جداً...</p>
-            <button class="btn" onclick="nextStep(1)">اضغطي هون لتبدأي ✨</button>
+            <div class="buttons-container">
+                <button class="btn" onclick="nextStep(1)">اضغطي هون لتبدأي ✨</button>
+            </div>
         </div>
 
         <div id="step2" class="step">
             <h1>بتعرفي شو؟ 🌸</h1>
             <p>كنت حابب أعملك إشي مختلف، إشي يضل ذكرى حلوة تتذكريها دايماً.<br>إنتِ بتستاهلي كل إشي حلو بالدنيا!</p>
-            <button class="btn" onclick="nextStep(2)">جاهزة تشوفي شو مجهزلك؟ 👀</button>
+            <div class="buttons-container">
+                <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
+                <button class="btn" onclick="nextStep(2)">جاهزة تشوفي شو مجهزلك؟ 👀</button>
+            </div>
         </div>
 
         <div id="step3" class="step">
@@ -114,24 +132,34 @@
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
-            <button class="btn" onclick="nextStep(3)">لما تخلصي الفيديو، اضغطي هون 🎁</button>
+            <div class="buttons-container">
+                <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
+                <button class="btn" onclick="nextStep(3)">لما تخلصي الفيديو، اضغطي هون 🎁</button>
+            </div>
         </div>
 
         <div id="step4" class="step">
-            <h1>لسا في كمان! 🎊</h1>
-            <p>هون بتقدر تكتب رسالة رومانسية طويلة، أو تحط رابط لهدية ثانية، أو أي كلام حابب تحكيه من قلبك.</p>
+            <h1>وصفة للسعادة المطلقة 🎊</h1>
+            <p>التشخيص: أجمل صدفة بحياتي.<br>العلاج: جرعات يومية من الضحك، والابتسامة ممنوع تفارق وجهك.</p>
             <p>بحبك! ❤️</p>
+            <div class="buttons-container">
+                <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // كود التنقل بين الشاشات
         function nextStep(current) {
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current + 1)).classList.add('active');
         }
 
-        // كود إنتاج القلوب المتحركة في الخلفية
+        // دالة الرجوع للخلف
+        function prevStep(current) {
+            document.getElementById('step' + current).classList.remove('active');
+            document.getElementById('step' + (current - 1)).classList.add('active');
+        }
+
         function createHearts() {
             const container = document.getElementById('hearts-container');
             setInterval(() => {
@@ -139,15 +167,14 @@
                 heart.innerHTML = '❤️';
                 heart.classList.add('heart');
                 heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = Math.random() * 3 + 3 + 's'; // من 3 لـ 6 ثواني
-                heart.style.fontSize = Math.random() * 20 + 10 + 'px'; // حجم عشوائي للقلوب
+                heart.style.animationDuration = Math.random() * 3 + 3 + 's'; 
+                heart.style.fontSize = Math.random() * 20 + 10 + 'px'; 
                 container.appendChild(heart);
                 
-                // مسح القلب بعد ما يطلع برا الشاشة عشان ما يعلق الموقع
                 setTimeout(() => {
                     heart.remove();
                 }, 6000);
-            }, 400); // كل 400 جزء من الثانية بيطلع قلب جديد
+            }, 400); 
         }
         createHearts();
     </script>
