@@ -3,166 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  HBD 🎉 </title>
+    <title>HBD 🎉</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { 
-            margin: 0; 
-            overflow-x: hidden; 
-            font-family: 'Tajawal', sans-serif; 
-            background: linear-gradient(135deg, #fce4ec, #f8bbd0); 
-            color: #880e4f; 
+            margin: 0; overflow-x: hidden; font-family: 'Tajawal', sans-serif; 
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2); color: #006064; 
         }
-        .heart { 
-            position: absolute; 
-            font-size: 20px; 
-            animation: floatUp 4s linear infinite; 
-            opacity: 0.7; 
-            z-index: 1;
+        /* تنسيق الفقاعات */
+        .bubble { 
+            position: absolute; border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%; animation: floatUp 8s linear infinite;
+            opacity: 0.5; z-index: 1; pointer-events: none;
         }
         @keyframes floatUp { 
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; } 
-            50% { opacity: 1; } 
+            0% { transform: translateY(100vh) scale(0.5); } 
             100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } 
         }
         .container { 
-            text-align: center; 
-            max-width: 600px; 
-            margin: 15vh auto; 
-            background: rgba(255, 255, 255, 0.85); 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            backdrop-filter: blur(10px); 
-            position: relative; 
-            z-index: 10;
+            text-align: center; max-width: 600px; margin: 10vh auto; 
+            background: rgba(255, 255, 255, 0.9); padding: 40px; 
+            border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px); position: relative; z-index: 10;
         }
-        .step { 
-            display: none; 
-            animation: fadeIn 0.8s ease-in-out; 
-        }
-        .step.active { 
-            display: block; 
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(15px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
+        .step { display: none; animation: fadeIn 0.8s ease-in-out; }
+        .step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; } }
         
-        /* تنسيق الصورة في الصفحة الأولى */
-        .intro-image {
-            width: 100%;
-            max-width: 450px; /* حجم الصورة */
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.2);
-            border: 4px solid white;
-            border-radius: 15px; /* حواف دائرية ناعمة */
-            object-fit: cover;
-        }
-
-        h1 { font-size: 2.2em; margin-bottom: 10px; color: #d81b60; }
-        p { font-size: 1.2em; line-height: 1.8; color: #555; }
+        /* تنسيق العداد */
+        #countdown { font-size: 1.5em; font-weight: bold; color: #00838f; margin: 20px 0; }
         
-        /* تنسيق الأزرار */
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-            align-items: center; /* لترتيب الأزرار جنب بعض بشكل مرتب */
-            gap: 15px; 
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
+        .intro-image { width: 100%; max-width: 450px; margin-bottom: 20px; border-radius: 20px; border: 4px solid white; }
+        h1 { font-size: 2em; color: #00838f; }
         .btn { 
-            background: #d81b60; 
-            color: white; 
-            border: none; 
-            padding: 12px 25px; 
-            font-size: 1.1em; 
-            border-radius: 30px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            font-family: 'Tajawal', sans-serif;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+            background: #00838f; color: white; border: none; padding: 12px 25px; 
+            font-size: 1.1em; border-radius: 30px; cursor: pointer; transition: 0.3s;
         }
-        .btn:hover { 
-            background: #ad1457; 
-            transform: scale(1.05); 
-        }
-        
-        /* زر الرجوع (صار أصغر وأرتب) */
-        .btn-back {
-            background: #f48fb1;
-            color: white;
-            box-shadow: none;
-            padding: 8px 16px; /* حشوة أقل = زر أصغر */
-            font-size: 0.9em; /* خط أصغر */
-        }
-        .btn-back:hover {
-            background: #f06292;
-        }
-
-        .video-container { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            border-radius: 15px; 
-            margin-top: 20px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-        }
-        .video-container iframe { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-        }
+        .btn:hover { background: #006064; transform: scale(1.05); }
+        .btn-back { background: #80cbc4; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 15px; overflow: hidden; margin-top: 20px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
-    <div id="hearts-container"></div>
+    <div id="bubbles-container"></div>
 
     <div class="container">
-        
         <div id="step1" class="step active">
             <img src="HBD.png" alt="HBD Dania" class="intro-image">
-            
-            <h1>كل عام وأنتِ بألف خير دندن  💖</h1>
-
-            <div class="buttons-container">
-                <button class="btn" onclick="nextStep(1)">اضغطي هون  ✨</button>
-            </div>
+            <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
+            <button class="btn" onclick="nextStep(1)">اضغطي هون ✨</button>
         </div>
 
         <div id="step2" class="step">
             <h1>بتعرفي شو؟ 🌸</h1>
-            <p>كنت حابب أعملك إشي مختلف، إشي يضل ذكرى حلوة صراحة .<br>إنتِ بتستاهلي كل إشي حلو !</p>
+            <p>مرّ على ميلادك هالفترة من الزمن:</p>
+            <div id="countdown"></div>
+            <p>إنتِ بتستاهلي كل إشي حلو !</p>
             <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(2)"> بقيت بدي اقولك تضغطي هون </button>
+                <button class="btn btn-back" onclick="prevStep(2)">🔙</button>
+                <button class="btn" onclick="nextStep(2)">التالي</button>
             </div>
         </div>
 
         <div id="step3" class="step">
             <h1>عملتلك هالفيديو 🎬</h1>
-            <p> معلش كرنج هو بس مش كثير, اتوقع 😂 </p>
+            <p> معلش كرنج هو بس مش كثير 😂 </p>
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(3)">لما تخلصي الفيديو، اضغطي هون 🎁</button>
-            </div>
+            <button class="btn btn-back" onclick="prevStep(3)">🔙</button>
+            <button class="btn" onclick="nextStep(3)">المفاجأة الأخيرة 🎁</button>
         </div>
 
         <div id="step4" class="step">
             <h1>وصفة للسعادة المطلقة 🎊</h1>
             <p>التشخيص: أجمل صدفة بحياتي.<br>العلاج: جرعات يومية من الضحك، والابتسامة ممنوع تفارق وجهك.</p>
             <p>بحبك! ❤️</p>
-            <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
-            </div>
+            <button class="btn btn-back" onclick="prevStep(4)">🔙</button>
         </div>
     </div>
 
@@ -171,29 +89,40 @@
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current + 1)).classList.add('active');
         }
-
         function prevStep(current) {
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current - 1)).classList.add('active');
         }
 
-        function createHearts() {
-            const container = document.getElementById('hearts-container');
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.classList.add('heart');
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = Math.random() * 3 + 3 + 's'; 
-                heart.style.fontSize = Math.random() * 20 + 10 + 'px'; 
-                container.appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.remove();
-                }, 6000);
-            }, 400); 
+        // منطق العداد التنازلي (منذ 17/7/2006)
+        function updateCountdown() {
+            const birthDate = new Date("2006-07-17T00:00:00");
+            const now = new Date();
+            const diff = now - birthDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+            
+            document.getElementById("countdown").innerHTML = `${years} سنة و ${days} يوم من السعادة`;
         }
-        createHearts();
+        updateCountdown();
+
+        // إنشاء الفقاعات
+        function createBubbles() {
+            const container = document.getElementById('bubbles-container');
+            setInterval(() => {
+                const b = document.createElement('div');
+                const size = Math.random() * 50 + 10 + 'px';
+                b.classList.add('bubble');
+                b.style.width = size;
+                b.style.height = size;
+                b.style.left = Math.random() * 100 + 'vw';
+                b.style.animationDuration = Math.random() * 5 + 5 + 's';
+                container.appendChild(b);
+                setTimeout(() => b.remove(), 8000);
+            }, 800);
+        }
+        createBubbles();
     </script>
 </body>
 </html>
