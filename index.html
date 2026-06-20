@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> HBD 🎉 </title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         body { 
             margin: 0; 
@@ -22,6 +23,7 @@
             z-index: 1;
             pointer-events: none;
         }
+        
         @keyframes floatUp { 
             0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; } 
             50% { opacity: 1; } 
@@ -30,8 +32,8 @@
 
         .container { 
             text-align: center; 
-            max-width: 600px; 
-            margin: 15vh auto; 
+            max-width: 650px; 
+            margin: 10vh auto; 
             background: rgba(255, 255, 255, 0.85); 
             padding: 40px; 
             border-radius: 20px; 
@@ -40,22 +42,26 @@
             position: relative; 
             z-index: 10;
         }
+
         .step { 
             display: none; 
             animation: fadeIn 0.8s ease-in-out; 
         }
+        
         .step.active { 
             display: block; 
         }
+        
         @keyframes fadeIn { 
             from { opacity: 0; transform: translateY(15px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
         
-        /* تنسيق الصورة في الصفحة الأولى */
+        /* تنسيق الصور */
         .intro-image {
             width: 100%;
-            max-width: 450px; 
+            max-width: 400px; 
+            margin-top: 20px;
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(216, 27, 96, 0.2);
             border: 4px solid white;
@@ -63,9 +69,31 @@
             object-fit: cover;
         }
 
-        h1 { font-size: 2.2em; margin-bottom: 10px; color: #d81b60; }
-        p { font-size: 1.2em; line-height: 1.8; color: #555; }
+        /* تنسيق النصوص */
+        h1 { 
+            font-size: 2.2em; 
+            margin-bottom: 15px; 
+            color: #d81b60; 
+        }
         
+        p { 
+            font-size: 1.3em; 
+            line-height: 1.9; 
+            color: #555; 
+            margin-bottom: 20px;
+        }
+        
+        /* تنسيق مشغل الصوت */
+        .audio-container {
+            margin: 25px 0;
+        }
+        audio {
+            width: 100%;
+            outline: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.2);
+        }
+
         /* تنسيق العداد التنازلي */
         #countdown-container {
             background: #fce4ec;
@@ -74,12 +102,14 @@
             margin: 20px 0;
             box-shadow: 0 4px 10px rgba(216, 27, 96, 0.15);
         }
+        
         #countdown-title {
             font-weight: bold;
             color: #ad1457;
             margin-bottom: 10px;
             font-size: 1.1em;
         }
+        
         #countdown {
             font-size: 1.4em;
             font-weight: bold;
@@ -93,14 +123,15 @@
             justify-content: center;
             align-items: center; 
             gap: 15px; 
-            margin-top: 25px;
+            margin-top: 30px;
             flex-wrap: wrap;
         }
+        
         .btn { 
             background: #d81b60; 
             color: white; 
             border: none; 
-            padding: 12px 25px; 
+            padding: 12px 30px; 
             font-size: 1.1em; 
             border-radius: 30px; 
             cursor: pointer; 
@@ -109,129 +140,131 @@
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
         }
+        
         .btn:hover { 
             background: #ad1457; 
             transform: scale(1.05); 
         }
         
-        /* زر الرجوع */
         .btn-back {
             background: #f48fb1;
             color: white;
             box-shadow: none;
-            padding: 8px 16px; 
-            font-size: 0.9em; 
+            padding: 8px 20px; 
+            font-size: 1em; 
         }
+        
         .btn-back:hover {
             background: #f06292;
         }
 
-        .video-container { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            border-radius: 15px; 
-            margin-top: 20px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-        }
-        .video-container iframe { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-        }
     </style>
 </head>
 <body>
+
     <div id="floating-container"></div>
 
     <div class="container">
         
         <div id="step1" class="step active">
-            <img src="HBD.png" alt="HBD Dania" class="intro-image">
+            <h1>دانية العزيزة 💖</h1>
             
-            <h1>كل عام وأنتِ بألف خير دندن  💖</h1>
+            <p>قعدت فترة بفكر ايش اجيب هدية الك, بكل افكاري ما كان بنفع اقدم الي بخطرلي.</p>
+            <p>ما لقيت الا هالطريقة البسيطة جداً.</p>
 
-            <div class="buttons-container">
-                <button class="btn" onclick="nextStep(1)">اضغطي هون  ✨</button>
-            </div>
-        </div>
-
-        <div id="step2" class="step">
-            <h1>بتعرفي شو؟ 🌸</h1>
-            <p>كنت حابب أعملك إشي مختلف، إشي يضل ذكرى حلوة صراحة .<br>إنتِ بتستاهلي كل إشي حلو !</p>
-            
-            <!-- إضافة العداد التنازلي هنا -->
             <div id="countdown-container">
                 <div id="countdown-title">باقي لتصيري 20 سنة:</div>
                 <div id="countdown">جاري الحساب...</div>
             </div>
 
             <div class="buttons-container">
+                <button class="btn" onclick="nextStep(1)">التالي ✨</button>
+            </div>
+        </div>
+
+        <div id="step2" class="step">
+            <p>دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها.</p>
+            <p>من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج.</p>
+            
+            <div class="audio-container">
+                <audio controls>
+                    <source src="YOUR_SONG.mp3" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت.
+                </audio>
+            </div>
+
+            <div class="buttons-container">
                 <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(2)"> بقيت بدي اقولك تضغطي هون </button>
+                <button class="btn" onclick="nextStep(2)">كملي قراءة 🌸</button>
             </div>
         </div>
 
         <div id="step3" class="step">
-            <h1>عملتلك هالفيديو 🎬</h1>
-            <p> معلش كرنج هو بس مش كثير, اتوقع 😂 </p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
+            <p>احداث كثير ما حدا بعرفها غيري وغيرك, خناقات ومصالحات ما حدا بعرفها.</p>
+            <p>ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك, كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول:)</p>
+            <br>
+            <p><strong>حتسأليني ليش؟ ليش انا؟</strong></p>
+            <p>ببساطة؟ لانك دانية, لانك دانية حبيتك ما عندي سبب اقوى من هيك.</p>
+
             <div class="buttons-container">
                 <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(3)">لما تخلصي الفيديو، اضغطي هون 🎁</button>
+                <button class="btn" onclick="nextStep(3)">الصفحة الأخيرة ❤️</button>
             </div>
         </div>
 
         <div id="step4" class="step">
-            <h1>وصفة للسعادة المطلقة 🎊</h1>
-            <p>التشخيص: أجمل صدفة بحياتي.<br>العلاج: جرعات يومية من الضحك، والابتسامة ممنوع تفارق وجهك.</p>
-            <p>بحبك! ❤️</p>
+            <p>دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو, ايدي دايما ممدوده الك.</p>
+            <p>لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك, بنبسط بس اسمع صوتك, بنبسط بس تتنمري علي 😂</p>
+            <p>صح بحبش كثير لما تحرجيني, بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور.</p>
+            <p>صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير.</p>
+            
+            <img src="dumb-smart.png" alt="Dumb-Smart" class="intro-image">
+
             <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
+                <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع للبداية</button>
             </div>
         </div>
+
     </div>
 
     <script>
+        // دالة التقدم للصفحة التالية
         function nextStep(current) {
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current + 1)).classList.add('active');
         }
 
+        // دالة الرجوع للصفحة السابقة
         function prevStep(current) {
             document.getElementById('step' + current).classList.remove('active');
+            // إذا كان في الصفحة الرابعة وضغط رجوع، يمكن إرجاعه للخطوة الثالثة أو الأولى
+            // هنا مبرمجة لترجع خطوة واحدة للوراء
             document.getElementById('step' + (current - 1)).classList.add('active');
         }
 
-        // إنشاء النجوم والفقاعات
+        // دالة إنشاء النجوم والفقاعات العائمة
         function createFloatingElements() {
             const container = document.getElementById('floating-container');
-            const elements = ['✨', '🌟', '🫧', '⭐']; // تشكيلة من النجوم والفقاعات
+            const elements = ['✨', '🌟', '🫧', '⭐']; 
             
             setInterval(() => {
                 const el = document.createElement('div');
                 el.innerHTML = elements[Math.floor(Math.random() * elements.length)];
                 el.classList.add('floating-element');
                 el.style.left = Math.random() * 100 + 'vw';
-                el.style.animationDuration = Math.random() * 3 + 3 + 's'; 
+                el.style.animationDuration = Math.random() * 3 + 4 + 's'; 
                 el.style.fontSize = Math.random() * 20 + 15 + 'px'; 
                 container.appendChild(el);
                 
                 setTimeout(() => {
                     el.remove();
-                }, 6000);
-            }, 400); 
+                }, 7000);
+            }, 500); 
         }
         createFloatingElements();
 
-        // برمجة العداد التنازلي لتاريخ 17/7/2026
+        // دالة العداد التنازلي لميلادها العشرين (17/7/2026)
         function startCountdown() {
-            // تحديد تاريخ الهدف: 17 يوليو 2026
             const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
 
             const x = setInterval(function() {
