@@ -15,7 +15,6 @@
             color: #880e4f; 
         }
         
-        /* تنسيق النجوم والفقاعات */
         .floating-element { 
             position: absolute; 
             animation: floatUp 4s linear infinite; 
@@ -57,7 +56,6 @@
             to { opacity: 1; transform: translateY(0); } 
         }
         
-        /* تنسيق الصور */
         .intro-image {
             width: 100%;
             max-width: 400px; 
@@ -69,7 +67,6 @@
             object-fit: cover;
         }
 
-        /* تنسيق النصوص */
         h1 { 
             font-size: 2.2em; 
             margin-bottom: 15px; 
@@ -83,18 +80,6 @@
             margin-bottom: 20px;
         }
         
-        /* تنسيق مشغل الصوت */
-        .audio-container {
-            margin: 25px 0;
-        }
-        audio {
-            width: 100%;
-            outline: none;
-            border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.2);
-        }
-
-        /* تنسيق العداد التنازلي */
         #countdown-container {
             background: #fce4ec;
             border-radius: 15px;
@@ -117,7 +102,6 @@
             direction: rtl;
         }
 
-        /* تنسيق الأزرار */
         .buttons-container {
             display: flex;
             justify-content: center;
@@ -157,23 +141,24 @@
         .btn-back:hover {
             background: #f06292;
         }
-
     </style>
 </head>
 <body>
 
-    <!-- حاوية التأثيرات العائمة -->
     <div id="floating-container"></div>
+
+    <!-- عنصر الصوت المخفي -->
+    <audio id="bg-music" loop>
+        <source src="YOUR_SONG.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         
-        <!-- الخطوة الأولى -->
+        <!-- الخطوة 1 -->
         <div id="step1" class="step active">
             <img src="HBD.png" alt="HBD Dania" class="intro-image">
-            
             <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
-
-            <!-- العداد التنازلي -->
+            
             <div id="countdown-container">
                 <div id="countdown-title">باقي لتصيري 20 سنة:</div>
                 <div id="countdown">جاري الحساب...</div>
@@ -184,7 +169,7 @@
             </div>
         </div>
 
-        <!-- الخطوة الثانية -->
+        <!-- الخطوة 2 -->
         <div id="step2" class="step">
             <h1>دانية العزيزة 🌸</h1>
             <p>قعدت فترة بفكر ايش اجيب هدية الك, بكل افكاري ما كان بنفع اقدم الي بخطرلي.</p>
@@ -196,27 +181,10 @@
             </div>
         </div>
 
-        <!-- الخطوة الثالثة -->
+        <!-- الخطوة 3 (الرسالة المدمجة والأغنية) -->
         <div id="step3" class="step">
             <p>دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها.</p>
             <p>من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج.</p>
-            
-            <!-- مشغل الموسيقى -->
-            <div class="audio-container">
-                <audio controls>
-                    <source src="YOUR_SONG.mp3" type="audio/mpeg">
-                    متصفحك لا يدعم تشغيل الصوت.
-                </audio>
-            </div>
-
-            <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(3)">كملي قراءة 🌸</button>
-            </div>
-        </div>
-
-        <!-- الخطوة الرابعة -->
-        <div id="step4" class="step">
             <p>احداث كثير ما حدا بعرفها غيري وغيرك, خناقات ومصالحات ما حدا بعرفها.</p>
             <p>ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك, كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول:)</p>
             <br>
@@ -224,43 +192,53 @@
             <p>ببساطة؟ لانك دانية, لانك دانية حبيتك ما عندي سبب اقوى من هيك.</p>
 
             <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(4)">الصفحة الأخيرة ❤️</button>
+                <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
+                <button class="btn" onclick="nextStep(3)">الصفحة الأخيرة ❤️</button>
             </div>
         </div>
 
-        <!-- الخطوة الخامسة -->
-        <div id="step5" class="step">
+        <!-- الخطوة 4 (الأخيرة مع الصورة) -->
+        <div id="step4" class="step">
             <p>دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو, ايدي دايما ممدوده الك.</p>
             <p>لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك, بنبسط بس اسمع صوتك, بنبسط بس تتنمري علي 😂</p>
             <p>صح بحبش كثير لما تحرجيني, بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور.</p>
             <p>صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير.</p>
             
-            <!-- الصورة المطلوبة -->
             <img src="dumb-smart.png" alt="Dumb-Smart" class="intro-image">
 
             <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(5)">🔙 رجوع</button>
+                <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
             </div>
         </div>
 
     </div>
 
-    <!-- أكواد الجافاسكريبت -->
     <script>
-        // دالة التقدم للصفحة التالية
         function nextStep(current) {
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current + 1)).classList.add('active');
+
+            // تشغيل الأغنية تلقائياً عند الدخول للخطوة 3
+            if (current === 2) {
+                let audio = document.getElementById('bg-music');
+                audio.play().catch(error => {
+                    console.log("المتصفح منع التشغيل التلقائي للصوت.");
+                });
+            }
         }
 
-        // دالة الرجوع للصفحة السابقة
         function prevStep(current) {
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current - 1)).classList.add('active');
+            
+            // إيقاف الأغنية إذا رجعنا للخطوة 2
+            if (current === 3) {
+                let audio = document.getElementById('bg-music');
+                audio.pause();
+                audio.currentTime = 0; // إعادة الأغنية من البداية
+            }
         }
 
-        // دالة إنشاء النجوم والفقاعات العائمة
         function createFloatingElements() {
             const container = document.getElementById('floating-container');
             const elements = ['✨', '🌟', '🫧', '⭐']; 
@@ -274,14 +252,11 @@
                 el.style.fontSize = Math.random() * 20 + 15 + 'px'; 
                 container.appendChild(el);
                 
-                setTimeout(() => {
-                    el.remove();
-                }, 7000);
+                setTimeout(() => el.remove(), 7000);
             }, 500); 
         }
         createFloatingElements();
 
-        // دالة العداد التنازلي لميلادها العشرين (17/7/2026)
         function startCountdown() {
             const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
 
