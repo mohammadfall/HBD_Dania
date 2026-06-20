@@ -381,6 +381,36 @@
     transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .5s ease;
   }
 
+  #btn-yes{
+    transition:opacity .6s ease, transform .6s ease;
+  }
+
+  .celebrate-msg{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+  .celebrate-title{
+    font-family:'Rakkas', serif;
+    font-weight:400;
+    color:var(--rose-deep);
+    margin:0;
+    font-size:1.5em;
+    animation:fadeInUp .6s ease both;
+  }
+  .celebrate-sub{
+    font-size:1.05em;
+    color:var(--ink-soft);
+    margin:0;
+    opacity:0;
+    animation:fadeInUp .7s ease .6s both;
+  }
+  @keyframes fadeInUp{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
   .date-stamp{
     text-align:center;
     margin-top:18px;
@@ -515,7 +545,7 @@
       <p class="dodge-hint" id="dodge-hint">ولا حتى رح تقدري تمسكيني 😏</p>
 
       <div class="buttons-container" id="final-buttons">
-        <button class="btn btn-yes" onclick="celebrate()">أكيد</button>
+        <button class="btn btn-yes" id="btn-yes" onclick="celebrate()">أكيد</button>
         <button class="btn" id="btn-no" onmouseenter="dodgeNo(event)" ontouchstart="dodgeNo(event)">لا 🏃🏻‍♀️</button>
       </div>
     </div>
@@ -524,7 +554,7 @@
 
   <div class="date-stamp">
     <span class="ds-date">صُمم بتاريخ ٢٠ / ٦ / ٢٠٢٦</span><br>
-    بس عشان تعرفي إني  مفكر بهالاشي من زمان ومجهز هالشي من قبل, وقت كنت اجهز فيه كنا نحكي كول واحكيلك بكبس عالكمبيوتر 
+    بس عشان تعرفي إني مفكر بهالاشي من زمان ومجهز هالشي من قبل، وقت كنت اجهز فيه كنا نحكي كول واحكيلك بكبس عالكمبيوتر 💌
   </div>
 
 </div>
@@ -568,6 +598,14 @@
       btnNo.style.transform = 'translate(0,0) rotate(0deg)';
       const hint = document.getElementById('dodge-hint');
       if (hint) hint.style.opacity = '0';
+
+      const btnYes = document.getElementById('btn-yes');
+      if (btnYes) {
+        btnYes.style.transition = 'none';
+        btnYes.style.display = 'none';
+        btnYes.style.opacity = '0';
+        btnYes.style.transform = 'scale(0.85)';
+      }
     }
 
     items.forEach(item => {
@@ -590,6 +628,18 @@
             navButtons.style.transition = 'opacity 0.8s ease';
             navButtons.style.opacity = '1';
           }, 50);
+        }
+        if (stepId === 5) {
+          const btnYes = document.getElementById('btn-yes');
+          if (btnYes) {
+            setTimeout(() => {
+              btnYes.style.display = 'inline-block';
+              btnYes.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+              void btnYes.offsetWidth;
+              btnYes.style.opacity = '1';
+              btnYes.style.transform = 'scale(1)';
+            }, 1700);
+          }
         }
         return;
       }
@@ -635,9 +685,53 @@
     showNext();
   }
 
+  let audioCtx;
+  function getAudioCtx(){
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return audioCtx;
+  }
+
+  function playFlipSound(){
+    try {
+      const ctx = getAudioCtx();
+      if (ctx.state === 'suspended') ctx.resume();
+
+      const duration = 0.22;
+      const bufferSize = Math.floor(ctx.sampleRate * duration);
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        const envelope = Math.pow(1 - i / bufferSize, 2.2);
+        data[i] = (Math.random() * 2 - 1) * envelope;
+      }
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const bandpass = ctx.createBiquadFilter();
+      bandpass.type = 'bandpass';
+      bandpass.frequency.setValueAtTime(2600, ctx.currentTime);
+      bandpass.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + duration);
+      bandpass.Q.value = 0.8;
+
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.22, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+      noise.connect(bandpass).connect(gain).connect(ctx.destination);
+      noise.start();
+      noise.stop(ctx.currentTime + duration);
+    } catch (e) {
+      console.log('flip sound unavailable', e);
+    }
+  }
+
   function openLetter(){
     const seal = document.getElementById('waxSeal');
     seal.classList.add('crack');
+    playFlipSound();
     setTimeout(() => nextStep(1), 480);
   }
 
@@ -648,6 +742,7 @@
 
     playSequence(next);
     updateProgress(next);
+    playFlipSound();
 
     if (current === 1) {
       let audio = document.getElementById('bg-music');
@@ -662,6 +757,7 @@
 
     playSequence(prev);
     updateProgress(prev);
+    playFlipSound();
 
     if (current === 2) {
       let audio = document.getElementById('bg-music');
@@ -731,7 +827,11 @@
 
   function celebrate() {
     const container = document.getElementById('floating-container');
-    document.getElementById('final-buttons').innerHTML = "<h2 style='font-family:Rakkas, serif; font-weight:400; color:var(--rose-deep);'>وأنا بوعدك أضل معك دايماً ❤️</h2>";
+    document.getElementById('final-buttons').innerHTML =
+      '<div class="celebrate-msg">' +
+        '<h2 class="celebrate-title">وأنا بوعدك أضل معك دايماً ❤️</h2>' +
+        '<p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>' +
+      '</div>';
 
     const hint = document.getElementById('dodge-hint');
     if (hint) hint.style.display = 'none';
