@@ -3,143 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> HBD 🎉 </title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title> HBD Dania 🎉 </title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         body { 
             margin: 0; 
             overflow-x: hidden; 
             font-family: 'Tajawal', sans-serif; 
-            background: linear-gradient(135deg, #fce4ec, #f8bbd0); 
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); /* خلفية هادئة جداً */
+            background-image: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
             color: #880e4f; 
+            min-height: 100vh;
         }
         
+        /* تأثيرات النجوم والقلوب العائمة */
         .floating-element { 
             position: absolute; 
-            animation: floatUp 4s linear infinite; 
-            opacity: 0.7; 
+            animation: floatUp linear infinite; 
+            opacity: 0.6; 
             z-index: 1;
             pointer-events: none;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
         }
         
         @keyframes floatUp { 
             0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; } 
-            50% { opacity: 1; } 
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
             100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; } 
         }
 
+        /* حاوية زجاجية أنيقة (Glassmorphism) */
         .container { 
             text-align: center; 
             max-width: 650px; 
-            margin: 10vh auto; 
-            background: rgba(255, 255, 255, 0.85); 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            backdrop-filter: blur(10px); 
+            margin: 8vh auto; 
+            background: rgba(255, 255, 255, 0.7); 
+            padding: 45px 30px; 
+            border-radius: 25px; 
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15), 
+                        inset 0 0 0 2px rgba(255, 255, 255, 0.5); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
             position: relative; 
             z-index: 10;
         }
 
         .step { 
             display: none; 
-            animation: fadeIn 0.8s ease-in-out; 
+            animation: fadeInUp 0.8s ease-out forwards; 
+            opacity: 0;
+            transform: translateY(20px);
         }
         
         .step.active { 
             display: block; 
         }
         
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(15px); } 
+        @keyframes fadeInUp { 
             to { opacity: 1; transform: translateY(0); } 
         }
         
+        /* تنسيق الصور */
         .intro-image {
             width: 100%;
-            max-width: 400px; 
-            margin-top: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.2);
-            border: 4px solid white;
-            border-radius: 15px; 
+            max-width: 350px; 
+            margin: 15px auto 25px auto;
+            display: block;
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.2);
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            border-radius: 20px; 
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .intro-image:hover {
+            transform: scale(1.02);
         }
 
         h1 { 
             font-size: 2.2em; 
-            margin-bottom: 15px; 
-            color: #d81b60; 
+            margin-bottom: 20px; 
+            color: #c2185b; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
         }
         
         p { 
-            font-size: 1.3em; 
+            font-size: 1.25em; 
             line-height: 1.9; 
-            color: #555; 
-            margin-bottom: 20px;
+            color: #4a4a4a; 
+            margin-bottom: 15px;
+        }
+
+        /* تنسيق خاص للحديث الشريف */
+        .hadith-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-right: 5px solid #d81b60;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-style: italic;
+            color: #880e4f;
+            font-weight: 500;
         }
         
+        /* تنسيق العداد التنازلي */
         #countdown-container {
-            background: #fce4ec;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.15);
+            background: linear-gradient(135deg, #ffffff, #fce4ec);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.1);
+            border: 1px solid rgba(255,255,255,0.8);
         }
         
         #countdown-title {
             font-weight: bold;
             color: #ad1457;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            margin-bottom: 12px;
+            font-size: 1.15em;
         }
         
         #countdown {
-            font-size: 1.4em;
-            font-weight: bold;
+            font-size: 1.5em;
+            font-weight: 700;
             color: #d81b60;
             direction: rtl;
         }
 
+        /* تنسيق الأزرار */
         .buttons-container {
             display: flex;
             justify-content: center;
             align-items: center; 
             gap: 15px; 
-            margin-top: 30px;
+            margin-top: 35px;
             flex-wrap: wrap;
         }
         
         .btn { 
-            background: #d81b60; 
+            background: linear-gradient(45deg, #d81b60, #ec407a); 
             color: white; 
             border: none; 
-            padding: 12px 30px; 
-            font-size: 1.1em; 
+            padding: 12px 35px; 
+            font-size: 1.15em; 
             border-radius: 30px; 
             cursor: pointer; 
-            transition: 0.3s; 
+            transition: all 0.3s ease; 
             font-family: 'Tajawal', sans-serif;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
         }
         
         .btn:hover { 
-            background: #ad1457; 
-            transform: scale(1.05); 
+            transform: translateY(-3px) scale(1.05); 
+            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.5);
         }
         
         .btn-back {
-            background: #f48fb1;
-            color: white;
+            background: rgba(244, 143, 177, 0.5);
+            color: #880e4f;
             box-shadow: none;
-            padding: 8px 20px; 
+            padding: 10px 25px; 
             font-size: 1em; 
+            backdrop-filter: blur(5px);
         }
         
         .btn-back:hover {
-            background: #f06292;
+            background: rgba(240, 98, 146, 0.8);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* تنسيق السؤال النهائي */
+        .final-question {
+            font-size: 2.5em;
+            color: #ad1457;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #c2185b, #e91e63);
+            font-size: 1.3em;
+            padding: 15px 40px;
         }
     </style>
 </head>
@@ -186,18 +235,18 @@
             <p>دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها.</p>
             <p>من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج.</p>
             <p>احداث كثير ما حدا بعرفها غيري وغيرك, خناقات ومصالحات ما حدا بعرفها.</p>
-            <p>ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك, كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول:)</p>
+            <p>ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك, كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)</p>
             <br>
-            <p><strong>حتسأليني ليش؟ ليش انا؟</strong></p>
+            <h2 style="color: #c2185b;">حتسأليني ليش؟ ليش انا؟</h2>
             <p>ببساطة؟ لانك دانية, لانك دانية حبيتك ما عندي سبب اقوى من هيك.</p>
 
             <div class="buttons-container">
                 <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(3)">الصفحة الأخيرة ❤️</button>
+                <button class="btn" onclick="nextStep(3)">كملي قراءة ❤️</button>
             </div>
         </div>
 
-        <!-- الخطوة 4 (الأخيرة مع الصورة) -->
+        <!-- الخطوة 4 (الصورة والحديث الشريف) -->
         <div id="step4" class="step">
             <p>دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو, ايدي دايما ممدوده الك.</p>
             <p>لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك, بنبسط بس اسمع صوتك, بنبسط بس تتنمري علي 😂</p>
@@ -206,8 +255,25 @@
             
             <img src="dumb-smart.png" alt="Dumb-Smart" class="intro-image">
 
+            <p style="font-weight: bold; color: #ad1457;">وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي, هي هيك الحياه.</p>
+            
+            <div class="hadith-box">
+                "في حديث بحكي: ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
+            </div>
+
             <div class="buttons-container">
                 <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
+                <button class="btn" onclick="nextStep(4)">الصفحة الأخيرة 💌</button>
+            </div>
+        </div>
+
+        <!-- الخطوة 5 (السؤال النهائي) -->
+        <div id="step5" class="step">
+            <h1 class="final-question">وبالنهايه هذا سؤال... <br><br> ممكن نضل دايما مع بعض؟ 🥺❤️</h1>
+            
+            <div class="buttons-container" id="final-buttons">
+                <button class="btn btn-yes" onclick="celebrate()">أكيد 💍</button>
+                <button class="btn btn-yes" onclick="celebrate()">طبعاً 🌸</button>
             </div>
         </div>
 
@@ -235,28 +301,30 @@
             if (current === 3) {
                 let audio = document.getElementById('bg-music');
                 audio.pause();
-                audio.currentTime = 0; // إعادة الأغنية من البداية
+                audio.currentTime = 0; 
             }
         }
 
+        // تأثيرات الخلفية المستمرة
         function createFloatingElements() {
             const container = document.getElementById('floating-container');
-            const elements = ['✨', '🌟', '🫧', '⭐']; 
+            const elements = ['✨', '🌸', '🫧', '🤍', '💖']; 
             
             setInterval(() => {
                 const el = document.createElement('div');
                 el.innerHTML = elements[Math.floor(Math.random() * elements.length)];
                 el.classList.add('floating-element');
                 el.style.left = Math.random() * 100 + 'vw';
-                el.style.animationDuration = Math.random() * 3 + 4 + 's'; 
-                el.style.fontSize = Math.random() * 20 + 15 + 'px'; 
+                el.style.animationDuration = Math.random() * 4 + 5 + 's'; 
+                el.style.fontSize = Math.random() * 15 + 15 + 'px'; 
                 container.appendChild(el);
                 
-                setTimeout(() => el.remove(), 7000);
-            }, 500); 
+                setTimeout(() => el.remove(), 9000);
+            }, 600); 
         }
         createFloatingElements();
 
+        // العداد التنازلي
         function startCountdown() {
             const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
 
@@ -279,6 +347,26 @@
             }, 1000);
         }
         startCountdown();
+
+        // الاحتفال عند الضغط على أزرار الصفحة الأخيرة
+        function celebrate() {
+            const container = document.getElementById('floating-container');
+            document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b; animation: fadeInUp 0.5s;'>وأنا بوعدك أضل معك دايماً ❤️</h2>";
+            
+            // تكثيف القلوب
+            for(let i=0; i<50; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.innerHTML = '❤️';
+                    el.classList.add('floating-element');
+                    el.style.left = Math.random() * 100 + 'vw';
+                    el.style.animationDuration = Math.random() * 2 + 2 + 's'; 
+                    el.style.fontSize = Math.random() * 30 + 20 + 'px'; 
+                    container.appendChild(el);
+                    setTimeout(() => el.remove(), 4000);
+                }, i * 50);
+            }
+        }
     </script>
 </body>
 </html>
