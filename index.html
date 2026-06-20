@@ -9,18 +9,18 @@
 
 <style>
   :root{
-    --paper:#FBF1E4;
-    --paper-deep:#F2DEC2;
-    --card:#FFFCF5;
-    --blush:#F3D9CB;
-    --rose:#A23B56;
-    --rose-deep:#7C2A40;
-    --wine:#3D1B24;
-    --gold:#C9A158;
-    --gold-deep:#A9803C;
-    --mauve:#8C5468;
-    --shadow: rgba(124,42,64,.18);
-    --ink-soft:#5C3A45;
+    --paper:#FBF4EC;
+    --paper-deep:#F1E3D0;
+    --card:#FFFDF8;
+    --blush:#F0DDD3;
+    --rose:#B97D86;
+    --rose-deep:#8C5560;
+    --wine:#4A3138;
+    --gold:#C7A66B;
+    --gold-deep:#AD8A52;
+    --mauve:#9C7480;
+    --shadow: rgba(140,85,96,.14);
+    --ink-soft:#6B4E55;
   }
 
   *{ box-sizing:border-box; }
@@ -305,20 +305,47 @@
   }
   .wax-seal{
     width:88px; height:88px;
-    border-radius:50%;
     border:none;
     cursor:pointer;
-    background:radial-gradient(circle at 32% 28%, #d8607f, var(--rose) 55%, var(--rose-deep));
-    box-shadow:0 10px 22px rgba(124,42,64,.4), inset 0 -4px 8px rgba(0,0,0,.2);
+    border-radius:46% 54% 55% 45% / 45% 40% 60% 55%;
+    background:radial-gradient(circle at 32% 26%, #cf9aa1, var(--rose) 52%, var(--rose-deep));
+    box-shadow:0 10px 22px var(--shadow), inset 0 -5px 9px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.12);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:1.8em;
+    position:relative;
     transition:transform .35s ease;
+  }
+  .wax-seal::before{
+    content:"";
+    position:absolute;
+    inset:9px;
+    border-radius:inherit;
+    border:1px dashed rgba(255,255,255,.3);
+    pointer-events:none;
+  }
+  .wax-seal::after{
+    content:"";
+    position:absolute;
+    bottom:-5px; left:50%;
+    transform:translateX(-50%);
+    width:13px; height:13px;
+    background:var(--rose-deep);
+    border-radius:50% 50% 50% 4px;
+    opacity:.85;
   }
   .wax-seal:hover{ transform:scale(1.06) rotate(-3deg); }
   .wax-seal.crack{
     animation:crackOpen .48s ease forwards;
+  }
+  .seal-mono{
+    font-family:'Rakkas', serif;
+    font-size:2em;
+    color:rgba(255,255,255,.92);
+    text-shadow:0 1px 0 rgba(255,255,255,.3), 0 -1px 1px rgba(0,0,0,.22);
+    transform:translateY(-2px);
+    position:relative;
+    z-index:1;
   }
   @keyframes crackOpen{
     0%{ transform:scale(1) rotate(0deg); }
@@ -357,10 +384,15 @@
   .date-stamp{
     text-align:center;
     margin-top:18px;
-    font-size:.78em;
+    font-size:.8em;
     color:var(--mauve);
-    opacity:.75;
-    letter-spacing:.5px;
+    opacity:.85;
+    letter-spacing:.3px;
+    line-height:1.9;
+  }
+  .date-stamp .ds-date{
+    font-weight:700;
+    color:var(--rose-deep);
   }
 
   @media (max-width:480px){
@@ -417,7 +449,7 @@
 
       <div class="buttons-container">
         <div class="seal-wrap">
-          <button class="wax-seal" id="waxSeal" onclick="openLetter()" aria-label="افتحي الرسالة">🌹</button>
+          <button class="wax-seal" id="waxSeal" onclick="openLetter()" aria-label="افتحي الرسالة"><span class="seal-mono">D</span></button>
           <p class="seal-label">اضغطي على الختم لفتح الرسالة ✨</p>
         </div>
       </div>
@@ -490,7 +522,10 @@
 
   </div>
 
-  <div class="date-stamp">أُرسلت هذه الرسالة بتاريخ ٢٠ / ٦ / ٢٠٢٦ 💌</div>
+  <div class="date-stamp">
+    <span class="ds-date">صُمم بتاريخ ٢٠ / ٦ / ٢٠٢٦</span><br>
+    بس عشان تعرفي إني  مفكر بهالاشي من زمان ومجهز هالشي من قبل, وقت كنت اجهز فيه كنا نحكي كول واحكيلك بكبس عالكمبيوتر 
+  </div>
 
 </div>
 
@@ -614,7 +649,7 @@
     playSequence(next);
     updateProgress(next);
 
-    if (current === 2) {
+    if (current === 1) {
       let audio = document.getElementById('bg-music');
       audio.play().catch(e => console.log("Audio play blocked"));
     }
@@ -628,7 +663,7 @@
     playSequence(prev);
     updateProgress(prev);
 
-    if (current === 3) {
+    if (current === 2) {
       let audio = document.getElementById('bg-music');
       audio.pause();
       audio.currentTime = 0;
