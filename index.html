@@ -65,12 +65,11 @@
             color: #c2185b; 
         }
         
-        /* تنسيق الفقرات مع مسافة السطر الفارغ */
         p.seq-item {
             font-size: 1.25em; 
             line-height: 1.9; 
             color: #4a4a4a; 
-            margin-bottom: 30px; /* هاي المسافة بتعمل سطر فارغ بين الفقرات */
+            margin-bottom: 30px; 
             min-height: 1.2em;
             word-wrap: break-word;
         }
@@ -80,7 +79,6 @@
             margin: 40px 0 20px 0;
         }
 
-        /* مربع الحديث الشريف */
         .hadith-box {
             background: rgba(255, 255, 255, 0.9);
             border-right: 5px solid #d81b60;
@@ -108,6 +106,7 @@
             direction: rtl;
         }
 
+        /* تنسيق الأزرار */
         .buttons-container {
             display: flex;
             justify-content: center;
@@ -144,6 +143,13 @@
             color: #ad1457;
             margin-bottom: 40px;
         }
+
+        /* تنسيق زر الرفض عشان يقدر يهرب بسهولة */
+        #btn-no {
+            background: #9e9e9e; 
+            position: relative; 
+            z-index: 100;
+        }
     </style>
 </head>
 <body>
@@ -151,7 +157,7 @@
     <div id="floating-container"></div>
 
     <audio id="bg-music" loop>
-        <source src="YOUR_SONG.mp3" type="audio/mpeg">
+        <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
@@ -199,8 +205,10 @@
         </div>
 
         <div id="step4" class="step">
-            <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂 صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور."></p>
-            
+            <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂 ."></p>
+
+            <p class="seq-item" data-type="text" data-text=" صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور "></p>
+
             <img src="dumb-smart.png" alt="dumb-smart" class="intro-image seq-item" data-type="media" style="display: none; opacity: 0;">
             
             <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير. وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه."></p>
@@ -216,23 +224,37 @@
         </div>
 
         <div id="step5" class="step">
-            <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ 🥺❤️"></h1>
+            <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ ❤️"></h1>
             
-            <div class="buttons-container" id="final-buttons" style="display: none;">
-                <button class="btn btn-yes" onclick="celebrate()">أكيد 💍</button>
-                <button class="btn btn-yes" onclick="celebrate()">طبعاً 🌸</button>
+            <div class="buttons-container" id="final-buttons">
+                <button class="btn btn-yes" onclick="celebrate()">أكيد </button>
+                <button class="btn" id="btn-no" onmouseover="runAway()" ontouchstart="runAway()">لا 🏃🏻‍♀️</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        // نظام الطابور (Sequential Display)
+        // نظام الطابور المحدث (يخفي الأزرار لحين انتهاء الكتابة)
         function playSequence(stepId) {
             const step = document.getElementById('step' + stepId);
             const items = step.querySelectorAll('.seq-item');
+            const navButtons = step.querySelector('.buttons-container');
             
-            // إخفاء جميع العناصر قبل البدء
+            // إخفاء الأزرار تماماً في بداية الصفحة
+            if (navButtons) {
+                navButtons.style.display = 'none';
+                navButtons.style.opacity = '0';
+            }
+
+            // إرجاع الزر الهارب لمكانه الطبيعي إذا رجعنا للصفحة 5
+            if(stepId === 5) {
+                const btnNo = document.getElementById('btn-no');
+                btnNo.style.position = 'relative';
+                btnNo.style.left = '0px';
+                btnNo.style.top = '0px';
+            }
+            
             items.forEach(item => {
                 if (item.getAttribute('data-type') === 'text') {
                     item.textContent = '';
@@ -243,18 +265,19 @@
                 }
             });
 
-            // إخفاء الأزرار النهائية في الصفحة 5
-            if(stepId === 5) {
-                document.getElementById('final-buttons').style.display = 'none';
-            }
-
             let currentIndex = 0;
 
             function showNext() {
+                // إذا خلصنا كل العناصر في الصفحة
                 if (currentIndex >= items.length) {
-                    // إظهار الأزرار النهائية بعد انتهاء السؤال في الصفحة 5
-                    if(stepId === 5) {
-                        document.getElementById('final-buttons').style.display = 'flex';
+                    // إظهار الأزرار بعد انتهاء كل شيء
+                    if (navButtons) {
+                        navButtons.style.display = 'flex';
+                        // تأثير ظهور ناعم للأزرار
+                        setTimeout(() => {
+                            navButtons.style.transition = 'opacity 0.8s ease';
+                            navButtons.style.opacity = '1';
+                        }, 50);
                     }
                     return;
                 }
@@ -267,6 +290,7 @@
                     let charIndex = 0;
                     let currentString = "";
                     
+                    // تم إبطاء السرعة إلى 60 ملي ثانية (كانت 35)
                     const interval = setInterval(() => {
                         currentString += text.charAt(charIndex);
                         target.textContent = currentString;
@@ -275,24 +299,21 @@
                         if (charIndex >= text.length) {
                             clearInterval(interval);
                             currentIndex++;
-                            setTimeout(showNext, 400); // استراحة قصيرة قبل العنصر التالي
+                            setTimeout(showNext, 400); 
                         }
-                    }, 35); // سرعة الكتابة
+                    }, 60); 
                 } 
                 else if (type === 'media') {
-                    // ظهور تدريجي ناعم للصور والمربعات في وقتها المناسب
                     target.style.display = 'block';
-                    // هذا السطر لإجبار المتصفح على تطبيق الأنيميشن
                     void target.offsetWidth; 
                     target.style.transition = 'opacity 1.5s ease';
                     target.style.opacity = '1';
 
                     currentIndex++;
-                    setTimeout(showNext, 1200); // استراحة أطول لتستوعب الصورة/الحديث
+                    setTimeout(showNext, 1200); 
                 }
             }
 
-            // تشغيل الطابور
             showNext();
         }
 
@@ -361,9 +382,26 @@
         }
         createFloatingElements();
 
+        // دالة هروب الزر
+        function runAway() {
+            const btn = document.getElementById('btn-no');
+            btn.style.position = 'fixed';
+            const maxX = window.innerWidth - btn.offsetWidth - 20;
+            const maxY = window.innerHeight - btn.offsetHeight - 20;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+
+        // الاحتفال عند الموافقة
         function celebrate() {
             const container = document.getElementById('floating-container');
-            document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b;'>وأنا بوعدك أضل معك دايماً, وكل عام وانتي بخير يا حلوة ❤️</h2>";
+            document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b;'> وأنا بوعدك أضل معك دايماً, كل عام وانتي بخير يا حلوة ❤️ </h2>";
+            
+            const btnNo = document.getElementById('btn-no');
+            if(btnNo) btnNo.style.display = 'none';
+
             for(let i=0; i<60; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
