@@ -11,7 +11,7 @@
             margin: 0; 
             overflow-x: hidden; 
             font-family: 'Tajawal', sans-serif; 
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); /* خلفية هادئة جداً */
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
             background-image: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
             color: #880e4f; 
             min-height: 100vh;
@@ -34,7 +34,7 @@
             100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; } 
         }
 
-        /* حاوية زجاجية أنيقة (Glassmorphism) */
+        /* حاوية زجاجية أنيقة */
         .container { 
             text-align: center; 
             max-width: 650px; 
@@ -96,7 +96,7 @@
             margin-bottom: 15px;
         }
 
-        /* تنسيق خاص للحديث الشريف */
+        /* تنسيق مربع الحديث - تم التعديل ليكون أعرض وبدون ميلان */
         .hadith-box {
             background: rgba(255, 255, 255, 0.9);
             border-right: 5px solid #d81b60;
@@ -104,9 +104,10 @@
             margin: 25px 0;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            font-style: italic;
+            font-style: normal; /* إزالة الميلان */
             color: #880e4f;
-            font-weight: 500;
+            font-weight: 700; /* جعل الخط عريضاً */
+            font-size: 1.15em; /* تكبير الخط قليلاً ليكون أوضح */
         }
         
         /* تنسيق العداد التنازلي */
@@ -196,14 +197,12 @@
 
     <div id="floating-container"></div>
 
-    <!-- عنصر الصوت المخفي -->
     <audio id="bg-music" loop>
         <source src="YOUR_SONG.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
         
-        <!-- الخطوة 1 -->
         <div id="step1" class="step active">
             <img src="HBD.png" alt="HBD Dania" class="intro-image">
             <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
@@ -218,7 +217,6 @@
             </div>
         </div>
 
-        <!-- الخطوة 2 -->
         <div id="step2" class="step">
             <h1>دانية العزيزة 🌸</h1>
             <p>قعدت فترة بفكر ايش اجيب هدية الك, بكل افكاري ما كان بنفع اقدم الي بخطرلي.</p>
@@ -230,7 +228,6 @@
             </div>
         </div>
 
-        <!-- الخطوة 3 (الرسالة المدمجة والأغنية) -->
         <div id="step3" class="step">
             <p>دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها.</p>
             <p>من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج.</p>
@@ -246,7 +243,6 @@
             </div>
         </div>
 
-        <!-- الخطوة 4 (الصورة والحديث الشريف) -->
         <div id="step4" class="step">
             <p>دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو, ايدي دايما ممدوده الك.</p>
             <p>لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك, بنبسط بس اسمع صوتك, بنبسط بس تتنمري علي 😂</p>
@@ -267,13 +263,12 @@
             </div>
         </div>
 
-        <!-- الخطوة 5 (السؤال النهائي) -->
         <div id="step5" class="step">
-            <h1 class="final-question">وبالنهايه هذا سؤال... <br><br> ممكن نضل دايما مع بعض؟ </h1>
+            <h1 class="final-question">وبالنهايه هذا سؤال... <br><br> ممكن نضل دايما مع بعض؟ 🥺❤️</h1>
             
             <div class="buttons-container" id="final-buttons">
-                <button class="btn btn-yes" onclick="celebrate()">أكيد </button>
-                <button class="btn btn-yes" onclick="celebrate()">طبعاً </button>
+                <button class="btn btn-yes" onclick="celebrate()">أكيد 💍</button>
+                <button class="btn btn-yes" onclick="celebrate()">طبعاً 🌸</button>
             </div>
         </div>
 
@@ -284,7 +279,6 @@
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current + 1)).classList.add('active');
 
-            // تشغيل الأغنية تلقائياً عند الدخول للخطوة 3
             if (current === 2) {
                 let audio = document.getElementById('bg-music');
                 audio.play().catch(error => {
@@ -297,7 +291,6 @@
             document.getElementById('step' + current).classList.remove('active');
             document.getElementById('step' + (current - 1)).classList.add('active');
             
-            // إيقاف الأغنية إذا رجعنا للخطوة 2
             if (current === 3) {
                 let audio = document.getElementById('bg-music');
                 audio.pause();
@@ -305,7 +298,6 @@
             }
         }
 
-        // تأثيرات الخلفية المستمرة
         function createFloatingElements() {
             const container = document.getElementById('floating-container');
             const elements = ['✨', '🌸', '🫧', '🤍', '💖']; 
@@ -324,7 +316,6 @@
         }
         createFloatingElements();
 
-        // العداد التنازلي
         function startCountdown() {
             const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
 
@@ -348,12 +339,10 @@
         }
         startCountdown();
 
-        // الاحتفال عند الضغط على أزرار الصفحة الأخيرة
         function celebrate() {
             const container = document.getElementById('floating-container');
             document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b; animation: fadeInUp 0.5s;'>وأنا بوعدك أضل معك دايماً ❤️</h2>";
             
-            // تكثيف القلوب
             for(let i=0; i<50; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
