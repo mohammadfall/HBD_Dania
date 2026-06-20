@@ -148,7 +148,7 @@
             background: #9e9e9e; 
             position: relative; 
             z-index: 100;
-            transition: opacity 0.5s ease; /* تأثير تلاشي ناعم عند الاختفاء */
+            transition: opacity 0.5s ease;
         }
     </style>
 </head>
@@ -195,7 +195,7 @@
             
             <p class="seq-item" data-type="text" data-text="ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، "></p>
             
-            <p class="seq-item" data-type="text" كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
+            <p class="seq-item" data-type="text" data-text="كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
             
             <h2 class="seq-item" data-type="text" data-text="حتسأليني ليش؟ ليش انا؟"></h2>
             
@@ -210,13 +210,13 @@
         <div id="step4" class="step">
             <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂."></p>
             
-            <p class="seq-item" data-type="text" data-text="صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور" ></p>
+            <p class="seq-item" data-type="text" data-text="صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور"></p>
             
-                <img src="dumb-smart.png" alt="dumb-smart" class="intro-image seq-item" data-type="media" style="display: none; opacity: 0;">
+            <img src="dumb-smart.png" alt="dumb-smart" class="intro-image seq-item" data-type="media" style="display: none; opacity: 0;">
             
-            <p class="seq-item" data-type="text" data-text= "صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير."></p>
+            <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير."></p>
 
-            <p class="seq-item" data-type="text" data-text="  وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه" ></p>
+            <p class="seq-item" data-type="text" data-text="وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه"></p>
             
             <div class="hadith-box seq-item" data-type="media" style="display: none; opacity: 0;">
                 "ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
@@ -240,19 +240,16 @@
     </div>
 
     <script>
-        // نظام الطابور المحدث (يخفي الأزرار لحين انتهاء الكتابة وبسرعة أبطأ)
         function playSequence(stepId) {
             const step = document.getElementById('step' + stepId);
             const items = step.querySelectorAll('.seq-item');
             const navButtons = step.querySelector('.buttons-container');
             
-            // إخفاء الأزرار تماماً في بداية الصفحة
             if (navButtons) {
                 navButtons.style.display = 'none';
                 navButtons.style.opacity = '0';
             }
 
-            // إرجاع زر الرفض ليظهر إذا رجعنا للصفحة 5 بعد أن اختفى
             if(stepId === 5) {
                 const btnNo = document.getElementById('btn-no');
                 btnNo.style.display = 'inline-block';
@@ -288,10 +285,17 @@
 
                 if (type === 'text') {
                     const text = target.getAttribute('data-text');
+                    
+                    // حماية إضافية في حال كان النص فارغ أو فيه مشكلة
+                    if (!text) {
+                        currentIndex++;
+                        showNext();
+                        return;
+                    }
+
                     let charIndex = 0;
                     let currentString = "";
                     
-                    // سرعة كتابة بطيئة ومريحة (60 ملي ثانية)
                     const interval = setInterval(() => {
                         currentString += text.charAt(charIndex);
                         target.textContent = currentString;
@@ -345,7 +349,6 @@
             }
         }
 
-        // العداد التنازلي
         function startCountdown() {
             const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
             setInterval(function() {
@@ -366,7 +369,6 @@
         }
         startCountdown();
 
-        // الفقاعات العائمة
         function createFloatingElements() {
             const container = document.getElementById('floating-container');
             const elements = ['✨', '🌸', '🤍', '💖', '⭐']; 
@@ -383,19 +385,15 @@
         }
         createFloatingElements();
 
-        // دالة اختفاء الزر (محسنة للموبايل)
         function makeDisappear() {
             const btn = document.getElementById('btn-no');
-            // بدلاً من الهروب، سنجعله يختفي تماماً فوراً
             btn.style.display = 'none';
         }
 
-        // الاحتفال عند الموافقة
         function celebrate() {
             const container = document.getElementById('floating-container');
             document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b;'>وأنا بوعدك أضل معك دايماً ❤️</h2>";
             
-            // تأكيد إخفاء زر الرفض
             const btnNo = document.getElementById('btn-no');
             if(btnNo) btnNo.style.display = 'none';
 
