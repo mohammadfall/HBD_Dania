@@ -106,7 +106,6 @@
             direction: rtl;
         }
 
-        /* تنسيق الأزرار */
         .buttons-container {
             display: flex;
             justify-content: center;
@@ -144,11 +143,12 @@
             margin-bottom: 40px;
         }
 
-        /* تنسيق زر الرفض عشان يقدر يهرب بسهولة */
+        /* تنسيق زر الرفض */
         #btn-no {
             background: #9e9e9e; 
             position: relative; 
             z-index: 100;
+            transition: opacity 0.5s ease; /* تأثير تلاشي ناعم عند الاختفاء */
         }
     </style>
 </head>
@@ -180,6 +180,7 @@
             <h1>دانية العزيزة 🌸</h1>
             <p class="seq-item" data-type="text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي."></p>
             <p class="seq-item" data-type="text" data-text="ما لقيت الا هالطريقة البسيطة جداً."></p>
+            <p class="seq-item" data-type="text" data-text="اسف عالكتابه البطيئه بس حبيت احط شخصيتي البطيئة كمان وانا اعمل الموقع 🐢"></p>
 
             <div class="buttons-container">
                 <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
@@ -205,10 +206,8 @@
         </div>
 
         <div id="step4" class="step">
-            <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂 ."></p>
-
-            <p class="seq-item" data-type="text" data-text=" صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور "></p>
-
+            <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂 صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور."></p>
+            
             <img src="dumb-smart.png" alt="dumb-smart" class="intro-image seq-item" data-type="media" style="display: none; opacity: 0;">
             
             <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير. وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه."></p>
@@ -224,18 +223,18 @@
         </div>
 
         <div id="step5" class="step">
-            <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ ❤️"></h1>
+            <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ 🥺❤️"></h1>
             
             <div class="buttons-container" id="final-buttons">
-                <button class="btn btn-yes" onclick="celebrate()">أكيد </button>
-                <button class="btn" id="btn-no" onmouseover="runAway()" ontouchstart="runAway()">لا 🏃🏻‍♀️</button>
+                <button class="btn btn-yes" onclick="celebrate()">أكيد 💍</button>
+                <button class="btn" id="btn-no" onmouseover="makeDisappear()" ontouchstart="makeDisappear()">لا 🏃🏻‍♀️</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        // نظام الطابور المحدث (يخفي الأزرار لحين انتهاء الكتابة)
+        // نظام الطابور المحدث (يخفي الأزرار لحين انتهاء الكتابة وبسرعة أبطأ)
         function playSequence(stepId) {
             const step = document.getElementById('step' + stepId);
             const items = step.querySelectorAll('.seq-item');
@@ -247,12 +246,11 @@
                 navButtons.style.opacity = '0';
             }
 
-            // إرجاع الزر الهارب لمكانه الطبيعي إذا رجعنا للصفحة 5
+            // إرجاع زر الرفض ليظهر إذا رجعنا للصفحة 5 بعد أن اختفى
             if(stepId === 5) {
                 const btnNo = document.getElementById('btn-no');
-                btnNo.style.position = 'relative';
-                btnNo.style.left = '0px';
-                btnNo.style.top = '0px';
+                btnNo.style.display = 'inline-block';
+                btnNo.style.opacity = '1';
             }
             
             items.forEach(item => {
@@ -268,12 +266,9 @@
             let currentIndex = 0;
 
             function showNext() {
-                // إذا خلصنا كل العناصر في الصفحة
                 if (currentIndex >= items.length) {
-                    // إظهار الأزرار بعد انتهاء كل شيء
                     if (navButtons) {
                         navButtons.style.display = 'flex';
-                        // تأثير ظهور ناعم للأزرار
                         setTimeout(() => {
                             navButtons.style.transition = 'opacity 0.8s ease';
                             navButtons.style.opacity = '1';
@@ -290,7 +285,7 @@
                     let charIndex = 0;
                     let currentString = "";
                     
-                    // تم إبطاء السرعة إلى 60 ملي ثانية (كانت 35)
+                    // سرعة كتابة بطيئة ومريحة (60 ملي ثانية)
                     const interval = setInterval(() => {
                         currentString += text.charAt(charIndex);
                         target.textContent = currentString;
@@ -382,23 +377,19 @@
         }
         createFloatingElements();
 
-        // دالة هروب الزر
-        function runAway() {
+        // دالة اختفاء الزر (محسنة للموبايل)
+        function makeDisappear() {
             const btn = document.getElementById('btn-no');
-            btn.style.position = 'fixed';
-            const maxX = window.innerWidth - btn.offsetWidth - 20;
-            const maxY = window.innerHeight - btn.offsetHeight - 20;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
+            // بدلاً من الهروب، سنجعله يختفي تماماً فوراً
+            btn.style.display = 'none';
         }
 
         // الاحتفال عند الموافقة
         function celebrate() {
             const container = document.getElementById('floating-container');
-            document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b;'> وأنا بوعدك أضل معك دايماً, كل عام وانتي بخير يا حلوة ❤️ </h2>";
+            document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b;'>وأنا بوعدك أضل معك دايماً ❤️</h2>";
             
+            // تأكيد إخفاء زر الرفض
             const btnNo = document.getElementById('btn-no');
             if(btnNo) btnNo.style.display = 'none';
 
