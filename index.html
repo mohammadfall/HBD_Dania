@@ -1,415 +1,721 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> HBD Dania 🎉 </title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body { 
-            margin: 0; 
-            overflow-x: hidden; 
-            font-family: 'Tajawal', sans-serif; 
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            color: #880e4f; 
-            min-height: 100vh;
-        }
-        
-        .floating-element { 
-            position: absolute; 
-            animation: floatUp linear infinite; 
-            opacity: 0.6; 
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        @keyframes floatUp { 
-            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; } 
-            20% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; } 
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HBD Dania 🌹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-        .container { 
-            text-align: center; 
-            max-width: 650px; 
-            margin: 8vh auto; 
-            background: rgba(255, 255, 255, 0.7); 
-            padding: 45px 30px; 
-            border-radius: 25px; 
-            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            position: relative; 
-            z-index: 10;
-            min-height: 400px;
-        }
+<style>
+  :root{
+    --paper:#FBF1E4;
+    --paper-deep:#F2DEC2;
+    --card:#FFFCF5;
+    --blush:#F3D9CB;
+    --rose:#A23B56;
+    --rose-deep:#7C2A40;
+    --wine:#3D1B24;
+    --gold:#C9A158;
+    --gold-deep:#A9803C;
+    --mauve:#8C5468;
+    --shadow: rgba(124,42,64,.18);
+    --ink-soft:#5C3A45;
+  }
 
-        .step { display: none; }
-        .step.active { display: block; }
-        
-        /* تنسيق الصور */
-        .intro-image {
-            width: 100%;
-            max-width: 350px; 
-            margin: 20px auto;
-            display: block;
-            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.2);
-            border: 5px solid rgba(255, 255, 255, 0.8);
-            border-radius: 20px; 
-        }
+  *{ box-sizing:border-box; }
 
-        h1 { 
-            font-size: 2.2em; 
-            margin-bottom: 20px; 
-            color: #c2185b; 
-        }
-        
-        p.seq-item {
-            font-size: 1.25em; 
-            line-height: 1.9; 
-            color: #4a4a4a; 
-            margin-bottom: 30px; 
-            min-height: 1.2em;
-            word-wrap: break-word;
-        }
+  body{
+    margin:0;
+    overflow-x:hidden;
+    font-family:'Tajawal', sans-serif;
+    color:var(--wine);
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,.65), transparent 42%),
+      radial-gradient(circle at 85% 0%, rgba(243,217,203,.55), transparent 48%),
+      linear-gradient(160deg, var(--paper) 0%, var(--paper-deep) 100%);
+    position:relative;
+  }
 
-        h2.seq-item {
-            color: #c2185b; 
-            margin: 40px 0 20px 0;
-        }
+  /* subtle paper fiber texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:repeating-linear-gradient(45deg, rgba(124,42,64,.02) 0px, rgba(124,42,64,.02) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    z-index:1;
+  }
 
-        .hadith-box {
-            background: rgba(255, 255, 255, 0.9);
-            border-right: 5px solid #d81b60;
-            padding: 20px;
-            margin: 35px 0;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 1.15em;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        #countdown-container {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 25px 0;
-            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.1);
-        }
-        
-        #countdown {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #d81b60;
-            direction: rtl;
-        }
+  .floating-element{
+    position:absolute;
+    animation:floatUp linear infinite;
+    opacity:.7;
+    z-index:2;
+    pointer-events:none;
+    filter:drop-shadow(0 2px 4px rgba(124,42,64,.15));
+  }
 
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-            align-items: center; 
-            gap: 15px; 
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .btn { 
-            background: linear-gradient(45deg, #d81b60, #ec407a); 
-            color: white; 
-            border: none; 
-            padding: 12px 35px; 
-            font-size: 1.15em; 
-            border-radius: 30px; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-            font-weight: 700;
-        }
-        
-        .btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.4);
-        }
-        
-        .btn-back {
-            background: rgba(244, 143, 177, 0.5);
-            color: #880e4f;
-        }
+  @keyframes floatUp{
+    0%{ transform:translate(0,100vh) scale(.4) rotate(0deg); opacity:0; }
+    18%{ opacity:.85; }
+    100%{ transform:translate(var(--drift,0), -12vh) scale(1.3) rotate(300deg); opacity:0; }
+  }
 
-        .final-question {
-            font-size: 2.2em;
-            color: #ad1457;
-            margin-bottom: 40px;
-        }
+  .letter-wrap{
+    max-width:650px;
+    margin:6vh auto 4vh;
+    padding:0 18px;
+    position:relative;
+    z-index:10;
+  }
 
-        /* تنسيق زر الرفض */
-        #btn-no {
-            background: #9e9e9e; 
-            position: relative; 
-            z-index: 100;
-            transition: opacity 0.5s ease;
-        }
-    </style>
+  /* progress vine */
+  .progress-vine{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .vine-track{
+    width:78%;
+    height:3px;
+    background:rgba(162,59,86,.18);
+    border-radius:3px;
+    position:relative;
+    overflow:hidden;
+  }
+  .vine-fill{
+    position:absolute; top:0; right:0; height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--gold), var(--rose));
+    border-radius:3px;
+    transition:width .6s ease;
+  }
+  .buds{
+    display:flex;
+    gap:22px;
+  }
+  .bud{
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--card);
+    border:2px solid var(--mauve);
+    transition:all .5s ease;
+  }
+  .bud.bloom{
+    background:radial-gradient(circle at 35% 30%, #fff, var(--gold) 60%, var(--rose-deep));
+    border-color:var(--gold-deep);
+    transform:scale(1.25);
+    box-shadow:0 0 8px rgba(201,161,88,.6);
+  }
+  .page-label{
+    font-size:.78em;
+    color:var(--mauve);
+    letter-spacing:.5px;
+  }
+
+  .container{
+    text-align:center;
+    background:var(--card);
+    padding:42px 30px;
+    border-radius:20px;
+    box-shadow:0 18px 40px var(--shadow), 0 1px 0 rgba(255,255,255,.6) inset;
+    border:1px solid rgba(201,161,88,.25);
+    position:relative;
+    min-height:380px;
+  }
+  .container::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:20px;
+    background:repeating-linear-gradient(45deg, rgba(124,42,64,.012) 0px, rgba(124,42,64,.012) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+  }
+
+  .step{ display:none; }
+  .step.active{ display:block; }
+
+  .photo-frame{
+    position:relative;
+    width:fit-content;
+    margin:18px auto 26px;
+    transform:rotate(-2.2deg);
+  }
+  .photo-frame::before{
+    content:"";
+    position:absolute;
+    top:-12px; left:50%;
+    transform:translateX(-50%) rotate(-4deg);
+    width:70px; height:24px;
+    background:rgba(201,161,88,.35);
+    border:1px solid rgba(201,161,88,.5);
+    box-shadow:0 2px 4px rgba(0,0,0,.08);
+  }
+  .intro-image{
+    width:100%;
+    max-width:300px;
+    display:block;
+    border:6px solid #fff;
+    border-radius:6px;
+    box-shadow:0 14px 28px var(--shadow);
+  }
+
+  h1{
+    font-family:'Rakkas', serif;
+    font-weight:400;
+    font-size:2.1em;
+    margin-bottom:18px;
+    color:var(--rose-deep);
+    line-height:1.4;
+  }
+
+  p.seq-item{
+    font-size:1.18em;
+    line-height:2;
+    color:var(--ink-soft);
+    margin-bottom:26px;
+    min-height:1.2em;
+    word-wrap:break-word;
+  }
+
+  h2.seq-item{
+    font-family:'Rakkas', serif;
+    font-weight:400;
+    font-size:1.6em;
+    color:var(--rose);
+    margin:38px 0 18px;
+  }
+
+  .hadith-box{
+    background:linear-gradient(135deg, #fff, var(--blush));
+    border-right:5px solid var(--gold-deep);
+    padding:22px 24px;
+    margin:34px 0;
+    border-radius:14px;
+    font-weight:700;
+    font-size:1.1em;
+    text-align:center;
+    color:var(--rose-deep);
+    box-shadow:0 8px 18px rgba(0,0,0,.06);
+    position:relative;
+  }
+  .hadith-box::before{
+    content:"❝";
+    font-family:'Rakkas', serif;
+    font-size:2em;
+    color:var(--gold-deep);
+    display:block;
+    margin-bottom:4px;
+    opacity:.7;
+  }
+
+  #countdown-container{
+    background:linear-gradient(135deg, #fff, #fdf6ea);
+    border-radius:18px;
+    padding:20px 14px;
+    margin:24px 0;
+    box-shadow:0 8px 20px var(--shadow);
+    border:1px solid rgba(201,161,88,.25);
+  }
+  #countdown-title{
+    font-weight:700;
+    color:var(--rose-deep);
+    margin-bottom:14px;
+    font-size:1.05em;
+  }
+  #countdown{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .c-chip{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:var(--card);
+    border:1px solid rgba(162,59,86,.15);
+    border-radius:12px;
+    padding:10px 14px;
+    min-width:62px;
+  }
+  .c-num{
+    font-family:'Rakkas', serif;
+    font-size:1.5em;
+    color:var(--rose-deep);
+  }
+  .c-label{
+    font-size:.72em;
+    color:var(--mauve);
+    margin-top:2px;
+  }
+  .c-done{
+    font-weight:700;
+    color:var(--rose-deep);
+    font-size:1.2em;
+  }
+
+  .buttons-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    background:linear-gradient(45deg, var(--rose), #c2547a);
+    color:#fff;
+    border:none;
+    padding:12px 34px;
+    font-size:1.1em;
+    font-weight:700;
+    border-radius:30px;
+    cursor:pointer;
+    transition:all .3s ease;
+    font-family:'Tajawal', sans-serif;
+  }
+  .btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(162,59,86,.35);
+  }
+  .btn:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  .btn-back{
+    background:rgba(140,84,104,.18);
+    color:var(--rose-deep);
+  }
+
+  .btn-yes{
+    background:linear-gradient(45deg, var(--gold-deep), var(--gold));
+  }
+
+  /* wax seal */
+  .seal-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .wax-seal{
+    width:88px; height:88px;
+    border-radius:50%;
+    border:none;
+    cursor:pointer;
+    background:radial-gradient(circle at 32% 28%, #d8607f, var(--rose) 55%, var(--rose-deep));
+    box-shadow:0 10px 22px rgba(124,42,64,.4), inset 0 -4px 8px rgba(0,0,0,.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.8em;
+    transition:transform .35s ease;
+  }
+  .wax-seal:hover{ transform:scale(1.06) rotate(-3deg); }
+  .wax-seal.crack{
+    animation:crackOpen .48s ease forwards;
+  }
+  @keyframes crackOpen{
+    0%{ transform:scale(1) rotate(0deg); }
+    40%{ transform:scale(1.18) rotate(8deg); }
+    100%{ transform:scale(0.2) rotate(25deg); opacity:0; }
+  }
+  .seal-label{
+    font-size:.95em;
+    color:var(--mauve);
+    margin:0;
+  }
+
+  .final-question{
+    font-size:2em;
+    color:var(--rose-deep);
+    margin-bottom:34px;
+  }
+
+  #final-buttons{ position:relative; }
+
+  .dodge-hint{
+    font-size:.85em;
+    color:var(--mauve);
+    opacity:0;
+    transition:opacity .4s ease;
+    margin-bottom:10px;
+  }
+
+  #btn-no{
+    background:#9c8b91;
+    position:relative;
+    z-index:100;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .5s ease;
+  }
+
+  .date-stamp{
+    text-align:center;
+    margin-top:18px;
+    font-size:.78em;
+    color:var(--mauve);
+    opacity:.75;
+    letter-spacing:.5px;
+  }
+
+  @media (max-width:480px){
+    .letter-wrap{ margin-top:4vh; }
+    .container{ padding:30px 18px; }
+    h1{ font-size:1.7em; }
+    .final-question{ font-size:1.55em; }
+    p.seq-item{ font-size:1.05em; }
+    .wax-seal{ width:76px; height:76px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+    }
+  }
+</style>
 </head>
 <body>
 
-    <div id="floating-container"></div>
+<div id="floating-container"></div>
 
-    <audio id="bg-music" loop>
-        <source src="song.mp3" type="audio/mpeg">
-    </audio>
+<audio id="bg-music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="container">
-        
-        <div id="step1" class="step active">
-            <img src="HBD.png" alt="HBD" class="intro-image">
-            <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
-            
-            <div id="countdown-container">
-                <div id="countdown-title">باقي لتصيري 20 سنة:</div>
-                <div id="countdown">جاري الحساب...</div>
-            </div>
+<div class="letter-wrap">
 
-            <div class="buttons-container">
-                <button class="btn" onclick="nextStep(1)">اضغطي هون ✨</button>
-            </div>
+  <div class="progress-vine" id="progressVine">
+    <div class="vine-track"><div class="vine-fill" id="vineFill"></div></div>
+    <div class="buds">
+      <span class="bud" data-bud="1"></span>
+      <span class="bud" data-bud="2"></span>
+      <span class="bud" data-bud="3"></span>
+      <span class="bud" data-bud="4"></span>
+    </div>
+    <div class="page-label" id="pageLabel"></div>
+  </div>
+
+  <div class="container">
+
+    <div id="step1" class="step active">
+      <div class="photo-frame">
+        <img src="HBD.png" alt="HBD" class="intro-image">
+      </div>
+      <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
+
+      <div id="countdown-container">
+        <div id="countdown-title">باقي لتصيري ٢٠ سنة:</div>
+        <div id="countdown">جاري الحساب...</div>
+      </div>
+
+      <div class="buttons-container">
+        <div class="seal-wrap">
+          <button class="wax-seal" id="waxSeal" onclick="openLetter()" aria-label="افتحي الرسالة">🌹</button>
+          <p class="seal-label">اضغطي على الختم لفتح الرسالة ✨</p>
         </div>
-
-        <div id="step2" class="step">
-            <h1>دانية العزيزة 🌸</h1>
-            <p class="seq-item" data-type="text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي."></p>
-            <p class="seq-item" data-type="text" data-text="ما لقيت الا هالطريقة البسيطة جداً."></p>
-            <p class="seq-item" data-type="text" data-text="اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع 😼"></p>
-
-            <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(2)">التالي ✨</button>
-            </div>
-        </div>
-
-        <div id="step3" class="step">
-            <p class="seq-item" data-type="text" data-text="دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج."></p>
-            
-            <p class="seq-item" data-type="text" data-text="احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها."></p>
-            
-            <p class="seq-item" data-type="text" data-text="ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، "></p>
-            
-            <p class="seq-item" data-type="text" data-text="كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
-            
-            <h2 class="seq-item" data-type="text" data-text="حتسأليني ليش؟ ليش انا؟"></h2>
-            
-            <p class="seq-item" data-type="text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
-
-            <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(3)">كملي قراءة ❤️</button>
-            </div>
-        </div>
-
-        <div id="step4" class="step">
-            <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂."></p>
-            
-            <p class="seq-item" data-type="text" data-text="صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور"></p>
-            
-            <img src="dumb-smart.png" alt="dumb-smart" class="intro-image seq-item" data-type="media" style="display: none; opacity: 0;">
-            
-            <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير."></p>
-
-            <p class="seq-item" data-type="text" data-text="وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه"></p>
-            
-            <div class="hadith-box seq-item" data-type="media" style="display: none; opacity: 0;">
-                "ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
-            </div>
-
-            <div class="buttons-container">
-                <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
-                <button class="btn" onclick="nextStep(4)">الصفحة الأخيرة 💌</button>
-            </div>
-        </div>
-
-        <div id="step5" class="step">
-            <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "></h1>
-            
-            <div class="buttons-container" id="final-buttons">
-                <button class="btn btn-yes" onclick="celebrate()">أكيد </button>
-                <button class="btn" id="btn-no" onmouseover="makeDisappear()" ontouchstart="makeDisappear()">لا 🏃🏻‍♀️</button>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-    <script>
-        function playSequence(stepId) {
-            const step = document.getElementById('step' + stepId);
-            const items = step.querySelectorAll('.seq-item');
-            const navButtons = step.querySelector('.buttons-container');
-            
-            if (navButtons) {
-                navButtons.style.display = 'none';
-                navButtons.style.opacity = '0';
-            }
+    <div id="step2" class="step">
+      <h1>دانية العزيزة 🌸</h1>
+      <p class="seq-item" data-type="text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي."></p>
+      <p class="seq-item" data-type="text" data-text="ما لقيت الا هالطريقة البسيطة جداً."></p>
+      <p class="seq-item" data-type="text" data-text="اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع 😼"></p>
 
-            if(stepId === 5) {
-                const btnNo = document.getElementById('btn-no');
-                btnNo.style.display = 'inline-block';
-                btnNo.style.opacity = '1';
-            }
-            
-            items.forEach(item => {
-                if (item.getAttribute('data-type') === 'text') {
-                    item.textContent = '';
-                    item.style.display = 'block';
-                } else {
-                    item.style.opacity = '0';
-                    item.style.display = 'none';
-                }
-            });
+      <div class="buttons-container">
+        <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
+        <button class="btn" onclick="nextStep(2)">التالي ✨</button>
+      </div>
+    </div>
 
-            let currentIndex = 0;
+    <div id="step3" class="step">
+      <p class="seq-item" data-type="text" data-text="دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج."></p>
 
-            function showNext() {
-                if (currentIndex >= items.length) {
-                    if (navButtons) {
-                        navButtons.style.display = 'flex';
-                        setTimeout(() => {
-                            navButtons.style.transition = 'opacity 0.8s ease';
-                            navButtons.style.opacity = '1';
-                        }, 50);
-                    }
-                    return;
-                }
+      <p class="seq-item" data-type="text" data-text="احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها."></p>
 
-                const target = items[currentIndex];
-                const type = target.getAttribute('data-type');
+      <p class="seq-item" data-type="text" data-text="ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، "></p>
 
-                if (type === 'text') {
-                    const text = target.getAttribute('data-text');
-                    
-                    // حماية إضافية في حال كان النص فارغ أو فيه مشكلة
-                    if (!text) {
-                        currentIndex++;
-                        showNext();
-                        return;
-                    }
+      <p class="seq-item" data-type="text" data-text="كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
 
-                    let charIndex = 0;
-                    let currentString = "";
-                    
-                    const interval = setInterval(() => {
-                        currentString += text.charAt(charIndex);
-                        target.textContent = currentString;
-                        charIndex++;
-                        
-                        if (charIndex >= text.length) {
-                            clearInterval(interval);
-                            currentIndex++;
-                            setTimeout(showNext, 400); 
-                        }
-                    }, 60); 
-                } 
-                else if (type === 'media') {
-                    target.style.display = 'block';
-                    void target.offsetWidth; 
-                    target.style.transition = 'opacity 1.5s ease';
-                    target.style.opacity = '1';
+      <h2 class="seq-item" data-type="text" data-text="حتسأليني ليش؟ ليش انا؟"></h2>
 
-                    currentIndex++;
-                    setTimeout(showNext, 1200); 
-                }
-            }
+      <p class="seq-item" data-type="text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
 
-            showNext();
+      <div class="buttons-container">
+        <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
+        <button class="btn" onclick="nextStep(3)">كملي قراءة ❤️</button>
+      </div>
+    </div>
+
+    <div id="step4" class="step">
+      <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂."></p>
+
+      <p class="seq-item" data-type="text" data-text="صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور"></p>
+
+      <div class="photo-frame seq-item" data-type="media" style="display:none; opacity:0;">
+        <img src="dumb-smart.png" alt="dumb-smart" class="intro-image">
+      </div>
+
+      <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير."></p>
+
+      <p class="seq-item" data-type="text" data-text="وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه"></p>
+
+      <div class="hadith-box seq-item" data-type="media" style="display:none; opacity:0;">
+        "ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
+      </div>
+
+      <div class="buttons-container">
+        <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
+        <button class="btn" onclick="nextStep(4)">الصفحة الأخيرة 💌</button>
+      </div>
+    </div>
+
+    <div id="step5" class="step">
+      <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "></h1>
+
+      <p class="dodge-hint" id="dodge-hint">ولا حتى رح تقدري تمسكيني 😏</p>
+
+      <div class="buttons-container" id="final-buttons">
+        <button class="btn btn-yes" onclick="celebrate()">أكيد</button>
+        <button class="btn" id="btn-no" onmouseenter="dodgeNo(event)" ontouchstart="dodgeNo(event)">لا 🏃🏻‍♀️</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="date-stamp">أُرسلت هذه الرسالة بتاريخ ٢٠ / ٦ / ٢٠٢٦ 💌</div>
+
+</div>
+
+<script>
+  function toAr(n){
+    const map=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return String(n).split('').map(d => map[d] !== undefined ? map[d] : d).join('');
+  }
+
+  function updateProgress(stepId){
+    const vine = document.getElementById('progressVine');
+    if (stepId === 1){
+      vine.style.display = 'none';
+      return;
+    }
+    vine.style.display = 'flex';
+    const page = stepId - 1;
+    const totalPages = 4;
+    document.getElementById('vineFill').style.width = ((page - 1) / (totalPages - 1) * 100) + '%';
+    document.querySelectorAll('.bud').forEach((b, i) => {
+      b.classList.toggle('bloom', i < page);
+    });
+    document.getElementById('pageLabel').textContent = 'صفحة ' + toAr(page) + ' من ٤';
+  }
+
+  function playSequence(stepId) {
+    const step = document.getElementById('step' + stepId);
+    const items = step.querySelectorAll('.seq-item');
+    const navButtons = step.querySelector('.buttons-container');
+
+    if (navButtons) {
+      navButtons.style.display = 'none';
+      navButtons.style.opacity = '0';
+    }
+
+    if (stepId === 5) {
+      const btnNo = document.getElementById('btn-no');
+      btnNo.style.display = 'inline-block';
+      btnNo.style.opacity = '1';
+      btnNo.style.transform = 'translate(0,0) rotate(0deg)';
+      const hint = document.getElementById('dodge-hint');
+      if (hint) hint.style.opacity = '0';
+    }
+
+    items.forEach(item => {
+      if (item.getAttribute('data-type') === 'text') {
+        item.textContent = '';
+        item.style.display = 'block';
+      } else {
+        item.style.opacity = '0';
+        item.style.display = 'none';
+      }
+    });
+
+    let currentIndex = 0;
+
+    function showNext() {
+      if (currentIndex >= items.length) {
+        if (navButtons) {
+          navButtons.style.display = 'flex';
+          setTimeout(() => {
+            navButtons.style.transition = 'opacity 0.8s ease';
+            navButtons.style.opacity = '1';
+          }, 50);
+        }
+        return;
+      }
+
+      const target = items[currentIndex];
+      const type = target.getAttribute('data-type');
+
+      if (type === 'text') {
+        const text = target.getAttribute('data-text');
+
+        if (!text) {
+          currentIndex++;
+          showNext();
+          return;
         }
 
-        function nextStep(current) {
-            document.getElementById('step' + current).classList.remove('active');
-            const next = current + 1;
-            document.getElementById('step' + next).classList.add('active');
-            
-            playSequence(next);
+        let charIndex = 0;
+        let currentString = "";
 
-            if (current === 2) {
-                let audio = document.getElementById('bg-music');
-                audio.play().catch(e => console.log("Audio play blocked"));
-            }
-        }
+        const interval = setInterval(() => {
+          currentString += text.charAt(charIndex);
+          target.textContent = currentString;
+          charIndex++;
 
-        function prevStep(current) {
-            document.getElementById('step' + current).classList.remove('active');
-            const prev = current - 1;
-            document.getElementById('step' + prev).classList.add('active');
-            
-            playSequence(prev);
-            
-            if (current === 3) {
-                let audio = document.getElementById('bg-music');
-                audio.pause();
-                audio.currentTime = 0; 
-            }
-        }
+          if (charIndex >= text.length) {
+            clearInterval(interval);
+            currentIndex++;
+            setTimeout(showNext, 400);
+          }
+        }, 60);
+      }
+      else if (type === 'media') {
+        target.style.display = 'block';
+        void target.offsetWidth;
+        target.style.transition = 'opacity 1.5s ease';
+        target.style.opacity = '1';
 
-        function startCountdown() {
-            const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
-            setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        currentIndex++;
+        setTimeout(showNext, 1200);
+      }
+    }
 
-                if (distance < 0) {
-                    document.getElementById("countdown").innerHTML = "صار عمرك 20 سنة! 🎉";
-                } else {
-                    document.getElementById("countdown").innerHTML = 
-                        days + " يوم و " + hours + " ساعة و " + minutes + " دقيقة و " + seconds + " ثانية";
-                }
-            }, 1000);
-        }
-        startCountdown();
+    showNext();
+  }
 
-        function createFloatingElements() {
-            const container = document.getElementById('floating-container');
-            const elements = ['✨', '🌸', '🤍', '💖', '⭐']; 
-            setInterval(() => {
-                const el = document.createElement('div');
-                el.innerHTML = elements[Math.floor(Math.random() * elements.length)];
-                el.classList.add('floating-element');
-                el.style.left = Math.random() * 100 + 'vw';
-                el.style.animationDuration = Math.random() * 4 + 5 + 's'; 
-                el.style.fontSize = Math.random() * 15 + 15 + 'px'; 
-                container.appendChild(el);
-                setTimeout(() => el.remove(), 9000);
-            }, 600); 
-        }
-        createFloatingElements();
+  function openLetter(){
+    const seal = document.getElementById('waxSeal');
+    seal.classList.add('crack');
+    setTimeout(() => nextStep(1), 480);
+  }
 
-        function makeDisappear() {
-            const btn = document.getElementById('btn-no');
-            btn.style.display = 'none';
-        }
+  function nextStep(current) {
+    document.getElementById('step' + current).classList.remove('active');
+    const next = current + 1;
+    document.getElementById('step' + next).classList.add('active');
 
-        function celebrate() {
-            const container = document.getElementById('floating-container');
-            document.getElementById('final-buttons').innerHTML = "<h2 style='color:#c2185b;'>وأنا بوعدك أضل معك دايماً ❤️</h2>";
-            
-            const btnNo = document.getElementById('btn-no');
-            if(btnNo) btnNo.style.display = 'none';
+    playSequence(next);
+    updateProgress(next);
 
-            for(let i=0; i<60; i++) {
-                setTimeout(() => {
-                    const el = document.createElement('div');
-                    el.innerHTML = '❤️';
-                    el.classList.add('floating-element');
-                    el.style.left = Math.random() * 100 + 'vw';
-                    el.style.animationDuration = Math.random() * 2 + 2 + 's'; 
-                    el.style.fontSize = Math.random() * 30 + 20 + 'px'; 
-                    container.appendChild(el);
-                    setTimeout(() => el.remove(), 4000);
-                }, i * 50);
-            }
-        }
-    </script>
+    if (current === 2) {
+      let audio = document.getElementById('bg-music');
+      audio.play().catch(e => console.log("Audio play blocked"));
+    }
+  }
+
+  function prevStep(current) {
+    document.getElementById('step' + current).classList.remove('active');
+    const prev = current - 1;
+    document.getElementById('step' + prev).classList.add('active');
+
+    playSequence(prev);
+    updateProgress(prev);
+
+    if (current === 3) {
+      let audio = document.getElementById('bg-music');
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }
+
+  function startCountdown() {
+    const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
+    const el = document.getElementById("countdown");
+    setInterval(function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance < 0) {
+        el.innerHTML = '<div class="c-done">صار عمرك ٢٠ سنة! 🎉</div>';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      el.innerHTML =
+        '<div class="c-chip"><span class="c-num">' + toAr(days) + '</span><span class="c-label">يوم</span></div>' +
+        '<div class="c-chip"><span class="c-num">' + toAr(hours) + '</span><span class="c-label">ساعة</span></div>' +
+        '<div class="c-chip"><span class="c-num">' + toAr(minutes) + '</span><span class="c-label">دقيقة</span></div>' +
+        '<div class="c-chip"><span class="c-num">' + toAr(seconds) + '</span><span class="c-label">ثانية</span></div>';
+    }, 1000);
+  }
+  startCountdown();
+
+  function createFloatingElements() {
+    const container = document.getElementById('floating-container');
+    const elements = ['🌹', '✨', '🤍', '💛', '🌸'];
+    setInterval(() => {
+      const el = document.createElement('div');
+      el.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+      el.classList.add('floating-element');
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+      el.style.animationDuration = Math.random() * 4 + 5 + 's';
+      el.style.fontSize = Math.random() * 15 + 15 + 'px';
+      container.appendChild(el);
+      setTimeout(() => el.remove(), 9000);
+    }, 600);
+  }
+  createFloatingElements();
+
+  function dodgeNo(e) {
+    if (e && e.cancelable) e.preventDefault();
+    const btn = document.getElementById('btn-no');
+    const wrap = document.getElementById('final-buttons');
+    const rect = wrap.getBoundingClientRect();
+    const maxX = Math.min(150, rect.width * 0.85);
+    const maxY = 60;
+    const x = (Math.random() - 0.5) * 2 * maxX;
+    const y = (Math.random() - 0.8) * 2 * maxY;
+    const rot = (Math.random() * 40 - 20);
+    btn.style.transform = 'translate(' + x + 'px, ' + y + 'px) rotate(' + rot + 'deg)';
+
+    const hint = document.getElementById('dodge-hint');
+    if (hint) hint.style.opacity = '1';
+  }
+
+  function celebrate() {
+    const container = document.getElementById('floating-container');
+    document.getElementById('final-buttons').innerHTML = "<h2 style='font-family:Rakkas, serif; font-weight:400; color:var(--rose-deep);'>وأنا بوعدك أضل معك دايماً ❤️</h2>";
+
+    const hint = document.getElementById('dodge-hint');
+    if (hint) hint.style.display = 'none';
+
+    const burst = ['🌹', '💛', '✨', '🤍', '💖'];
+    for (let i = 0; i < 60; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.innerHTML = burst[Math.floor(Math.random() * burst.length)];
+        el.classList.add('floating-element');
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
+        el.style.animationDuration = Math.random() * 2 + 2 + 's';
+        el.style.fontSize = Math.random() * 30 + 20 + 'px';
+        container.appendChild(el);
+        setTimeout(() => el.remove(), 4000);
+      }, i * 50);
+    }
+  }
+</script>
 </body>
 </html>
