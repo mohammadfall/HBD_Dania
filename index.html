@@ -78,6 +78,7 @@
             margin-bottom: 15px;
             min-height: 1.2em;
             display: inline-block;
+            word-wrap: break-word; /* لضمان التفاف النص داخل المربع */
         }
 
         /* مربع الحديث الشريف */
@@ -221,29 +222,32 @@
     </div>
 
     <script>
-        // دالة الكتابة التدريجية
+        // دالة الكتابة التدريجية المحدثة (تحل مشكلة المسافات)
         function typeAllInStep(stepId) {
             const step = document.getElementById('step' + stepId);
             const targets = step.querySelectorAll('.typewriter-text');
             
             targets.forEach((target, index) => {
                 const text = target.getAttribute('data-text');
-                target.innerText = '';
+                target.textContent = '';
                 
-                // تأخير بسيط بين الفقرات
                 setTimeout(() => {
                     let i = 0;
+                    let currentString = ""; // لتخزين النص مع المسافات بشكل صحيح
+                    
                     const interval = setInterval(() => {
-                        target.innerText += text.charAt(i);
+                        currentString += text.charAt(i);
+                        target.textContent = currentString; // طباعة النص بالكامل في كل مرة
                         i++;
+                        
                         if (i >= text.length) {
                             clearInterval(interval);
-                            // إظهار مربع الحديث إذا كان موجوداً في الصفحة
-                            if(document.getElementById('hadith')) {
+                            // إظهار مربع الحديث الشريف بعد انتهاء الكتابة
+                            if(document.getElementById('hadith') && stepId === 4) {
                                 document.getElementById('hadith').style.opacity = '1';
                             }
                         }
-                    }, 40); // سرعة الكتابة (40 ملي ثانية لكل حرف)
+                    }, 40); // سرعة الكتابة
                 }, index * 1000); 
             });
         }
@@ -265,6 +269,7 @@
             document.getElementById('step' + current).classList.remove('active');
             const prev = current - 1;
             document.getElementById('step' + prev).classList.add('active');
+            
             typeAllInStep(prev);
             
             if (current === 3) {
@@ -328,13 +333,6 @@
                 }, i * 50);
             }
         }
-
-        // تشغيل الكتابة لأول صفحة عند تحميل الموقع
-        window.onload = () => {
-            // الصفحة الأولى لا تحتاج لمسح النص لأننا لم نضع لها فئة الت typewriter-text لتبقى ثابتة،
-            // لكن إذا أردت الكتابة لأول عنوان:
-            // typeAllInStep(1); 
-        };
     </script>
 </body>
 </html>
