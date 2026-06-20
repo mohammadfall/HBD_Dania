@@ -510,6 +510,13 @@
 
       <p class="seq-item" data-type="text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
 
+      <div class="photo-frame seq-item" data-type="media" style="display:none; opacity:0;">
+        <video class="intro-image" id="step3-video" controls playsinline preload="metadata">
+          <source src="video.mp4" type="video/mp4">
+          متصفحك ما بيدعم تشغيل الفيديو.
+        </video>
+      </div>
+
       <div class="buttons-container">
         <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
         <button class="btn" onclick="nextStep(3)">كملي قراءة ❤️</button>
@@ -792,6 +799,14 @@
   }
   startCountdown();
 
+  const step3Video = document.getElementById('step3-video');
+  if (step3Video) {
+    step3Video.addEventListener('play', () => {
+      const bgm = document.getElementById('bg-music');
+      if (bgm && !bgm.paused) bgm.pause();
+    });
+  }
+
   function createFloatingElements() {
     const container = document.getElementById('floating-container');
     const elements = ['🌹', '✨', '🤍', '💛', '🌸'];
@@ -830,7 +845,7 @@
     document.getElementById('final-buttons').innerHTML =
       '<div class="celebrate-msg">' +
         '<h2 class="celebrate-title">وأنا بوعدك أضل معك دايماً ❤️</h2>' +
-        '<p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو 🤍</p>' +
+        '<p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>' +
       '</div>';
 
     const hint = document.getElementById('dodge-hint');
