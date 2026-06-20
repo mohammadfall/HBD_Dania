@@ -16,7 +16,6 @@
             min-height: 100vh;
         }
         
-        /* تأثيرات النجوم والقلوب العائمة */
         .floating-element { 
             position: absolute; 
             animation: floatUp linear infinite; 
@@ -46,19 +45,14 @@
             min-height: 400px;
         }
 
-        .step { 
-            display: none; 
-        }
-        
-        .step.active { 
-            display: block; 
-        }
+        .step { display: none; }
+        .step.active { display: block; }
         
         /* تنسيق الصور */
         .intro-image {
             width: 100%;
             max-width: 350px; 
-            margin: 15px auto 25px auto;
+            margin: 20px auto;
             display: block;
             box-shadow: 0 10px 25px rgba(216, 27, 96, 0.2);
             border: 5px solid rgba(255, 255, 255, 0.8);
@@ -71,14 +65,19 @@
             color: #c2185b; 
         }
         
-        .typewriter-text { 
+        /* تنسيق الفقرات مع مسافة السطر الفارغ */
+        p.seq-item {
             font-size: 1.25em; 
             line-height: 1.9; 
             color: #4a4a4a; 
-            margin-bottom: 15px;
+            margin-bottom: 30px; /* هاي المسافة بتعمل سطر فارغ بين الفقرات */
             min-height: 1.2em;
-            display: inline-block;
-            word-wrap: break-word; /* لضمان التفاف النص داخل المربع */
+            word-wrap: break-word;
+        }
+
+        h2.seq-item {
+            color: #c2185b; 
+            margin: 40px 0 20px 0;
         }
 
         /* مربع الحديث الشريف */
@@ -86,13 +85,12 @@
             background: rgba(255, 255, 255, 0.9);
             border-right: 5px solid #d81b60;
             padding: 20px;
-            margin: 25px 0;
+            margin: 35px 0;
             border-radius: 15px;
             font-weight: 700;
             font-size: 1.15em;
             text-align: center;
-            opacity: 0; /* يبدأ مخفي ليظهر بعد انتهاء الكتابة */
-            transition: opacity 1s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         #countdown-container {
@@ -107,6 +105,7 @@
             font-size: 1.5em;
             font-weight: 700;
             color: #d81b60;
+            direction: rtl;
         }
 
         .buttons-container {
@@ -114,7 +113,7 @@
             justify-content: center;
             align-items: center; 
             gap: 15px; 
-            margin-top: 35px;
+            margin-top: 40px;
             flex-wrap: wrap;
         }
         
@@ -159,7 +158,7 @@
         
         <div id="step1" class="step active">
             <img src="HBD.png" alt="HBD" class="intro-image">
-            <h1 class="typing-target">كل عام وأنتِ بألف خير دندن 💖</h1>
+            <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
             
             <div id="countdown-container">
                 <div id="countdown-title">باقي لتصيري 20 سنة:</div>
@@ -173,7 +172,8 @@
 
         <div id="step2" class="step">
             <h1>دانية العزيزة 🌸</h1>
-            <p class="typewriter-text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي. ما لقيت الا هالطريقة البسيطة جداً."></p>
+            <p class="seq-item" data-type="text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي."></p>
+            <p class="seq-item" data-type="text" data-text="ما لقيت الا هالطريقة البسيطة جداً."></p>
 
             <div class="buttons-container">
                 <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
@@ -182,10 +182,15 @@
         </div>
 
         <div id="step3" class="step">
-            <p class="typewriter-text" data-text="دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج. احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها. ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
-            <br>
-            <h2 style="color: #c2185b;">حتسأليني ليش؟ ليش انا؟</h2>
-            <p class="typewriter-text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
+            <p class="seq-item" data-type="text" data-text="دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج."></p>
+            
+            <p class="seq-item" data-type="text" data-text="احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها."></p>
+            
+            <p class="seq-item" data-type="text" data-text="ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
+            
+            <h2 class="seq-item" data-type="text" data-text="حتسأليني ليش؟ ليش انا؟"></h2>
+            
+            <p class="seq-item" data-type="text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
 
             <div class="buttons-container">
                 <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
@@ -194,13 +199,13 @@
         </div>
 
         <div id="step4" class="step">
-            <p class="typewriter-text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂 صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور."></p>
+            <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂 صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور."></p>
             
-            <img src="dumb-smart.png" alt="dumb-smart" class="intro-image">
+            <img src="dumb-smart.png" alt="dumb-smart" class="intro-image seq-item" data-type="media" style="display: none; opacity: 0;">
             
-            <p class="typewriter-text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير. وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه."></p>
+            <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير. وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه."></p>
             
-            <div class="hadith-box" id="hadith">
+            <div class="hadith-box seq-item" data-type="media" style="display: none; opacity: 0;">
                 "ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
             </div>
 
@@ -211,9 +216,9 @@
         </div>
 
         <div id="step5" class="step">
-            <h1 class="final-question typewriter-text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ 🥺❤️"></h1>
+            <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ 🥺❤️"></h1>
             
-            <div class="buttons-container" id="final-buttons">
+            <div class="buttons-container" id="final-buttons" style="display: none;">
                 <button class="btn btn-yes" onclick="celebrate()">أكيد 💍</button>
                 <button class="btn btn-yes" onclick="celebrate()">طبعاً 🌸</button>
             </div>
@@ -222,34 +227,73 @@
     </div>
 
     <script>
-        // دالة الكتابة التدريجية المحدثة (تحل مشكلة المسافات)
-        function typeAllInStep(stepId) {
+        // نظام الطابور (Sequential Display)
+        function playSequence(stepId) {
             const step = document.getElementById('step' + stepId);
-            const targets = step.querySelectorAll('.typewriter-text');
+            const items = step.querySelectorAll('.seq-item');
             
-            targets.forEach((target, index) => {
-                const text = target.getAttribute('data-text');
-                target.textContent = '';
-                
-                setTimeout(() => {
-                    let i = 0;
-                    let currentString = ""; // لتخزين النص مع المسافات بشكل صحيح
+            // إخفاء جميع العناصر قبل البدء
+            items.forEach(item => {
+                if (item.getAttribute('data-type') === 'text') {
+                    item.textContent = '';
+                    item.style.display = 'block';
+                } else {
+                    item.style.opacity = '0';
+                    item.style.display = 'none';
+                }
+            });
+
+            // إخفاء الأزرار النهائية في الصفحة 5
+            if(stepId === 5) {
+                document.getElementById('final-buttons').style.display = 'none';
+            }
+
+            let currentIndex = 0;
+
+            function showNext() {
+                if (currentIndex >= items.length) {
+                    // إظهار الأزرار النهائية بعد انتهاء السؤال في الصفحة 5
+                    if(stepId === 5) {
+                        document.getElementById('final-buttons').style.display = 'flex';
+                    }
+                    return;
+                }
+
+                const target = items[currentIndex];
+                const type = target.getAttribute('data-type');
+
+                if (type === 'text') {
+                    const text = target.getAttribute('data-text');
+                    let charIndex = 0;
+                    let currentString = "";
                     
                     const interval = setInterval(() => {
-                        currentString += text.charAt(i);
-                        target.textContent = currentString; // طباعة النص بالكامل في كل مرة
-                        i++;
+                        currentString += text.charAt(charIndex);
+                        target.textContent = currentString;
+                        charIndex++;
                         
-                        if (i >= text.length) {
+                        if (charIndex >= text.length) {
                             clearInterval(interval);
-                            // إظهار مربع الحديث الشريف بعد انتهاء الكتابة
-                            if(document.getElementById('hadith') && stepId === 4) {
-                                document.getElementById('hadith').style.opacity = '1';
-                            }
+                            currentIndex++;
+                            setTimeout(showNext, 400); // استراحة قصيرة قبل العنصر التالي
                         }
-                    }, 40); // سرعة الكتابة
-                }, index * 1000); 
-            });
+                    }, 35); // سرعة الكتابة
+                } 
+                else if (type === 'media') {
+                    // ظهور تدريجي ناعم للصور والمربعات في وقتها المناسب
+                    target.style.display = 'block';
+                    // هذا السطر لإجبار المتصفح على تطبيق الأنيميشن
+                    void target.offsetWidth; 
+                    target.style.transition = 'opacity 1.5s ease';
+                    target.style.opacity = '1';
+
+                    currentIndex++;
+                    setTimeout(showNext, 1200); // استراحة أطول لتستوعب الصورة/الحديث
+                }
+            }
+
+            // تشغيل الطابور
+            showNext();
         }
 
         function nextStep(current) {
@@ -257,7 +301,7 @@
             const next = current + 1;
             document.getElementById('step' + next).classList.add('active');
             
-            typeAllInStep(next);
+            playSequence(next);
 
             if (current === 2) {
                 let audio = document.getElementById('bg-music');
@@ -270,7 +314,7 @@
             const prev = current - 1;
             document.getElementById('step' + prev).classList.add('active');
             
-            typeAllInStep(prev);
+            playSequence(prev);
             
             if (current === 3) {
                 let audio = document.getElementById('bg-music');
