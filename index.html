@@ -38,7 +38,6 @@
     position:relative;
   }
 
-  /* subtle paper fiber texture */
   body::before{
     content:"";
     position:fixed; inset:0;
@@ -95,7 +94,7 @@
   }
   .buds{
     display:flex;
-    gap:22px;
+    gap:18px;
   }
   .bud{
     width:11px; height:11px;
@@ -358,6 +357,114 @@
     margin:0;
   }
 
+  /* ── STEP 2: INSTANT GIFT CARD ── */
+  .gift-card{
+    background:linear-gradient(145deg, rgba(255,255,255,.95), rgba(253,240,225,.85));
+    border:1.5px solid rgba(199,166,107,.4);
+    border-radius:18px;
+    padding:30px 26px 26px;
+    margin:6px 0 8px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 6px 22px rgba(140,85,96,.09);
+  }
+  .gift-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(199,166,107,.12) 0%, transparent 55%),
+      radial-gradient(circle at 100% 100%, rgba(185,125,134,.1) 0%, transparent 55%);
+    pointer-events:none;
+  }
+  /* corner flowers */
+  .gift-card-corner{
+    position:absolute;
+    font-size:1.15em;
+    opacity:.55;
+    pointer-events:none;
+    line-height:1;
+  }
+  .gift-card-corner.tl{ top:10px; right:12px; }
+  .gift-card-corner.br{ bottom:10px; left:12px; transform:rotate(180deg); }
+
+  .gift-tag-label{
+    font-size:.82em;
+    font-weight:700;
+    color:var(--gold-deep);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    opacity:.85;
+  }
+  .gift-tag-label::before,
+  .gift-tag-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:linear-gradient(to left, rgba(199,166,107,.5), transparent);
+  }
+  .gift-tag-label::after{
+    background:linear-gradient(to right, rgba(199,166,107,.5), transparent);
+  }
+
+  .gift-text{
+    font-size:1.2em;
+    line-height:2.05;
+    color:var(--ink-soft);
+    font-weight:500;
+    margin:0;
+    position:relative;
+    z-index:1;
+  }
+
+  .gift-emoji{
+    display:inline-block;
+    animation:gentlePulse 2.4s ease-in-out infinite;
+  }
+  @keyframes gentlePulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.18) rotate(5deg); }
+  }
+
+  /* image reveal for step 2 */
+  .reveal-drop{
+    opacity:0;
+    transform:rotate(-4deg) translateY(-18px) scale(0.88);
+    transition:opacity .9s ease, transform .9s cubic-bezier(.34,1.56,.64,1);
+    margin:6px auto 0;
+    width:fit-content;
+    display:none;
+  }
+  .reveal-drop.shown{
+    opacity:1;
+    transform:rotate(-2deg) translateY(0) scale(1);
+  }
+
+  /* finale video */
+  .finale-video-wrap{
+    opacity:0;
+    display:none;
+    margin-top:28px;
+    text-align:center;
+    transition:opacity 1.4s ease;
+  }
+  .finale-video-wrap.visible{
+    opacity:1;
+  }
+  .finale-intro-text{
+    font-size:.95em;
+    color:var(--mauve);
+    font-weight:700;
+    margin-bottom:10px;
+    letter-spacing:.3px;
+  }
+
   .final-question{
     font-size:2em;
     color:var(--rose-deep);
@@ -432,6 +539,7 @@
     .final-question{ font-size:1.55em; }
     p.seq-item{ font-size:1.05em; }
     .wax-seal{ width:76px; height:76px; }
+    .gift-text{ font-size:1.07em; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -460,12 +568,14 @@
       <span class="bud" data-bud="2"></span>
       <span class="bud" data-bud="3"></span>
       <span class="bud" data-bud="4"></span>
+      <span class="bud" data-bud="5"></span>
     </div>
     <div class="page-label" id="pageLabel"></div>
   </div>
 
   <div class="container">
 
+    <!-- ═══ STEP 1: Seal + Countdown ═══ -->
     <div id="step1" class="step active">
       <div class="photo-frame">
         <img src="HBD.png" alt="HBD" class="intro-image">
@@ -485,19 +595,49 @@
       </div>
     </div>
 
+    <!-- ═══ STEP 2: Gift card — text all at once ═══ -->
     <div id="step2" class="step">
+      <div id="step2-card" class="gift-card" style="opacity:0; transform:translateY(16px);">
+        <span class="gift-card-corner tl">❋</span>
+        <span class="gift-card-corner br">❋</span>
+        <div class="gift-tag-label">🎀 هدية من القلب</div>
+        <p class="gift-text">
+          هذا هدية ما كلفتني مال،<br>
+          كلفتني شوية مهارات انا بعرفها<br>
+          وشوية وقت ما بعني اشي<br>
+          عشان يرسم بسمة على وجهك الحلو
+          <span class="gift-emoji">🥰</span>
+        </p>
+      </div>
+
+      <!-- Image drops in after first button click -->
+      <div id="step2-reveal" class="reveal-drop">
+        <div class="photo-frame" style="margin:0;">
+          <img src="HBD.png" alt="HBD" class="intro-image" style="max-width:240px;">
+        </div>
+      </div>
+
+      <div class="buttons-container" id="step2-btns" style="display:none; opacity:0;">
+        <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
+        <button class="btn" id="btn-step2-go" onclick="handleStep2()">متابعة ✨</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 3: Dear Dania (was step 2) ═══ -->
+    <div id="step3" class="step">
       <h1>دانية العزيزة 🌸</h1>
       <p class="seq-item" data-type="text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي."></p>
       <p class="seq-item" data-type="text" data-text="ما لقيت الا هالطريقة البسيطة جداً."></p>
       <p class="seq-item" data-type="text" data-text="اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع 😼"></p>
 
       <div class="buttons-container">
-        <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(2)">التالي ✨</button>
+        <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
+        <button class="btn" onclick="nextStep(3)">التالي ✨</button>
       </div>
     </div>
 
-    <div id="step3" class="step">
+    <!-- ═══ STEP 4: Personal message (was step 3, no video) ═══ -->
+    <div id="step4" class="step">
       <p class="seq-item" data-type="text" data-text="دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج."></p>
 
       <p class="seq-item" data-type="text" data-text="احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها."></p>
@@ -510,20 +650,14 @@
 
       <p class="seq-item" data-type="text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
 
-      <div class="photo-frame seq-item" data-type="media" style="display:none; opacity:0;">
-        <video class="intro-image" id="step3-video" controls playsinline preload="metadata">
-          <source src="video.mp4" type="video/mp4">
-          متصفحك ما بيدعم تشغيل الفيديو.
-        </video>
-      </div>
-
       <div class="buttons-container">
-        <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(3)">كملي قراءة ❤️</button>
+        <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
+        <button class="btn" onclick="nextStep(4)">كملي قراءة ❤️</button>
       </div>
     </div>
 
-    <div id="step4" class="step">
+    <!-- ═══ STEP 5: dumb-smart + hadith (was step 4) ═══ -->
+    <div id="step5" class="step">
       <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂."></p>
 
       <p class="seq-item" data-type="text" data-text="صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور"></p>
@@ -541,12 +675,13 @@
       </div>
 
       <div class="buttons-container">
-        <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(4)">الصفحة الأخيرة 💌</button>
+        <button class="btn btn-back" onclick="prevStep(5)">🔙 رجوع</button>
+        <button class="btn" onclick="nextStep(5)">الصفحة الأخيرة 💌</button>
       </div>
     </div>
 
-    <div id="step5" class="step">
+    <!-- ═══ STEP 6: Yes/No + finale video (was step 5) ═══ -->
+    <div id="step6" class="step">
       <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "></h1>
 
       <p class="dodge-hint" id="dodge-hint">ولا حتى رح تقدري تمسكيني 😏</p>
@@ -554,6 +689,17 @@
       <div class="buttons-container" id="final-buttons">
         <button class="btn btn-yes" id="btn-yes" onclick="celebrate()">أكيد</button>
         <button class="btn" id="btn-no" onmouseenter="dodgeNo(event)" ontouchstart="dodgeNo(event)">لا 🏃🏻‍♀️</button>
+      </div>
+
+      <!-- Finale video — appears after أكيد -->
+      <div class="finale-video-wrap" id="finale-video-wrap">
+        <p class="finale-intro-text">🎬 ولأنك تستاهلي أكثر من كلمات...</p>
+        <div class="photo-frame" style="transform:rotate(-1.5deg); margin-top:0;">
+          <video class="intro-image" id="finale-video-player" controls playsinline preload="metadata">
+            <source src="video.mp4" type="video/mp4">
+            متصفحك ما بيدعم تشغيل الفيديو.
+          </video>
+        </div>
       </div>
     </div>
 
@@ -567,304 +713,344 @@
 </div>
 
 <script>
+  /* ── helpers ── */
   function toAr(n){
     const map=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-    return String(n).split('').map(d => map[d] !== undefined ? map[d] : d).join('');
+    return String(n).split('').map(d => map[d]!==undefined?map[d]:d).join('');
   }
 
+  /* ── progress vine (5 pages for steps 2–6) ── */
   function updateProgress(stepId){
     const vine = document.getElementById('progressVine');
-    if (stepId === 1){
-      vine.style.display = 'none';
-      return;
-    }
-    vine.style.display = 'flex';
-    const page = stepId - 1;
-    const totalPages = 4;
-    document.getElementById('vineFill').style.width = ((page - 1) / (totalPages - 1) * 100) + '%';
-    document.querySelectorAll('.bud').forEach((b, i) => {
+    if(stepId===1){ vine.style.display='none'; return; }
+    vine.style.display='flex';
+    const page = stepId - 1;        // pages 1-5
+    const total = 5;
+    document.getElementById('vineFill').style.width = ((page-1)/(total-1)*100)+'%';
+    document.querySelectorAll('.bud').forEach((b,i)=>{
       b.classList.toggle('bloom', i < page);
     });
-    document.getElementById('pageLabel').textContent = 'صفحة ' + toAr(page) + ' من ٤';
+    document.getElementById('pageLabel').textContent = 'صفحة '+toAr(page)+' من '+toAr(total);
   }
 
-  function playSequence(stepId) {
-    const step = document.getElementById('step' + stepId);
-    const items = step.querySelectorAll('.seq-item');
-    const navButtons = step.querySelector('.buttons-container');
-
-    if (navButtons) {
-      navButtons.style.display = 'none';
-      navButtons.style.opacity = '0';
-    }
-
-    if (stepId === 5) {
-      const btnNo = document.getElementById('btn-no');
-      btnNo.style.display = 'inline-block';
-      btnNo.style.opacity = '1';
-      btnNo.style.transform = 'translate(0,0) rotate(0deg)';
-      const hint = document.getElementById('dodge-hint');
-      if (hint) hint.style.opacity = '0';
-
-      const btnYes = document.getElementById('btn-yes');
-      if (btnYes) {
-        btnYes.style.transition = 'none';
-        btnYes.style.display = 'none';
-        btnYes.style.opacity = '0';
-        btnYes.style.transform = 'scale(0.85)';
-      }
-    }
-
-    items.forEach(item => {
-      if (item.getAttribute('data-type') === 'text') {
-        item.textContent = '';
-        item.style.display = 'block';
-      } else {
-        item.style.opacity = '0';
-        item.style.display = 'none';
-      }
-    });
-
-    let currentIndex = 0;
-
-    function showNext() {
-      if (currentIndex >= items.length) {
-        if (navButtons) {
-          navButtons.style.display = 'flex';
-          setTimeout(() => {
-            navButtons.style.transition = 'opacity 0.8s ease';
-            navButtons.style.opacity = '1';
-          }, 50);
-        }
-        if (stepId === 5) {
-          const btnYes = document.getElementById('btn-yes');
-          if (btnYes) {
-            setTimeout(() => {
-              btnYes.style.display = 'inline-block';
-              btnYes.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-              void btnYes.offsetWidth;
-              btnYes.style.opacity = '1';
-              btnYes.style.transform = 'scale(1)';
-            }, 1700);
-          }
-        }
-        return;
-      }
-
-      const target = items[currentIndex];
-      const type = target.getAttribute('data-type');
-
-      if (type === 'text') {
-        const text = target.getAttribute('data-text');
-
-        if (!text) {
-          currentIndex++;
-          showNext();
-          return;
-        }
-
-        let charIndex = 0;
-        let currentString = "";
-
-        const interval = setInterval(() => {
-          currentString += text.charAt(charIndex);
-          target.textContent = currentString;
-          charIndex++;
-
-          if (charIndex >= text.length) {
-            clearInterval(interval);
-            currentIndex++;
-            setTimeout(showNext, 400);
-          }
-        }, 60);
-      }
-      else if (type === 'media') {
-        target.style.display = 'block';
-        void target.offsetWidth;
-        target.style.transition = 'opacity 1.5s ease';
-        target.style.opacity = '1';
-
-        currentIndex++;
-        setTimeout(showNext, 1200);
-      }
-    }
-
-    showNext();
-  }
-
+  /* ── audio context ── */
   let audioCtx;
   function getAudioCtx(){
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
+    if(!audioCtx) audioCtx = new(window.AudioContext||window.webkitAudioContext)();
     return audioCtx;
   }
 
   function playFlipSound(){
-    try {
+    try{
       const ctx = getAudioCtx();
-      if (ctx.state === 'suspended') ctx.resume();
+      if(ctx.state==='suspended') ctx.resume();
+      const dur=0.22, buf=ctx.createBuffer(1,Math.floor(ctx.sampleRate*dur),ctx.sampleRate);
+      const d=buf.getChannelData(0);
+      for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2.2);
+      const src=ctx.createBufferSource(); src.buffer=buf;
+      const bp=ctx.createBiquadFilter(); bp.type='bandpass';
+      bp.frequency.setValueAtTime(2600,ctx.currentTime);
+      bp.frequency.exponentialRampToValueAtTime(900,ctx.currentTime+dur);
+      bp.Q.value=0.8;
+      const g=ctx.createGain();
+      g.gain.setValueAtTime(0.22,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+      src.connect(bp).connect(g).connect(ctx.destination);
+      src.start(); src.stop(ctx.currentTime+dur);
+    }catch(e){}
+  }
 
-      const duration = 0.22;
-      const bufferSize = Math.floor(ctx.sampleRate * duration);
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        const envelope = Math.pow(1 - i / bufferSize, 2.2);
-        data[i] = (Math.random() * 2 - 1) * envelope;
-      }
+  function playChimeSound(){
+    try{
+      const ctx = getAudioCtx();
+      if(ctx.state==='suspended') ctx.resume();
+      [880,1100,1320].forEach((freq,i)=>{
+        const osc=ctx.createOscillator(), g=ctx.createGain();
+        osc.type='sine'; osc.frequency.value=freq;
+        const t=ctx.currentTime+i*0.12;
+        g.gain.setValueAtTime(0,t);
+        g.gain.linearRampToValueAtTime(0.12,t+0.04);
+        g.gain.exponentialRampToValueAtTime(0.001,t+0.55);
+        osc.connect(g).connect(ctx.destination);
+        osc.start(t); osc.stop(t+0.6);
+      });
+    }catch(e){}
+  }
 
-      const noise = ctx.createBufferSource();
-      noise.buffer = buffer;
+  /* ── step 2 state ── */
+  let step2Phase = 'initial'; // 'initial' | 'revealed'
 
-      const bandpass = ctx.createBiquadFilter();
-      bandpass.type = 'bandpass';
-      bandpass.frequency.setValueAtTime(2600, ctx.currentTime);
-      bandpass.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + duration);
-      bandpass.Q.value = 0.8;
+  function initStep2(){
+    step2Phase = 'initial';
 
-      const gain = ctx.createGain();
-      gain.gain.setValueAtTime(0.22, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+    // reset button text
+    const btn = document.getElementById('btn-step2-go');
+    if(btn) btn.textContent = 'متابعة ✨';
 
-      noise.connect(bandpass).connect(gain).connect(ctx.destination);
-      noise.start();
-      noise.stop(ctx.currentTime + duration);
-    } catch (e) {
-      console.log('flip sound unavailable', e);
+    // hide image reveal
+    const rev = document.getElementById('step2-reveal');
+    if(rev){ rev.classList.remove('shown'); rev.style.display='none'; }
+
+    // animate card in
+    const card = document.getElementById('step2-card');
+    if(card){
+      card.style.opacity='0';
+      card.style.transform='translateY(16px)';
+      card.style.transition='opacity .85s ease, transform .85s ease';
+      setTimeout(()=>{ card.style.opacity='1'; card.style.transform='translateY(0)'; }, 80);
+    }
+
+    // show nav after card fades in
+    const nav = document.getElementById('step2-btns');
+    if(nav){
+      nav.style.display='none'; nav.style.opacity='0';
+      setTimeout(()=>{
+        nav.style.display='flex';
+        setTimeout(()=>{ nav.style.transition='opacity .7s ease'; nav.style.opacity='1'; }, 40);
+      }, 1050);
     }
   }
 
-  function openLetter(){
-    const seal = document.getElementById('waxSeal');
-    seal.classList.add('crack');
-    playFlipSound();
-    setTimeout(() => nextStep(1), 480);
+  function handleStep2(){
+    if(step2Phase === 'initial'){
+      // reveal image with drop animation + chime
+      const rev = document.getElementById('step2-reveal');
+      rev.style.display = 'block';
+      void rev.offsetWidth;
+      rev.classList.add('shown');
+      step2Phase = 'revealed';
+      playChimeSound();
+
+      // change button after image lands
+      const btn = document.getElementById('btn-step2-go');
+      setTimeout(()=>{ btn.textContent = 'كملي القراءة ❤️'; }, 900);
+    } else {
+      nextStep(2);
+    }
   }
 
-  function nextStep(current) {
-    document.getElementById('step' + current).classList.remove('active');
-    const next = current + 1;
-    document.getElementById('step' + next).classList.add('active');
+  /* ── typewriter sequence ── */
+  function playSequence(stepId){
+    const step = document.getElementById('step'+stepId);
+    const items = step.querySelectorAll('.seq-item');
+    const navBtns = step.querySelector('.buttons-container');
 
-    playSequence(next);
+    if(navBtns){ navBtns.style.display='none'; navBtns.style.opacity='0'; }
+
+    // step 6 special setup (yes/no)
+    if(stepId===6){
+      const btnNo=document.getElementById('btn-no');
+      btnNo.style.display='inline-block'; btnNo.style.opacity='1';
+      btnNo.style.transform='translate(0,0) rotate(0deg)';
+      const hint=document.getElementById('dodge-hint');
+      if(hint) hint.style.opacity='0';
+      const btnYes=document.getElementById('btn-yes');
+      if(btnYes){ btnYes.style.transition='none'; btnYes.style.display='none'; btnYes.style.opacity='0'; btnYes.style.transform='scale(0.85)'; }
+
+      // hide finale video
+      const fv=document.getElementById('finale-video-wrap');
+      if(fv){ fv.classList.remove('visible'); fv.style.display='none'; }
+    }
+
+    items.forEach(item=>{
+      if(item.getAttribute('data-type')==='text'){ item.textContent=''; item.style.display='block'; }
+      else{ item.style.opacity='0'; item.style.display='none'; }
+    });
+
+    let cur=0;
+    function showNext(){
+      if(cur>=items.length){
+        if(navBtns){
+          navBtns.style.display='flex';
+          setTimeout(()=>{ navBtns.style.transition='opacity .8s ease'; navBtns.style.opacity='1'; },50);
+        }
+        if(stepId===6){
+          const btnYes=document.getElementById('btn-yes');
+          if(btnYes){
+            setTimeout(()=>{
+              btnYes.style.display='inline-block';
+              btnYes.style.transition='opacity .6s ease, transform .6s ease';
+              void btnYes.offsetWidth;
+              btnYes.style.opacity='1'; btnYes.style.transform='scale(1)';
+            },1700);
+          }
+        }
+        return;
+      }
+      const target=items[cur];
+      const type=target.getAttribute('data-type');
+      if(type==='text'){
+        const text=target.getAttribute('data-text');
+        if(!text){ cur++; showNext(); return; }
+        let ci=0, cs='';
+        const iv=setInterval(()=>{
+          cs+=text.charAt(ci); target.textContent=cs; ci++;
+          if(ci>=text.length){ clearInterval(iv); cur++; setTimeout(showNext,400); }
+        },60);
+      } else {
+        target.style.display='block';
+        void target.offsetWidth;
+        target.style.transition='opacity 1.5s ease';
+        target.style.opacity='1';
+        cur++; setTimeout(showNext,1200);
+      }
+    }
+    showNext();
+  }
+
+  /* ── navigation ── */
+  function openLetter(){
+    const seal=document.getElementById('waxSeal');
+    seal.classList.add('crack');
+    playFlipSound();
+    setTimeout(()=> nextStep(1), 480);
+  }
+
+  function nextStep(current){
+    document.getElementById('step'+current).classList.remove('active');
+    const next=current+1;
+    document.getElementById('step'+next).classList.add('active');
     updateProgress(next);
     playFlipSound();
 
-    if (current === 1) {
-      let audio = document.getElementById('bg-music');
-      audio.play().catch(e => console.log("Audio play blocked"));
+    if(next===2){
+      initStep2();
+    } else {
+      playSequence(next);
+    }
+
+    // music starts on transition 1→2
+    if(current===1){
+      document.getElementById('bg-music').play().catch(e=>console.log('audio blocked',e));
     }
   }
 
-  function prevStep(current) {
-    document.getElementById('step' + current).classList.remove('active');
-    const prev = current - 1;
-    document.getElementById('step' + prev).classList.add('active');
-
-    playSequence(prev);
+  function prevStep(current){
+    document.getElementById('step'+current).classList.remove('active');
+    const prev=current-1;
+    document.getElementById('step'+prev).classList.add('active');
     updateProgress(prev);
     playFlipSound();
 
-    if (current === 2) {
-      let audio = document.getElementById('bg-music');
-      audio.pause();
-      audio.currentTime = 0;
+    if(prev===1){
+      // going back to seal — reset it
+      const seal=document.getElementById('waxSeal');
+      if(seal){ seal.classList.remove('crack'); seal.style.opacity='1'; }
+      document.getElementById('bg-music').pause();
+      document.getElementById('bg-music').currentTime=0;
+    } else if(prev===2){
+      initStep2();
+    } else {
+      playSequence(prev);
     }
   }
 
-  function startCountdown() {
-    const countDownDate = new Date("July 17, 2026 00:00:00").getTime();
-    const el = document.getElementById("countdown");
-    setInterval(function () {
-      const now = new Date().getTime();
-      const distance = countDownDate - now;
-
-      if (distance < 0) {
-        el.innerHTML = '<div class="c-done">صار عمرك ٢٠ سنة! 🎉</div>';
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      el.innerHTML =
-        '<div class="c-chip"><span class="c-num">' + toAr(days) + '</span><span class="c-label">يوم</span></div>' +
-        '<div class="c-chip"><span class="c-num">' + toAr(hours) + '</span><span class="c-label">ساعة</span></div>' +
-        '<div class="c-chip"><span class="c-num">' + toAr(minutes) + '</span><span class="c-label">دقيقة</span></div>' +
-        '<div class="c-chip"><span class="c-num">' + toAr(seconds) + '</span><span class="c-label">ثانية</span></div>';
-    }, 1000);
+  /* ── countdown ── */
+  function startCountdown(){
+    const target=new Date("July 17, 2026 00:00:00").getTime();
+    const el=document.getElementById("countdown");
+    setInterval(()=>{
+      const dist=target-Date.now();
+      if(dist<0){ el.innerHTML='<div class="c-done">صار عمرك ٢٠ سنة! 🎉</div>'; return; }
+      const d=Math.floor(dist/86400000);
+      const h=Math.floor((dist%86400000)/3600000);
+      const m=Math.floor((dist%3600000)/60000);
+      const s=Math.floor((dist%60000)/1000);
+      el.innerHTML=
+        '<div class="c-chip"><span class="c-num">'+toAr(d)+'</span><span class="c-label">يوم</span></div>'+
+        '<div class="c-chip"><span class="c-num">'+toAr(h)+'</span><span class="c-label">ساعة</span></div>'+
+        '<div class="c-chip"><span class="c-num">'+toAr(m)+'</span><span class="c-label">دقيقة</span></div>'+
+        '<div class="c-chip"><span class="c-num">'+toAr(s)+'</span><span class="c-label">ثانية</span></div>';
+    },1000);
   }
   startCountdown();
 
-  const step3Video = document.getElementById('step3-video');
-  if (step3Video) {
-    step3Video.addEventListener('play', () => {
-      const bgm = document.getElementById('bg-music');
-      if (bgm && !bgm.paused) bgm.pause();
-    });
-  }
-
-  function createFloatingElements() {
-    const container = document.getElementById('floating-container');
-    const elements = ['🌹', '✨', '🤍', '💛', '🌸'];
-    setInterval(() => {
-      const el = document.createElement('div');
-      el.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+  /* ── floating elements ── */
+  function createFloatingElements(){
+    const container=document.getElementById('floating-container');
+    const els=['🌹','✨','🤍','💛','🌸'];
+    setInterval(()=>{
+      const el=document.createElement('div');
+      el.innerHTML=els[Math.floor(Math.random()*els.length)];
       el.classList.add('floating-element');
-      el.style.left = Math.random() * 100 + 'vw';
-      el.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
-      el.style.animationDuration = Math.random() * 4 + 5 + 's';
-      el.style.fontSize = Math.random() * 15 + 15 + 'px';
+      el.style.left=Math.random()*100+'vw';
+      el.style.setProperty('--drift',(Math.random()*60-30)+'px');
+      el.style.animationDuration=(Math.random()*4+5)+'s';
+      el.style.fontSize=(Math.random()*15+15)+'px';
       container.appendChild(el);
-      setTimeout(() => el.remove(), 9000);
-    }, 600);
+      setTimeout(()=>el.remove(),9000);
+    },600);
   }
   createFloatingElements();
 
-  function dodgeNo(e) {
-    if (e && e.cancelable) e.preventDefault();
-    const btn = document.getElementById('btn-no');
-    const wrap = document.getElementById('final-buttons');
-    const rect = wrap.getBoundingClientRect();
-    const maxX = Math.min(150, rect.width * 0.85);
-    const maxY = 60;
-    const x = (Math.random() - 0.5) * 2 * maxX;
-    const y = (Math.random() - 0.8) * 2 * maxY;
-    const rot = (Math.random() * 40 - 20);
-    btn.style.transform = 'translate(' + x + 'px, ' + y + 'px) rotate(' + rot + 'deg)';
-
-    const hint = document.getElementById('dodge-hint');
-    if (hint) hint.style.opacity = '1';
+  /* ── dodge no button ── */
+  function dodgeNo(e){
+    if(e&&e.cancelable) e.preventDefault();
+    const btn=document.getElementById('btn-no');
+    const wrap=document.getElementById('final-buttons');
+    const rect=wrap.getBoundingClientRect();
+    const maxX=Math.min(150,rect.width*.85);
+    const x=(Math.random()-.5)*2*maxX;
+    const y=(Math.random()-.8)*2*60;
+    const rot=(Math.random()*40-20);
+    btn.style.transform='translate('+x+'px,'+y+'px) rotate('+rot+'deg)';
+    const hint=document.getElementById('dodge-hint');
+    if(hint) hint.style.opacity='1';
   }
 
-  function celebrate() {
-    const container = document.getElementById('floating-container');
-    document.getElementById('final-buttons').innerHTML =
-      '<div class="celebrate-msg">' +
-        '<h2 class="celebrate-title">وأنا بوعدك أضل معك دايماً ❤️</h2>' +
-        '<p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>' +
+  /* ── celebrate ── */
+  function celebrate(){
+    const container=document.getElementById('floating-container');
+
+    document.getElementById('final-buttons').innerHTML=
+      '<div class="celebrate-msg">'+
+        '<h2 class="celebrate-title">وأنا بوعدك أضل معك دايماً ❤️</h2>'+
+        '<p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>'+
       '</div>';
 
-    const hint = document.getElementById('dodge-hint');
-    if (hint) hint.style.display = 'none';
+    const hint=document.getElementById('dodge-hint');
+    if(hint) hint.style.display='none';
 
-    const burst = ['🌹', '💛', '✨', '🤍', '💖'];
-    for (let i = 0; i < 60; i++) {
-      setTimeout(() => {
-        const el = document.createElement('div');
-        el.innerHTML = burst[Math.floor(Math.random() * burst.length)];
+    // burst
+    const burst=['🌹','💛','✨','🤍','💖'];
+    for(let i=0;i<60;i++){
+      setTimeout(()=>{
+        const el=document.createElement('div');
+        el.innerHTML=burst[Math.floor(Math.random()*burst.length)];
         el.classList.add('floating-element');
-        el.style.left = Math.random() * 100 + 'vw';
-        el.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
-        el.style.animationDuration = Math.random() * 2 + 2 + 's';
-        el.style.fontSize = Math.random() * 30 + 20 + 'px';
+        el.style.left=Math.random()*100+'vw';
+        el.style.setProperty('--drift',(Math.random()*80-40)+'px');
+        el.style.animationDuration=(Math.random()*2+2)+'s';
+        el.style.fontSize=(Math.random()*30+20)+'px';
         container.appendChild(el);
-        setTimeout(() => el.remove(), 4000);
-      }, i * 50);
+        setTimeout(()=>el.remove(),4000);
+      },i*50);
     }
+
+    // reveal video after 2.8s
+    setTimeout(()=>{
+      const wrap=document.getElementById('finale-video-wrap');
+      if(wrap){
+        wrap.style.display='block';
+        void wrap.offsetWidth;
+        wrap.classList.add('visible');
+
+        // pause bg music, play video
+        const bgm=document.getElementById('bg-music');
+        const vid=document.getElementById('finale-video-player');
+        if(bgm) bgm.pause();
+        if(vid) vid.play().catch(e=>console.log(e));
+      }
+    }, 2800);
+  }
+
+  /* ── video pauses bg music on manual play too ── */
+  const finVid=document.getElementById('finale-video-player');
+  if(finVid){
+    finVid.addEventListener('play',()=>{
+      const bgm=document.getElementById('bg-music');
+      if(bgm&&!bgm.paused) bgm.pause();
+    });
   }
 </script>
 </body>
