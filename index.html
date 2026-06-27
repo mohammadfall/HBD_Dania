@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HBD Dania 🌹</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Rakkas&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
-  :root{
+  :root {
     --bg-gradient: linear-gradient(135deg, #FBF4EC 0%, #EADCC9 100%);
     --card-bg: rgba(255, 253, 248, 0.85);
     --card-border: rgba(199, 166, 107, 0.25);
@@ -18,10 +18,10 @@
     --text-body: #5A4045;
     --gold: #C7A66B;
     --gold-glow: rgba(199, 166, 107, 0.3);
-    --shadow: cubic-bezier(0.16, 1, 0.3, 1);
+    --shadow-curve: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* النمط الليلي التلقائي عندما يتغير المظهر مع تقدم القراءة */
+  /* Ambient Themes */
   body.ambient-dark {
     --bg-gradient: linear-gradient(135deg, #1F1216 0%, #0D0507 100%);
     --card-bg: rgba(30, 18, 22, 0.8);
@@ -33,60 +33,59 @@
     --gold-glow: rgba(226, 197, 147, 0.4);
   }
 
-  *{ box-sizing:border-box; }
+  * { box-sizing: border-box; }
 
-  body{
-    margin:0;
-    overflow-x:hidden;
-    font-family:'Tajawal', sans-serif;
-    color:var(--text-main);
-    min-height:100vh;
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Tajawal', sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
     background: var(--bg-gradient);
-    position:relative;
-    transition: background 1.5s var(--shadow), color 1.2s var(--shadow);
+    transition: background 1.2s ease, color 1.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: background-color;
   }
 
-  /* شبكة فخمة ناعمة في الخلفية تضفي عمق هندسي للموقع */
-  body::before{
-    content:"";
-    position:fixed; inset:0;
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
     background-image: 
       linear-gradient(rgba(199, 166, 107, 0.015) 1px, transparent 1px),
       linear-gradient(90deg, rgba(199, 166, 107, 0.015) 1px, transparent 1px);
     background-size: 30px 30px;
-    pointer-events:none;
-    z-index:1;
+    pointer-events: none;
+    z-index: 1;
   }
 
-  .floating-element{
-    position:absolute;
-    animation:floatUp linear infinite;
-    opacity:.4;
-    z-index:2;
-    pointer-events:none;
+  .floating-element {
+    position: absolute;
+    animation: floatUp linear infinite;
+    opacity: .4;
+    z-index: 2;
+    pointer-events: none;
     filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
-    transition: opacity 1s ease;
+    will-change: transform, opacity;
   }
 
-  @keyframes floatUp{
-    0%{ transform:translate(0,100vh) scale(.6) rotate(0deg); opacity:0; }
-    15%{ opacity:.7; }
-    85%{ opacity:.7; }
-    100%{ transform:translate(var(--drift,0), -20vh) scale(1.1) rotate(360deg); opacity:0; }
+  @keyframes floatUp {
+    0% { transform: translate(0, 100vh) scale(.6) rotate(0deg); opacity: 0; }
+    15% { opacity: .7; }
+    85% { opacity: .7; }
+    100% { transform: translate(var(--drift,0), -20vh) scale(1.1) rotate(360deg); opacity: 0; }
   }
 
-  .letter-wrap{
+  .letter-wrap {
     width: 100%;
-    max-width:640px;
-    padding:4vh 20px;
-    position:relative;
-    z-index:10;
+    max-width: 640px;
+    padding: 4vh 20px;
+    position: relative;
+    z-index: 10;
   }
 
-  /* مؤشر التقدم السينمائي الفخم السفلي المدمج */
+  /* GPU-Accelerated Progress Bar */
   .modern-progress {
     display: none;
     justify-content: space-between;
@@ -97,18 +96,21 @@
   }
   .progress-bar-container {
     flex: 1;
-    height: 2px;
+    height: 3px;
     background: rgba(199, 166, 107, 0.15);
     margin-left: 20px;
     position: relative;
     border-radius: 2px;
+    overflow: hidden;
   }
   .progress-bar-fill {
-    position: absolute; top: 0; right: 0; height: 100%;
-    width: 0%;
+    position: absolute; top: 0; right: 0; bottom: 0; left: 0;
     background: var(--gold);
     box-shadow: 0 0 8px var(--gold-glow);
-    transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
   }
   .progress-text {
     font-size: 0.85em;
@@ -117,31 +119,27 @@
     letter-spacing: 1px;
   }
 
-  /* اللوح الزجاجي المصقول الفاخر */
-  .container{
+  .container {
     background: var(--card-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 50px 40px;
     border-radius: 28px;
-    box-shadow: 
-      0 30px 70px rgba(42, 26, 30, 0.08),
-      0 0 0 1px var(--card-border) inset;
-    position:relative;
-    min-height:440px;
-    transition: background 1s var(--shadow), border 1s var(--shadow), box-shadow 1s var(--shadow);
+    box-shadow: 0 30px 70px rgba(42, 26, 30, 0.08), 0 0 0 1px var(--card-border) inset;
+    position: relative;
+    min-height: 440px;
+    transition: background 1s ease, border 1s ease, box-shadow 1s ease;
   }
 
-  .step{ display:none; animation: cinematicFadeIn 0.8s var(--shadow) forwards; }
-  .step.active{ display:block; }
+  .step { display: none; opacity: 0; }
+  .step.active { display: block; animation: cinematicFadeIn 0.7s var(--shadow-curve) forwards; }
 
   @keyframes cinematicFadeIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
-      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    from { opacity: 0; transform: translateY(15px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* إطار الصور السينمائي الراقي */
-  .premium-frame{
+  .premium-frame {
     position: relative;
     width: fit-content;
     margin: 0 auto 30px;
@@ -149,173 +147,140 @@
     overflow: hidden;
     box-shadow: 0 20px 45px rgba(42, 26, 30, 0.15);
     border: 1px solid rgba(255,255,255,0.2);
-    transition: transform 0.5s var(--shadow);
+    transition: transform 0.5s ease;
+    will-change: transform;
   }
-  .premium-frame:hover {
-    transform: scale(1.02) translateY(-4px);
-  }
+  .premium-frame:hover { transform: scale(1.02) translateY(-4px); }
   .premium-frame img, .premium-frame video {
     max-width: 280px;
     width: 100%;
     display: block;
   }
 
-  h1{
-    font-size:2.2em;
-    font-weight:900;
-    margin-bottom:20px;
-    color:var(--text-main);
-    line-height:1.4;
-    letter-spacing: -0.5px;
+  h1 {
+    font-family: 'Rakkas', serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    line-height: 1.4;
   }
 
-  p.seq-item{
-    font-size:1.25em;
-    line-height:2;
-    color:var(--text-body);
-    margin-bottom:24px;
+  p.seq-item {
+    font-size: 1.25em;
+    line-height: 2;
+    color: var(--text-body);
+    margin-bottom: 24px;
     font-weight: 500;
   }
 
-  h2.seq-item{
-    font-size:1.6em;
-    font-weight: 800;
-    color:var(--text-muted);
-    margin:40px 0 20px;
+  h2.seq-item {
+    font-family: 'Rakkas', serif;
+    font-size: 1.8em;
+    color: var(--text-muted);
+    margin: 40px 0 20px;
   }
 
-  /* صندوق الاقتباس الأنيق جداً */
-  .hadith-box{
+  .hadith-box {
     background: rgba(199, 166, 107, 0.06);
-    border-right:3px solid var(--gold);
+    border-right: 3px solid var(--gold);
     padding: 30px;
     margin: 40px 0;
     border-radius: 4px 16px 16px 4px;
-    font-weight:700;
-    font-size:1.25em;
-    text-align:center;
-    color:var(--text-main);
+    font-weight: 700;
+    font-size: 1.25em;
+    text-align: center;
+    color: var(--text-main);
     line-height: 1.8;
   }
 
-  /* عداد تنازلي عصري ومبتكر */
-  #countdown-container{
-    background: rgba(255,255,255,0.2);
-    border-radius:20px;
-    padding:25px;
-    margin:35px 0;
-    border:1px solid var(--card-border);
+  #countdown-container {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 35px 0;
+    border: 1px solid var(--card-border);
   }
-  #countdown-title{
-    font-weight:700;
-    color:var(--text-muted);
-    margin-bottom:20px;
-    font-size:1.1em;
+  #countdown-title {
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-size: 1.1em;
   }
-  #countdown{
-    display:flex;
-    justify-content:center;
-    gap:14px;
+  #countdown {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
   }
-  .c-chip{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+  .c-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: var(--card-bg);
-    border-radius:16px;
-    padding:14px;
-    min-width:75px;
+    border-radius: 16px;
+    padding: 14px;
+    min-width: 75px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.02);
   }
-  .c-num{
-    font-size:1.8em;
-    font-weight: 900;
-    color:var(--gold);
-  }
-  .c-label{
-    font-size:.8em;
-    color:var(--text-muted);
-    margin-top:4px;
-    font-weight: 700;
-  }
-  .c-done{
-    font-weight:900;
-    color:var(--gold);
-    font-size:1.5em;
+  .c-num { font-size: 1.8em; font-weight: 900; color: var(--gold); font-family: 'Rakkas', serif; }
+  .c-label { font-size: .8em; color: var(--text-muted); margin-top: 4px; font-weight: 700; }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 45px;
+    flex-wrap: wrap;
   }
 
-  /* أزرار عصرية بتأثيرات فاخرة */
-  .buttons-container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    margin-top:45px;
-    flex-wrap:wrap;
-  }
-
-  .btn{
+  .btn {
     background: var(--text-main);
     color: var(--card-bg);
-    border:none;
-    padding:16px 42px;
-    font-size:1.1em;
-    font-weight:700;
-    border-radius:16px;
-    cursor:pointer;
-    transition:all .3s var(--shadow);
+    border: none;
+    padding: 16px 42px;
+    font-size: 1.1em;
+    font-weight: 700;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    font-family: 'Tajawal', sans-serif;
   }
-  .btn:hover{
-    transform:translateY(-3px);
+  .btn:hover {
+    transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     background: var(--gold);
     color: #fff;
   }
 
-  .btn-back{
+  .btn-back {
     background: transparent;
-    color:var(--text-muted);
+    color: var(--text-muted);
     border: 1px solid var(--card-border);
     box-shadow: none;
   }
-  .btn-back:hover{
+  .btn-back:hover {
     background: rgba(199, 166, 107, 0.1);
     color: var(--text-main);
     border-color: var(--gold);
   }
+  .btn-yes { background: var(--gold); color: #fff; }
 
-  .btn-yes{
-    background: var(--gold);
-    color: #fff;
-  }
-
-  /* الختم الشمعي الفاخر (3D Wax Seal) */
-  .seal-wrap{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:15px;
-  }
-  .wax-seal{
-    width:100px; height:100px;
-    border:none; cursor:pointer;
-    border-radius:50%;
+  .seal-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+  .wax-seal {
+    width: 100px; height: 100px;
+    border: none; cursor: pointer;
+    border-radius: 50%;
     background: radial-gradient(circle at 35% 35%, #C2547A, #8C5560 70%, #4A3138);
-    box-shadow: 
-      0 15px 35px rgba(140, 85, 96, 0.3),
-      inset 0 -8px 15px rgba(0,0,0,0.3),
-      inset 0 4px 10px rgba(255,255,255,0.2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    transition: transform 0.4s var(--shadow);
+    box-shadow: 0 15px 35px rgba(140, 85, 96, 0.3), inset 0 -8px 15px rgba(0,0,0,0.3), inset 0 4px 10px rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s ease;
+    will-change: transform;
   }
-  .wax-seal:hover{ transform: scale(1.08); }
-  .wax-seal.crack{ animation: premiumCrack 0.6s var(--shadow) forwards; }
+  .wax-seal:hover { transform: scale(1.08); }
+  .wax-seal.crack { animation: premiumCrack 0.5s ease forwards; pointer-events: none; }
   
-  .seal-mono{
+  .seal-mono {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: 2.8em;
@@ -325,101 +290,68 @@
   @keyframes premiumCrack {
     0% { transform: scale(1); }
     30% { transform: scale(1.15) rotate(-5deg); filter: blur(0); }
-    100% { transform: scale(0) rotate(45deg); opacity:0; filter: blur(8px); }
+    100% { transform: scale(0) rotate(45deg); opacity: 0; filter: blur(8px); }
   }
 
-  .seal-label{
-    font-size:1em;
-    font-weight: 700;
-    color:var(--text-muted);
-  }
+  .seal-label { font-size: 1em; font-weight: 700; color: var(--text-muted); }
 
-  /* بطاقة الهدية الفاخرة المدمجة */
-  .gift-card{
-    background: rgba(255,255,255,0.4);
+  .gift-card {
+    background: rgba(255,255,255,0.3);
     border: 1px solid var(--card-border);
-    border-radius:24px;
-    padding:40px;
-    margin:15px 0;
-    text-align:center;
+    border-radius: 24px;
+    padding: 40px;
+    margin: 15px 0;
+    text-align: center;
   }
-  .gift-tag-label{
-    font-size:.9em;
-    font-weight:900;
-    color:var(--gold);
-    text-transform:uppercase;
-    margin-bottom:20px;
-    letter-spacing: 2px;
+  .gift-tag-label {
+    font-size: .9em; font-weight: 900;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 20px; letter-spacing: 2px;
   }
-  .gift-text{
-    font-size:1.35em;
-    line-height:2.2;
-    color:var(--text-body);
-    font-weight:700;
-    margin:0;
-  }
+  .gift-text { font-size: 1.35em; line-height: 2.2; color: var(--text-body); font-weight: 700; margin: 0; }
 
-  .reveal-drop{
-    opacity:0;
-    transform: translateY(30px) scale(0.95);
-    transition: all 1s var(--shadow);
-    margin:25px auto 0;
-    width:fit-content;
-    display:none;
+  .reveal-drop {
+    opacity: 0; transform: translateY(30px) scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s var(--shadow-curve);
+    margin: 25px auto 0; width: fit-content; display: none;
   }
-  .reveal-drop.shown{
-    opacity:1;
-    transform: translateY(0) scale(1);
-  }
+  .reveal-drop.shown { opacity: 1; transform: translateY(0) scale(1); }
 
-  .finale-video-wrap{
-    opacity:0; display:none;
-    margin-top:40px;
-    transition: opacity 1.5s ease;
+  .finale-video-wrap {
+    opacity: 0; display: none; margin-top: 40px;
+    transition: opacity 1.2s ease;
   }
-  .finale-video-wrap.visible{ opacity:1; }
-  .finale-intro-text{
-    font-size:1.1em; color:var(--text-muted);
-    font-weight:700; margin-bottom:20px;
-  }
+  .finale-video-wrap.visible { opacity: 1; }
+  .finale-intro-text { font-size: 1.1em; color: var(--text-muted); font-weight: 700; margin-bottom: 20px; }
 
-  .final-question{
-    font-size:2.4em;
-    color:var(--text-main);
-    margin-bottom:45px;
-    font-weight: 900;
-  }
+  .final-question { font-size: 2.4em; color: var(--text-main); margin-bottom: 45px; font-weight: 900; font-family: 'Rakkas', serif;}
 
   #final-buttons { position: relative; min-height: 90px; }
-  .dodge-hint{
-    font-size:1em; color:var(--text-muted);
-    opacity:0; transition: opacity .4s ease;
-    margin-bottom:15px; font-weight: 700;
-  }
+  .dodge-hint { font-size: 1em; color: var(--text-muted); opacity: 0; transition: opacity .4s ease; margin-bottom: 15px; font-weight: 700; }
 
-  #btn-no{
+  #btn-no {
     background: rgba(140, 85, 96, 0.1);
     color: var(--text-muted);
     border: 1px solid rgba(140, 85, 96, 0.2);
-    position:relative; z-index:100;
-    box-shadow: none;
-    transition: transform .25s var(--shadow), opacity .5s ease;
+    position: relative; z-index: 100; box-shadow: none;
+    transition: transform 0.2s linear, opacity 0.4s ease;
+    will-change: transform;
   }
   #btn-no:hover { background: rgba(140, 85, 96, 0.2); }
 
-  .date-stamp{
-    text-align:center; margin-top:35px;
-    font-size:.85em; color:var(--text-muted);
-    opacity:.8; line-height:2; font-weight: 500;
+  .date-stamp {
+    text-align: center; margin-top: 35px;
+    font-size: .85em; color: var(--text-muted);
+    opacity: .8; line-height: 2; font-weight: 500;
   }
-  .date-stamp .ds-date{ font-weight:900; color:var(--gold); }
+  .date-stamp .ds-date { font-weight: 900; color: var(--gold); }
 
-  @media (max-width:480px){
-    .container{ padding:40px 24px; min-height: 460px; }
-    h1{ font-size:1.8em; }
-    .final-question{ font-size:1.6em; }
-    p.seq-item{ font-size:1.15em; }
-    .gift-text{ font-size:1.2em; }
+  @media (max-width: 480px) {
+    .container { padding: 40px 24px; min-height: 460px; }
+    h1 { font-size: 1.8em; }
+    .final-question { font-size: 1.8em; }
+    p.seq-item { font-size: 1.15em; }
+    .gift-text { font-size: 1.2em; }
   }
 </style>
 </head>
@@ -427,12 +359,11 @@
 
 <div id="floating-container"></div>
 
-<audio id="bg-music" loop>
+<audio id="bg-music" loop preload="auto">
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <div class="letter-wrap">
-
   <div class="modern-progress" id="progressVine">
     <div class="progress-text" id="pageLabel"></div>
     <div class="progress-bar-container">
@@ -441,18 +372,15 @@
   </div>
 
   <div class="container">
-
     <div id="step1" class="step active">
       <div class="premium-frame">
-        <img src="HBD.png" alt="HBD Dania">
+        <img src="HBD.png" alt="HBD Dania" loading="lazy">
       </div>
       <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
-
       <div id="countdown-container">
         <div id="countdown-title">باقي لتصيري ٢٠ سنة:</div>
         <div id="countdown">جاري الحساب...</div>
       </div>
-
       <div class="buttons-container">
         <div class="seal-wrap">
           <button class="wax-seal" id="waxSeal" onclick="openLetter()" aria-label="افتحي الرسالة"><span class="seal-mono">D</span></button>
@@ -471,14 +399,12 @@
           عشان يرسم بسمة على وجهك الحلو 🥰
         </p>
       </div>
-
       <div id="step2-reveal" class="reveal-drop">
         <div class="premium-frame">
-          <img src="IMG_7660.jpeg.JPG" alt="Dania">
+          <img src="IMG_7660.jpeg.JPG" alt="Dania" loading="lazy">
         </div>
       </div>
-
-      <div class="buttons-container" id="step2-btns" style="display:none; opacity:0;">
+      <div class="buttons-container" id="step2-btns" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
         <button class="btn" id="btn-step2-go" onclick="handleStep2()">متابعة ✨</button>
       </div>
@@ -489,8 +415,7 @@
       <p class="seq-item" data-type="text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي."></p>
       <p class="seq-item" data-type="text" data-text="ما لقيت الا هالطريقة البسيطة جداً."></p>
       <p class="seq-item" data-type="text" data-text="اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع 😼"></p>
-
-      <div class="buttons-container">
+      <div class="buttons-container" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
         <button class="btn" onclick="nextStep(3)">التالي ✨</button>
       </div>
@@ -503,8 +428,7 @@
       <p class="seq-item" data-type="text" data-text="كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
       <h2 class="seq-item" data-type="text" data-text="حتسأليني ليش؟ ليش انا؟"></h2>
       <p class="seq-item" data-type="text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
-
-      <div class="buttons-container">
+      <div class="buttons-container" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
         <button class="btn" onclick="nextStep(4)">كملي قراءة ❤️</button>
       </div>
@@ -513,19 +437,15 @@
     <div id="step5" class="step">
       <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂."></p>
       <p class="seq-item" data-type="text" data-text="صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور"></p>
-
-      <div class="premium-frame seq-item" data-type="media" style="display:none; opacity:0;">
-        <img src="dumb-smart.png" alt="dumb-smart">
+      <div class="premium-frame seq-item" data-type="media" style="display:none; opacity:0; transition: opacity 0.8s ease;">
+        <img src="dumb-smart.png" alt="dumb-smart" loading="lazy">
       </div>
-
       <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير."></p>
       <p class="seq-item" data-type="text" data-text="وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه"></p>
-
-      <div class="hadith-box seq-item" data-type="media" style="display:none; opacity:0;">
+      <div class="hadith-box seq-item" data-type="media" style="display:none; opacity:0; transition: opacity 0.8s ease;">
         "ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
       </div>
-
-      <div class="buttons-container">
+      <div class="buttons-container" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-back" onclick="prevStep(5)">🔙 رجوع</button>
         <button class="btn" onclick="nextStep(5)">الصفحة الأخيرة 💌</button>
       </div>
@@ -533,14 +453,11 @@
 
     <div id="step6" class="step">
       <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "></h1>
-
       <p class="dodge-hint" id="dodge-hint">ولا حتى رح تقدري تمسكيني 😏</p>
-
-      <div class="buttons-container" id="final-buttons">
+      <div class="buttons-container" id="final-buttons" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-yes" id="btn-yes" onclick="celebrate()">أكيد</button>
         <button class="btn" id="btn-no" onmouseenter="dodgeNo(event)" ontouchstart="dodgeNo(event)">لا 🏃🏻‍♀️</button>
       </div>
-
       <div class="finale-video-wrap" id="finale-video-wrap">
         <p class="finale-intro-text">🎬 ولأنك تستاهلي أكثر من كلمات...</p>
         <div class="premium-frame" style="transform:rotate(0deg);">
@@ -551,334 +468,312 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="date-stamp">
     <span class="ds-date">صُمم بتاريخ ٢٠ / ٦ / ٢٠٢٦</span><br>
     بس عشان تعرفي إني مفكر بهالاشي من زمان ومجهز هالشي من قبل، وقت كنت اجهز فيه كنا نحكي كول واحكيلك بكبس عالكمبيوتر 💌
   </div>
-
 </div>
 
 <script>
-  /* ── إدارة الأجواء البصرية والمظهر الديناميكي (Ambient Themes) ── */
+  /* ── CSS/DOM Optimization Utilities ── */
+  const D = document;
+  const byId = (id) => D.getElementById(id);
+  
+  // Force Reflow proper method without layout thrashing
+  function triggerRepaint(callback) {
+    requestAnimationFrame(() => { requestAnimationFrame(callback); });
+  }
+
+  function toAr(n) {
+    const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return String(n).split('').map(d => map[d] !== undefined ? map[d] : d).join('');
+  }
+
+  /* ── Ambient Themes State ── */
   const ambientThemes = {
     1: { dark: false, bg: 'linear-gradient(135deg, #FBF4EC 0%, #EADCC9 100%)' },
     2: { dark: false, bg: 'linear-gradient(135deg, #FFF0F2 0%, #EADCC9 100%)' }, 
     3: { dark: false, bg: 'linear-gradient(135deg, #F5EBEF 0%, #E3D3D8 100%)' }, 
-    4: { dark: true,  bg: 'linear-gradient(135deg, #23151A 0%, #0D0507 100%)' }, // الليل والعمق الفخم للرسالة الشخصية
+    4: { dark: true,  bg: 'linear-gradient(135deg, #23151A 0%, #0D0507 100%)' },
     5: { dark: true,  bg: 'linear-gradient(135deg, #1B1218 0%, #0A0306 100%)' }, 
     6: { dark: true,  bg: 'linear-gradient(135deg, #140D12 0%, #050103 100%)' }  
   };
 
   function applyAmbientTheme(stepId) {
     const theme = ambientThemes[stepId] || ambientThemes[1];
-    document.body.style.background = theme.bg;
-    if(theme.dark) {
-      document.body.classList.add('ambient-dark');
-    } else {
-      document.body.classList.remove('ambient-dark');
-    }
+    D.body.style.background = theme.bg;
+    D.body.classList.toggle('ambient-dark', theme.dark);
   }
 
-  function toAr(n){
-    const map=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-    return String(n).split('').map(d => map[d]!==undefined?map[d]:d).join('');
-  }
-
-  /* ── تحديث شريط التقدم الفاخر ── */
-  function updateProgress(stepId){
-    const vine = document.getElementById('progressVine');
-    if(stepId===1){ vine.style.display='none'; return; }
-    vine.style.display='flex';
+  /* ── Optimized GPU Progress Bar ── */
+  function updateProgress(stepId) {
+    const vine = byId('progressVine');
+    if(stepId === 1) { vine.style.display = 'none'; return; }
+    vine.style.display = 'flex';
     const page = stepId - 1;        
     const total = 5;
-    document.getElementById('vineFill').style.width = ((page) / total * 100) + '%';
-    document.getElementById('pageLabel').textContent = 'الجزء ' + toAr(page) + ' / ' + toAr(total);
+    
+    // GPU Accelerated Transform instead of Width
+    byId('vineFill').style.transform = `scaleX(${page / total})`;
+    byId('pageLabel').textContent = `الجزء ${toAr(page)} / ${toAr(total)}`;
   }
 
-  /* ── تفعيل المؤثرات الصوتية الدقيقة ── */
-  let audioCtx;
-  function getAudioCtx(){
-    if(!audioCtx) audioCtx = new(window.AudioContext||window.webkitAudioContext)();
+  /* ── Safe Web Audio API Initialization ── */
+  let audioCtx = null;
+  function getAudioCtx() {
+    if(!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+    }
+    if(audioCtx.state === 'suspended') audioCtx.resume();
     return audioCtx;
   }
 
-  function playFlipSound(){
-    try{
+  function playSynth(freqs, duration, type = 'sine') {
+    try {
       const ctx = getAudioCtx();
-      if(ctx.state==='suspended') ctx.resume();
-      const dur=0.15, buf=ctx.createBuffer(1,Math.floor(ctx.sampleRate*dur),ctx.sampleRate);
-      const d=buf.getChannelData(0);
-      for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2.5);
-      const src=ctx.createBufferSource(); src.buffer=buf;
-      const bp=ctx.createBiquadFilter(); bp.type='bandpass';
-      bp.frequency.setValueAtTime(3000,ctx.currentTime);
-      bp.frequency.exponentialRampToValueAtTime(1000,ctx.currentTime+dur);
-      const g=ctx.createGain();
-      g.gain.setValueAtTime(0.15,ctx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
-      src.connect(bp).connect(g).connect(ctx.destination);
-      src.start(); src.stop(ctx.currentTime+dur);
-    }catch(e){}
-  }
-
-  function playChimeSound(){
-    try{
-      const ctx = getAudioCtx();
-      if(ctx.state==='suspended') ctx.resume();
-      [950, 1200, 1450].forEach((freq,i)=>{
-        const osc=ctx.createOscillator(), g=ctx.createGain();
-        osc.type='sine'; osc.frequency.value=freq;
-        const t=ctx.currentTime+i*0.08;
-        g.gain.setValueAtTime(0,t);
-        g.gain.linearRampToValueAtTime(0.1,t+0.03);
-        g.gain.exponentialRampToValueAtTime(0.001,t+0.5);
+      freqs.forEach((freq, i) => {
+        const osc = ctx.createOscillator(), g = ctx.createGain();
+        osc.type = type; osc.frequency.value = freq;
+        const t = ctx.currentTime + i * 0.08;
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.1, t + 0.03);
+        g.gain.exponentialRampToValueAtTime(0.001, t + duration);
         osc.connect(g).connect(ctx.destination);
-        osc.start(t); osc.stop(t+0.6);
+        osc.start(t); osc.stop(t + duration + 0.1);
       });
-    }catch(e){}
+    } catch(e) { console.warn("Audio skipped"); }
   }
 
-  /* ── تحضير الخطوة الثانية ── */
+  const playFlipSound = () => playSynth([1200], 0.2, 'triangle');
+  const playChimeSound = () => playSynth([950, 1200, 1450], 0.5, 'sine');
+
+  /* ── Step 2 Logic ── */
   let step2Phase = 'initial'; 
 
-  function initStep2(){
+  function initStep2() {
     step2Phase = 'initial';
-    const btn = document.getElementById('btn-step2-go');
+    const btn = byId('btn-step2-go');
     if(btn) btn.textContent = 'متابعة ✨';
-    const rev = document.getElementById('step2-reveal');
-    if(rev){ rev.classList.remove('shown'); rev.style.display='none'; }
-    const card = document.getElementById('step2-card');
-    if(card){
-      card.style.opacity='1';
-      card.style.transform='none';
-    }
-    const nav = document.getElementById('step2-btns');
-    if(nav){
-      nav.style.display='flex'; nav.style.opacity='1';
+    const rev = byId('step2-reveal');
+    if(rev) { rev.classList.remove('shown'); rev.style.display = 'none'; }
+    
+    const nav = byId('step2-btns');
+    if(nav) {
+      nav.style.display = 'flex';
+      triggerRepaint(() => nav.style.opacity = '1');
     }
   }
 
-  function handleStep2(){
-    if(step2Phase === 'initial'){
-      const rev = document.getElementById('step2-reveal');
+  function handleStep2() {
+    if(step2Phase === 'initial') {
+      const rev = byId('step2-reveal');
       rev.style.display = 'block';
-      void rev.offsetWidth;
-      rev.classList.add('shown');
+      triggerRepaint(() => rev.classList.add('shown'));
       step2Phase = 'revealed';
       playChimeSound();
-      const btn = document.getElementById('btn-step2-go');
-      setTimeout(()=>{ btn.textContent = 'كملي القراءة ❤️'; }, 600);
+      setTimeout(() => { byId('btn-step2-go').textContent = 'كملي القراءة ❤️'; }, 600);
     } else {
       nextStep(2);
     }
   }
 
-  /* ── تأثير الكتابة التلقائية الاحترافي والسلس ── */
-  function playSequence(stepId){
-    const step = document.getElementById('step'+stepId);
+  /* ── Memory-Optimized Typewriter ── */
+  let currentSequenceInterval = null; // Prevent memory leaks by storing interval reference
+
+  function playSequence(stepId) {
+    if(currentSequenceInterval) clearInterval(currentSequenceInterval);
+    
+    const step = byId('step' + stepId);
     const items = step.querySelectorAll('.seq-item');
     const navBtns = step.querySelector('.buttons-container');
 
-    if(navBtns){ navBtns.style.display='none'; navBtns.style.opacity='0'; }
+    if(navBtns) { navBtns.style.display = 'none'; navBtns.style.opacity = '0'; }
 
-    if(stepId===6){
-      const btnNo=document.getElementById('btn-no');
-      btnNo.style.display='inline-block'; btnNo.style.opacity='1';
-      btnNo.style.transform='translate(0,0) rotate(0deg)';
-      const hint=document.getElementById('dodge-hint');
-      if(hint) hint.style.opacity='0';
-      const btnYes=document.getElementById('btn-yes');
-      if(btnYes){ btnYes.style.display='none'; btnYes.style.opacity='0'; }
-      const fv=document.getElementById('finale-video-wrap');
-      if(fv){ fv.classList.remove('visible'); fv.style.display='none'; }
+    if(stepId === 6) {
+      const btnNo = byId('btn-no'), hint = byId('dodge-hint'), btnYes = byId('btn-yes'), fv = byId('finale-video-wrap');
+      btnNo.style.display = 'inline-block'; btnNo.style.opacity = '1'; btnNo.style.transform = 'translate(0,0) rotate(0deg)';
+      if(hint) hint.style.opacity = '0';
+      if(btnYes) { btnYes.style.display = 'inline-block'; btnYes.style.opacity = '0'; } // Keep in flow but hidden
+      if(fv) { fv.classList.remove('visible'); fv.style.display = 'none'; }
     }
 
-    items.forEach(item=>{
-      if(item.getAttribute('data-type')==='text'){ item.textContent=''; item.style.display='block'; }
-      else{ item.style.opacity='0'; item.style.display='none'; }
+    items.forEach(item => {
+      if(item.getAttribute('data-type') === 'text') { item.textContent = ''; item.style.display = 'block'; }
+      else { item.style.opacity = '0'; item.style.display = 'none'; }
     });
 
-    let cur=0;
-    function showNext(){
-      if(cur>=items.length){
-        if(navBtns){
-          navBtns.style.display='flex';
-          setTimeout(()=>{ navBtns.style.transition='opacity .6s ease'; navBtns.style.opacity='1'; },50);
+    let cur = 0;
+    function showNext() {
+      if(cur >= items.length) {
+        if(navBtns) {
+          navBtns.style.display = 'flex';
+          triggerRepaint(() => navBtns.style.opacity = '1');
         }
-        if(stepId===6){
-          const btnYes=document.getElementById('btn-yes');
-          if(btnYes){
-            setTimeout(()=>{
-              btnYes.style.display='inline-block';
-              btnYes.style.transition='opacity .5s ease';
-              void btnYes.offsetWidth;
-              btnYes.style.opacity='1';
-            },800);
-          }
+        if(stepId === 6) {
+          setTimeout(() => { byId('btn-yes').style.opacity = '1'; }, 800);
         }
         return;
       }
-      const target=items[cur];
-      const type=target.getAttribute('data-type');
-      if(type==='text'){
-        const text=target.getAttribute('data-text');
-        if(!text){ cur++; showNext(); return; }
-        let ci=0, cs='';
-        const iv=setInterval(()=>{
-          cs+=text.charAt(ci); target.textContent=cs; ci++;
-          if(ci>=text.length){ clearInterval(iv); cur++; setTimeout(showNext,250); }
-        }, 35); // سرعة كتابة مريحة جداً وسينمائية للعين
+      
+      const target = items[cur];
+      const type = target.getAttribute('data-type');
+      
+      if(type === 'text') {
+        const text = target.getAttribute('data-text');
+        if(!text) { cur++; showNext(); return; }
+        
+        let ci = 0, cs = '';
+        currentSequenceInterval = setInterval(() => {
+          cs += text.charAt(ci++);
+          target.textContent = cs;
+          if(ci >= text.length) {
+            clearInterval(currentSequenceInterval);
+            cur++; setTimeout(showNext, 250);
+          }
+        }, 35);
       } else {
-        target.style.display='block';
-        void target.offsetWidth;
-        target.style.transition='opacity 1s cubic-bezier(0.25, 1, 0.5, 1)';
-        target.style.opacity='1';
-        cur++; setTimeout(showNext,600);
+        target.style.display = 'block';
+        triggerRepaint(() => {
+          target.style.opacity = '1';
+          cur++; setTimeout(showNext, 600);
+        });
       }
     }
     showNext();
   }
 
-  /* ── نظام التنقل الذكي ── */
-  function openLetter(){
-    const seal=document.getElementById('waxSeal');
-    seal.classList.add('crack');
+  /* ── Routing Engine ── */
+  function openLetter() {
+    byId('waxSeal').classList.add('crack');
+    // Init Audio Context properly on user interaction
+    getAudioCtx();
     playFlipSound();
-    document.getElementById('bg-music').play().catch(e=>console.log(e));
-    setTimeout(()=> nextStep(1), 500);
+    byId('bg-music').play().catch(e => console.warn('BGM blocked:', e));
+    setTimeout(() => nextStep(1), 500);
   }
 
-  function nextStep(current){
-    document.getElementById('step'+current).classList.remove('active');
-    const next=current+1;
+  function nextStep(current) {
+    byId('step' + current).classList.remove('active');
+    const next = current + 1;
     applyAmbientTheme(next);
-    document.getElementById('step'+next).classList.add('active');
+    byId('step' + next).classList.add('active');
     updateProgress(next);
     playFlipSound();
-
-    if(next===2){
-      initStep2();
-    } else {
-      playSequence(next);
-    }
+    (next === 2) ? initStep2() : playSequence(next);
   }
 
-  function prevStep(current){
-    document.getElementById('step'+current).classList.remove('active');
-    const prev=current-1;
+  function prevStep(current) {
+    byId('step' + current).classList.remove('active');
+    const prev = current - 1;
     applyAmbientTheme(prev);
-    document.getElementById('step'+prev).classList.add('active');
+    byId('step' + prev).classList.add('active');
     updateProgress(prev);
     playFlipSound();
 
-    if(prev===1){
-      const seal=document.getElementById('waxSeal');
-      if(seal){ seal.classList.remove('crack'); }
-      document.getElementById('bg-music').pause();
-      document.getElementById('bg-music').currentTime=0;
-    } else if(prev===2){
+    if(prev === 1) {
+      byId('waxSeal').classList.remove('crack');
+      const bgm = byId('bg-music');
+      bgm.pause(); bgm.currentTime = 0;
+    } else if(prev === 2) {
       initStep2();
     } else {
       playSequence(prev);
     }
   }
 
-  /* ── العداد التنازلي ── */
-  function startCountdown(){
-    const target=new Date("July 17, 2026 00:00:00").getTime();
-    const el=document.getElementById("countdown");
-    setInterval(()=>{
-      const dist=target-Date.now();
-      if(dist<0){ el.innerHTML='<div class="c-done">صار عمرك ٢٠ سنة! 🎉</div>'; return; }
-      const d=Math.floor(dist/86400000);
-      const h=Math.floor((dist%86400000)/3600000);
-      const m=Math.floor((dist%3600000)/60000);
-      const s=Math.floor((dist%60000)/1000);
-      el.innerHTML=
-        '<div class="c-chip"><span class="c-num">'+toAr(d)+'</span><span class="c-label">يوم</span></div>'+
-        '<div class="c-chip"><span class="c-num">'+toAr(h)+'</span><span class="c-label">ساعة</span></div>'+
-        '<div class="c-chip"><span class="c-num">'+toAr(m)+'</span><span class="c-label">دقيقة</span></div>'+
-        '<div class="c-chip"><span class="c-num">'+toAr(s)+'</span><span class="c-label">ثانية</span></div>';
-    },1000);
+  /* ── Optimized Countdown Timer ── */
+  const countdownEl = byId("countdown");
+  const targetDate = new Date("July 17, 2026 00:00:00").getTime();
+  const cTimer = setInterval(() => {
+    const dist = targetDate - Date.now();
+    if(dist < 0) { 
+      countdownEl.innerHTML = '<div class="c-done">صار عمرك ٢٠ سنة! 🎉</div>'; 
+      clearInterval(cTimer);
+      return; 
+    }
+    countdownEl.innerHTML = `
+      <div class="c-chip"><span class="c-num">${toAr(Math.floor(dist/86400000))}</span><span class="c-label">يوم</span></div>
+      <div class="c-chip"><span class="c-num">${toAr(Math.floor((dist%86400000)/3600000))}</span><span class="c-label">ساعة</span></div>
+      <div class="c-chip"><span class="c-num">${toAr(Math.floor((dist%3600000)/60000))}</span><span class="c-label">دقيقة</span></div>
+      <div class="c-chip"><span class="c-num">${toAr(Math.floor((dist%60000)/1000))}</span><span class="c-label">ثانية</span></div>
+    `;
+  }, 1000);
+
+  /* ── Memory-Safe Floating Elements ── */
+  const floatingContainer = byId('floating-container');
+  const flElements = ['🌹','✨','🤍','🌸'];
+  setInterval(() => {
+    // Limit to 25 objects to prevent memory leak / tab crashing
+    if(floatingContainer.childElementCount > 25) return; 
+    
+    const el = D.createElement('div');
+    el.textContent = flElements[Math.floor(Math.random() * flElements.length)];
+    el.className = 'floating-element';
+    el.style.left = `${Math.random() * 100}vw`;
+    el.style.setProperty('--drift', `${Math.random() * 60 - 30}px`);
+    el.style.animationDuration = `${Math.random() * 5 + 7}s`;
+    el.style.fontSize = `${Math.random() * 10 + 16}px`;
+    floatingContainer.appendChild(el);
+    
+    // Auto-cleanup securely
+    setTimeout(() => { if(el.parentNode) el.remove(); }, 11000);
+  }, 1500);
+
+  /* ── Smart Dodge Button ── */
+  function dodgeNo(e) {
+    if(e && e.cancelable) e.preventDefault();
+    const btn = byId('btn-no');
+    const wrap = byId('final-buttons');
+    const rect = wrap.getBoundingClientRect();
+    const maxX = Math.min(130, rect.width * 0.7);
+    const x = (Math.random() - 0.5) * 2 * maxX;
+    const y = (Math.random() - 0.8) * 2 * 40;
+    
+    btn.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random() * 24 - 12}deg)`;
+    const hint = byId('dodge-hint');
+    if(hint) hint.style.opacity = '1';
   }
-  startCountdown();
 
-  /* ── العناصر الطائرة الفخمة ── */
-  function createFloatingElements(){
-    const container=document.getElementById('floating-container');
-    const els=['🌹','✨','🤍','🌸'];
-    setInterval(()=>{
-      const el=document.createElement('div');
-      el.innerHTML=els[Math.floor(Math.random()*els.length)];
-      el.classList.add('floating-element');
-      el.style.left=Math.random()*100+'vw';
-      el.style.setProperty('--drift',(Math.random()*60-30)+'px');
-      el.style.animationDuration=(Math.random()*5+7)+'s';
-      el.style.fontSize=(Math.random()*10+16)+'px';
-      container.appendChild(el);
-      setTimeout(()=>el.remove(),11000);
-    },1200);
-  }
-  createFloatingElements();
+  /* ── Celebration Logic ── */
+  function celebrate() {
+    byId('final-buttons').innerHTML = `
+      <div class="celebrate-msg">
+        <h2 class="celebrate-title">وأنا بوعدك أضل معك دايماً ❤️</h2>
+        <p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>
+      </div>`;
+    const hint = byId('dodge-hint');
+    if(hint) hint.style.display = 'none';
 
-  /* ── زر الهروب الذكي ── */
-  function dodgeNo(e){
-    if(e&&e.cancelable) e.preventDefault();
-    const btn=document.getElementById('btn-no');
-    const wrap=document.getElementById('final-buttons');
-    const rect=wrap.getBoundingClientRect();
-    const maxX=Math.min(130,rect.width*.7);
-    const x=(Math.random()-.5)*2*maxX;
-    const y=(Math.random()-.8)*2*40;
-    const rot=(Math.random()*24-12);
-    btn.style.transform='translate('+x+'px,'+y+'px) rotate('+rot+'deg)';
-    const hint=document.getElementById('dodge-hint');
-    if(hint) hint.style.opacity='1';
-  }
-
-  /* ── الاحتفال النهائي الفاخر ── */
-  function celebrate(){
-    document.getElementById('final-buttons').innerHTML=
-      '<div class="celebrate-msg">'+
-        '<h2 class="celebrate-title">وأنا بوعدك أضل معك دايماً ❤️</h2>'+
-        '<p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>'+
-      '</div>';
-
-    const hint=document.getElementById('dodge-hint');
-    if(hint) hint.style.display='none';
-
-    var duration = 3500;
-    var end = Date.now() + duration;
-
+    const end = Date.now() + 3500;
     (function frame() {
       confetti({ particleCount: 5, angle: 60, spread: 60, origin: { x: 0 }, colors: ['#C7A66B', '#B97D86', '#ffffff'] });
       confetti({ particleCount: 5, angle: 120, spread: 60, origin: { x: 1 }, colors: ['#C7A66B', '#B97D86', '#ffffff'] });
-      if (Date.now() < end) { requestAnimationFrame(frame); }
+      if (Date.now() < end) requestAnimationFrame(frame);
     }());
 
-    setTimeout(()=>{
-      const wrap=document.getElementById('finale-video-wrap');
-      if(wrap){
-        wrap.style.display='block';
-        void wrap.offsetWidth;
-        wrap.classList.add('visible');
-
-        const bgm=document.getElementById('bg-music');
-        const vid=document.getElementById('finale-video-player');
+    setTimeout(() => {
+      const wrap = byId('finale-video-wrap');
+      if(wrap) {
+        wrap.style.display = 'block';
+        triggerRepaint(() => wrap.classList.add('visible'));
+        
+        const bgm = byId('bg-music');
+        const vid = byId('finale-video-player');
         if(bgm) bgm.pause();
-        if(vid) vid.play().catch(e=>console.log(e));
+        if(vid) vid.play().catch(e => console.warn(e));
       }
     }, 2200);
   }
 
-  const finVid=document.getElementById('finale-video-player');
-  if(finVid){
-    finVid.addEventListener('play',()=>{
-      const bgm=document.getElementById('bg-music');
-      if(bgm&&!bgm.paused) bgm.pause();
+  /* ── Video Overlay Handling ── */
+  const finVid = byId('finale-video-player');
+  if(finVid) {
+    finVid.addEventListener('play', () => {
+      const bgm = byId('bg-music');
+      if(bgm && !bgm.paused) bgm.pause();
     });
   }
 </script>
