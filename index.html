@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HBD Dania 🌹</title>
+<title>HBD Dania </title>
 
 <!-- ========================================== -->
 <!-- 📝 صندوق النصوص: عدّل كلامك من هون براحتك 📝 -->
@@ -25,7 +25,16 @@
     "step5_2": "صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور",
     "step5_3": "صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير.",
     
-    "step6_q": "وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "
+    /* ── الصفحة الجديدة: الشكر والاعتذار ── */
+    "step6_1": "هذا شكرٌ لك.. شكراً على إنه دايماً بتسايريني وبتعطيني من وقتك.",
+    "step6_2": "عارف إنه أنا شخص مش كويس، وأحياناً ما بستاهل كل هذا..",
+    "step6_3": "You are truly the best gift I never expected.",
+    "step6_h2": "وهذا اعتذار..",
+    "step6_4": "آسف عن كل مرة رفعت ضغطك فيها، وآسف عكل مرة ضغطتك ووترتك وزعلتك.",
+    "step6_5": "بعتذر عجهلي بكثير أشياء بالتعامل.. وكثير ممنونلك، وجد هاد من الأشياء اللي شو ما أعمل ما بردلك حقك فيها.",
+    "step6_6": "جد أنا مش شخص مثالي وكلي أغلاط، بس شكراً لأنك بتكوني حدا متسامح دايماً 🤍",
+
+    "step7_q": "وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "
   };
 </script>
 <!-- ========================================== -->
@@ -70,7 +79,7 @@
     position:relative;
     transition: background 1.5s var(--shadow), color 1.2s var(--shadow);
     display: flex;
-    align-items: flex-start; /* تغيير لضمان عمل السكرول بشكل مثالي */
+    align-items: flex-start; 
     justify-content: center;
     padding-top: 2vh;
     padding-bottom: 5vh;
@@ -164,9 +173,7 @@
       to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   }
 
-  /* ======================================================== */
-  /* إطار الصور بتأثير الـ Polaroid مع اللزقة الشفافة الراقية */
-  /* ======================================================== */
+  /* إطار الصور بتأثير الـ Polaroid مع اللزقة الشفافة */
   .premium-frame{
     position: relative;
     width: fit-content;
@@ -174,9 +181,7 @@
     padding: 10px 10px 22px 10px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 4px;
-    box-shadow: 
-      0 20px 40px rgba(42, 26, 30, 0.15),
-      0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 20px 40px rgba(42, 26, 30, 0.15), 0 2px 5px rgba(0,0,0,0.05);
     transition: transform 0.5s var(--shadow);
   }
 
@@ -191,15 +196,11 @@
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    box-shadow: 
-      0 2px 8px rgba(0,0,0,0.05), 
-      inset 0 0 0 1px rgba(255,255,255,0.7);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.7);
     z-index: 10;
   }
 
-  .premium-frame:hover {
-    transform: scale(1.03) translateY(-6px) rotate(1.5deg);
-  }
+  .premium-frame:hover { transform: scale(1.03) translateY(-6px) rotate(1.5deg); }
 
   .premium-frame img, .premium-frame video {
     max-width: 280px;
@@ -209,21 +210,12 @@
     border: 1px solid rgba(0,0,0,0.03);
   }
 
-  /* كلاس جديد للفيديو لإلغاء تأثير اللزقة وإرجاعه للشكل الأنيق السابق */
+  /* كلاس الفيديو لإلغاء تأثير اللزقة */
   .premium-frame.no-tape {
-    padding: 0;
-    margin: 0 auto 30px;
-    border-radius: 16px;
-    background: transparent;
+    padding: 0; margin: 0 auto 30px; border-radius: 16px; background: transparent;
   }
-  .premium-frame.no-tape::before {
-    display: none;
-  }
-  .premium-frame.no-tape video {
-    border: none;
-    border-radius: 16px;
-  }
-  /* ======================================================== */
+  .premium-frame.no-tape::before { display: none; }
+  .premium-frame.no-tape video { border: none; border-radius: 16px; }
 
   h1{
     font-size:2.2em;
@@ -247,6 +239,17 @@
     font-weight: 800;
     color:var(--text-muted);
     margin:40px 0 20px;
+  }
+
+  /* تنسيق الجملة الإنجليزية */
+  .eng-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--gold) !important;
+    text-align: center;
+    font-size: 1.45em !important;
+    margin: 35px 0 !important;
+    direction: ltr;
   }
 
   #countdown-container{
@@ -277,28 +280,15 @@
     min-width:75px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.02);
   }
-  .c-num{
-    font-size:1.8em;
-    font-weight: 900;
-    color:var(--gold);
-  }
-  .c-label{
-    font-size:.8em;
-    color:var(--text-muted);
-    margin-top:4px;
-    font-weight: 700;
-  }
-  .c-done{
-    font-weight:900;
-    color:var(--gold);
-    font-size:1.5em;
-  }
+  .c-num{ font-size:1.8em; font-weight: 900; color:var(--gold); }
+  .c-label{ font-size:.8em; color:var(--text-muted); margin-top:4px; font-weight: 700; }
+  .c-done{ font-weight:900; color:var(--gold); font-size:1.5em; }
 
   .buttons-container{
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:20px;
+    gap:15px;
     margin-top:45px;
     flex-wrap:wrap;
   }
@@ -334,40 +324,53 @@
     border-color: var(--gold);
   }
 
-  .btn-yes{
-    background: var(--gold);
+  /* تصميم أزرار النهاية الفخمة */
+  #btn-yes {
+    background: linear-gradient(135deg, #C7A66B 0%, #9F7E46 100%);
     color: #fff;
+    padding: 16px 50px;
+    font-size: 1.3em;
+    font-weight: 900;
+    border-radius: 40px;
+    box-shadow: 0 10px 25px rgba(199, 166, 107, 0.4), inset 0 2px 5px rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  #btn-yes:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(199, 166, 107, 0.6), inset 0 2px 5px rgba(255,255,255,0.4);
+  }
+  #btn-no {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    border: 1px solid rgba(199, 166, 107, 0.3);
+    padding: 16px 40px;
+    font-size: 1.1em;
+    border-radius: 40px;
+    backdrop-filter: blur(5px);
+    position: relative; 
+    z-index: 100;
+    box-shadow: none;
+  }
+  #btn-no:hover {
+    background: rgba(199, 166, 107, 0.15);
+    color: var(--text-main);
   }
 
   .seal-wrap{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:15px;
+    display:flex; flex-direction:column; align-items:center; gap:15px;
   }
   .wax-seal{
-    width:100px; height:100px;
-    border:none; cursor:pointer;
-    border-radius:50%;
+    width:100px; height:100px; border:none; cursor:pointer; border-radius:50%;
     background: radial-gradient(circle at 35% 35%, #C2547A, #8C5560 70%, #4A3138);
-    box-shadow: 
-      0 15px 35px rgba(140, 85, 96, 0.3),
-      inset 0 -8px 15px rgba(0,0,0,0.3),
-      inset 0 4px 10px rgba(255,255,255,0.2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
+    box-shadow: 0 15px 35px rgba(140, 85, 96, 0.3), inset 0 -8px 15px rgba(0,0,0,0.3), inset 0 4px 10px rgba(255,255,255,0.2);
+    display:flex; align-items:center; justify-content:center; position:relative;
     transition: transform 0.4s var(--shadow);
   }
   .wax-seal:hover{ transform: scale(1.08); }
   .wax-seal.crack{ animation: premiumCrack 0.6s var(--shadow) forwards; }
   
   .seal-mono{
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 2.8em;
-    color: rgba(255,255,255,0.85);
+    font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.8em; color: rgba(255,255,255,0.85);
     text-shadow: -1px -1px 1px rgba(0,0,0,0.4), 1px 1px 1px rgba(255,255,255,0.2);
   }
   @keyframes premiumCrack {
@@ -376,87 +379,43 @@
     100% { transform: scale(0) rotate(45deg); opacity:0; filter: blur(8px); }
   }
 
-  .seal-label{
-    font-size:1em;
-    font-weight: 700;
-    color:var(--text-muted);
-  }
+  .seal-label{ font-size:1em; font-weight: 700; color:var(--text-muted); }
 
   .gift-card{
-    background: rgba(255,255,255,0.4);
-    border: 1px solid var(--card-border);
-    border-radius:24px;
-    padding:40px;
-    margin:15px 0;
-    text-align:center;
+    background: rgba(255,255,255,0.4); border: 1px solid var(--card-border);
+    border-radius:24px; padding:40px; margin:15px 0; text-align:center;
   }
   .gift-tag-label{
-    font-size:.9em;
-    font-weight:900;
-    color:var(--gold);
-    text-transform:uppercase;
-    margin-bottom:20px;
-    letter-spacing: 2px;
+    font-size:.9em; font-weight:900; color:var(--gold); text-transform:uppercase; margin-bottom:20px; letter-spacing: 2px;
   }
-  .gift-text{
-    font-size:1.35em;
-    line-height:2.2;
-    color:var(--text-body);
-    font-weight:700;
-    margin:0;
-  }
+  .gift-text{ font-size:1.35em; line-height:2.2; color:var(--text-body); font-weight:700; margin:0; }
 
   .reveal-drop{
-    opacity:0;
-    transform: translateY(30px) scale(0.95);
-    transition: all 1s var(--shadow);
-    margin:25px auto 0;
-    width:fit-content;
-    display:none;
+    opacity:0; transform: translateY(30px) scale(0.95); transition: all 1s var(--shadow);
+    margin:25px auto 0; width:fit-content; display:none;
   }
-  .reveal-drop.shown{
-    opacity:1;
-    transform: translateY(0) scale(1);
-  }
+  .reveal-drop.shown{ opacity:1; transform: translateY(0) scale(1); }
 
   .finale-video-wrap{
-    opacity:0; display:none;
-    margin-top:40px;
-    transition: opacity 1.5s ease;
+    opacity:0; display:none; margin-top:40px; transition: opacity 1.5s ease;
   }
   .finale-video-wrap.visible{ opacity:1; }
   .finale-intro-text{
-    font-size:1.1em; color:var(--text-muted);
-    font-weight:700; margin-bottom:20px;
+    font-size:1.1em; color:var(--text-muted); font-weight:700; margin-bottom:20px; text-align:center;
   }
 
   .final-question{
-    font-size:2.4em;
-    color:var(--text-main);
-    margin-bottom:45px;
-    font-weight: 900;
+    font-size:2.4em; color:var(--text-main); margin-bottom:45px; font-weight: 900; text-align:center;
   }
 
   #final-buttons { position: relative; min-height: 90px; }
   .dodge-hint{
-    font-size:1em; color:var(--text-muted);
-    opacity:0; transition: opacity .4s ease;
-    margin-bottom:15px; font-weight: 700;
+    font-size:1em; color:var(--text-muted); opacity:0; transition: opacity .4s ease;
+    margin-bottom:15px; font-weight: 700; text-align:center;
   }
-
-  #btn-no{
-    background: rgba(140, 85, 96, 0.1);
-    color: var(--text-muted);
-    border: 1px solid rgba(140, 85, 96, 0.2);
-    position:relative; z-index:100;
-    box-shadow: none;
-    transition: transform .25s var(--shadow), opacity .5s ease;
-  }
-  #btn-no:hover { background: rgba(140, 85, 96, 0.2); }
 
   .date-stamp{
-    text-align:center; margin-top:35px;
-    font-size:.85em; color:var(--text-muted);
+    text-align:center; margin-top:35px; font-size:.85em; color:var(--text-muted);
     opacity:.8; line-height:2; font-weight: 500;
   }
   .date-stamp .ds-date{ font-weight:900; color:var(--gold); }
@@ -467,6 +426,7 @@
     .final-question{ font-size:1.6em; }
     p.seq-item{ font-size:1.15em; }
     .gift-text{ font-size:1.2em; }
+    .eng-quote { font-size: 1.25em !important; }
   }
 </style>
 </head>
@@ -569,22 +529,43 @@
 
       <div class="buttons-container">
         <button class="btn btn-back" onclick="prevStep(5)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(5)">الصفحة الأخيرة 💌</button>
+        <button class="btn" onclick="nextStep(5)">التالي 💌</button>
       </div>
     </div>
 
+    <!-- الصفحة الجديدة: الاعتذار والامتنان -->
     <div id="step6" class="step">
-      <h1 class="final-question seq-item dynamic-text" data-type="text" data-key="step6_q"></h1>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step6_1"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step6_2"></p>
+      
+      <!-- النص الإنجليزي بتنسيق فخم -->
+      <p class="seq-item dynamic-text eng-quote" data-type="text" data-key="step6_3"></p>
+      
+      <h2 class="seq-item dynamic-text" data-type="text" data-key="step6_h2"></h2>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step6_4"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step6_5"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step6_6"></p>
+
+      <div class="buttons-container">
+        <button class="btn btn-back" onclick="prevStep(6)">🔙 رجوع</button>
+        <button class="btn" onclick="nextStep(6)">الصفحة الأخيرة ✨</button>
+      </div>
+    </div>
+
+    <!-- الصفحة الأخيرة صارت رقم 7 -->
+    <div id="step7" class="step">
+      <h1 class="final-question seq-item dynamic-text" data-type="text" data-key="step7_q"></h1>
 
       <p class="dodge-hint" id="dodge-hint">ولا حتى رح تقدري تمسكيني 😏</p>
 
-      <div class="buttons-container" id="final-buttons">
-        <button class="btn btn-yes" id="btn-yes" onclick="celebrate()">أكيد</button>
+      <div class="buttons-container" id="final-buttons" style="display:none; opacity:0;">
+        <button class="btn btn-back" onclick="prevStep(7)">🔙 رجوع</button>
+        <button class="btn" id="btn-yes" onclick="celebrate()">أكيد 💍</button>
         <button class="btn" id="btn-no" onmouseenter="dodgeNo(event)" ontouchstart="dodgeNo(event)">لا 🏃🏻‍♀️</button>
       </div>
 
       <div class="finale-video-wrap" id="finale-video-wrap">
-        <p class="finale-intro-text">🎬 ولأنك تستاهلي أكثر من كلمات...</p>
+        <p class="finale-intro-text">🎬 ولأنك بتستاهلي أكثر من كلمات...</p>
         <div class="premium-frame no-tape" style="transform:rotate(0deg);">
           <video id="finale-video-player" controls playsinline preload="metadata">
             <source src="video.mp4" type="video/mp4">
@@ -604,10 +585,10 @@
 </div>
 
 <script>
-  /* ── ذاكرة الصفحات عشان ما يرجع يكتب الكلام اللي انقرأ ── */
-  let visitedSteps = new Set([1]); // الخطوة الأولى دايماً ظاهرة
+  /* ── ذاكرة الصفحات ── */
+  let visitedSteps = new Set([1]); 
 
-  /* ── تعبئة النصوص تلقائياً من الصندوق فوق ── */
+  /* ── تعبئة النصوص ── */
   window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.dynamic-text').forEach(el => {
       const key = el.getAttribute('data-key');
@@ -617,14 +598,15 @@
     });
   });
 
-  /* ── إدارة الأجواء البصرية والمظهر الديناميكي ── */
+  /* ── الأجواء البصرية ── */
   const ambientThemes = {
     1: { dark: false, bg: 'linear-gradient(135deg, #FBF4EC 0%, #EADCC9 100%)' },
     2: { dark: false, bg: 'linear-gradient(135deg, #FFF0F2 0%, #EADCC9 100%)' }, 
     3: { dark: false, bg: 'linear-gradient(135deg, #F5EBEF 0%, #E3D3D8 100%)' }, 
     4: { dark: true,  bg: 'linear-gradient(135deg, #23151A 0%, #0D0507 100%)' }, 
     5: { dark: true,  bg: 'linear-gradient(135deg, #1B1218 0%, #0A0306 100%)' }, 
-    6: { dark: true,  bg: 'linear-gradient(135deg, #140D12 0%, #050103 100%)' }  
+    6: { dark: true,  bg: 'linear-gradient(135deg, #180D14 0%, #080205 100%)' }, 
+    7: { dark: true,  bg: 'linear-gradient(135deg, #140D12 0%, #050103 100%)' }  
   };
 
   function applyAmbientTheme(stepId) {
@@ -642,18 +624,18 @@
     return String(n).split('').map(d => map[d]!==undefined?map[d]:d).join('');
   }
 
-  /* ── تحديث شريط التقدم الفاخر ── */
+  /* ── شريط التقدم ── */
   function updateProgress(stepId){
     const vine = document.getElementById('progressVine');
     if(stepId===1){ vine.style.display='none'; return; }
     vine.style.display='flex';
     const page = stepId - 1;        
-    const total = 5;
+    const total = 6; /* زادوا صاروا 6 أجزاء بعد إضافة الصفحة */
     document.getElementById('vineFill').style.width = ((page) / total * 100) + '%';
     document.getElementById('pageLabel').textContent = 'الجزء ' + toAr(page) + ' / ' + toAr(total);
   }
 
-  /* ── تفعيل المؤثرات الصوتية الدقيقة ── */
+  /* ── المؤثرات الصوتية ── */
   let audioCtx;
   function getAudioCtx(){
     if(!audioCtx) audioCtx = new(window.AudioContext||window.webkitAudioContext)();
@@ -696,20 +678,15 @@
     }catch(e){}
   }
 
-  /* ── تحضير الخطوة الثانية ── */
+  /* ── الخطوة الثانية ── */
   let step2Phase = 'initial'; 
 
   function initStep2(){
     const nav = document.getElementById('step2-btns');
-    
-    // إذا كان زار الخطوة من قبل، اعرض الصورة فوراً
     if(visitedSteps.has(2)) {
       step2Phase = 'revealed';
       const rev = document.getElementById('step2-reveal');
-      if(rev) { 
-        rev.style.display = 'block'; 
-        rev.classList.add('shown'); 
-      }
+      if(rev) { rev.style.display = 'block'; rev.classList.add('shown'); }
       const btn = document.getElementById('btn-step2-go');
       if(btn) btn.textContent = 'كملي القراءة ❤️';
       if(nav){ nav.style.display='flex'; nav.style.opacity='1'; }
@@ -730,7 +707,7 @@
       void rev.offsetWidth;
       rev.classList.add('shown');
       step2Phase = 'revealed';
-      visitedSteps.add(2); // أضفها للذاكرة
+      visitedSteps.add(2); 
       playChimeSound();
       const btn = document.getElementById('btn-step2-go');
       setTimeout(()=>{ btn.textContent = 'كملي القراءة ❤️'; }, 600);
@@ -739,13 +716,13 @@
     }
   }
 
-  /* ── تأثير الكتابة التلقائية الاحترافي والسلس مع الذاكرة ── */
+  /* ── تأثير الكتابة مع الذاكرة ── */
   function playSequence(stepId){
     const step = document.getElementById('step'+stepId);
     const items = step.querySelectorAll('.seq-item');
     const navBtns = step.querySelector('.buttons-container');
 
-    // إذا تمت زيارة الصفحة مسبقاً، اعرض كل شيء فوراً بدون كتابة
+    // إذا قرأ الصفحة مسبقاً يعرضها فوراً
     if(visitedSteps.has(stepId)) {
       items.forEach(target => {
         if(target.getAttribute('data-type') === 'text'){ 
@@ -758,23 +735,19 @@
         target.style.transition = 'none';
       });
       if(navBtns){ navBtns.style.display='flex'; navBtns.style.opacity='1'; }
-      if(stepId === 6){
+      if(stepId === 7){
         const btnNo=document.getElementById('btn-no');
         if(btnNo) { btnNo.style.display='inline-block'; btnNo.style.opacity='1'; btnNo.style.transform='translate(0,0) rotate(0deg)'; }
         const btnYes=document.getElementById('btn-yes');
         if(btnYes){ btnYes.style.display='inline-block'; btnYes.style.opacity='1'; }
-        const fv=document.getElementById('finale-video-wrap');
-        // لا تظهر الفيديو المخبأ إلا إذا احتفلنا
       }
       return;
     }
 
-    // إذا كانت زيارة جديدة، احفظها بالذاكرة وابدأ الكتابة
     visitedSteps.add(stepId);
-
     if(navBtns){ navBtns.style.display='none'; navBtns.style.opacity='0'; }
 
-    if(stepId===6){
+    if(stepId===7){
       const btnNo=document.getElementById('btn-no');
       btnNo.style.display='inline-block'; btnNo.style.opacity='1';
       btnNo.style.transform='translate(0,0) rotate(0deg)';
@@ -798,7 +771,7 @@
           navBtns.style.display='flex';
           setTimeout(()=>{ navBtns.style.transition='opacity .6s ease'; navBtns.style.opacity='1'; },50);
         }
-        if(stepId===6){
+        if(stepId===7){
           const btnYes=document.getElementById('btn-yes');
           if(btnYes){
             setTimeout(()=>{
@@ -832,7 +805,7 @@
     showNext();
   }
 
-  /* ── نظام التنقل الذكي ── */
+  /* ── التنقل ── */
   function openLetter(){
     const seal=document.getElementById('waxSeal');
     seal.classList.add('crack');
@@ -842,9 +815,7 @@
   }
 
   function nextStep(current){
-    // الصعود للأعلى بسلاسة
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // الصعود لأعلى
     document.getElementById('step'+current).classList.remove('active');
     const next=current+1;
     applyAmbientTheme(next);
@@ -852,17 +823,11 @@
     updateProgress(next);
     playFlipSound();
 
-    if(next===2){
-      initStep2();
-    } else {
-      playSequence(next);
-    }
+    if(next===2){ initStep2(); } else { playSequence(next); }
   }
 
   function prevStep(current){
-    // الصعود للأعلى بسلاسة
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // الصعود لأعلى
     document.getElementById('step'+current).classList.remove('active');
     const prev=current-1;
     applyAmbientTheme(prev);
@@ -902,7 +867,7 @@
   }
   startCountdown();
 
-  /* ── العناصر الطائرة الفخمة ── */
+  /* ── العناصر الطائرة ── */
   function createFloatingElements(){
     const container=document.getElementById('floating-container');
     const els=['🌹','✨','🤍','🌸'];
@@ -935,13 +900,21 @@
     if(hint) hint.style.opacity='1';
   }
 
-  /* ── الاحتفال النهائي الفاخر ── */
+  /* ── الاحتفال ── */
   function celebrate(){
-    document.getElementById('final-buttons').innerHTML=
-      '<div class="celebrate-msg">'+
-        '<h2 class="celebrate-title">وأنا بوعدك أضل معك دايماً ❤️</h2>'+
-        '<p class="celebrate-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>'+
-      '</div>';
+    // إخفاء أزرار الإجابة فقط وإبقاء زر الرجوع
+    document.getElementById('btn-yes').style.display = 'none';
+    document.getElementById('btn-no').style.display = 'none';
+    
+    if(!document.getElementById('celeb-msg')){
+        const msg = document.createElement('div');
+        msg.id = 'celeb-msg';
+        msg.style.width = '100%';
+        msg.style.textAlign = 'center';
+        msg.style.marginBottom = '25px';
+        msg.innerHTML = '<h2 class="celebrate-title" style="color:var(--gold); font-size:2em;">وأنا بوعدك أضل معك دايماً ❤️</h2><p class="celebrate-sub" style="color:var(--text-body); font-size:1.2em;">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>';
+        document.getElementById('final-buttons').prepend(msg);
+    }
 
     const hint=document.getElementById('dodge-hint');
     if(hint) hint.style.display='none';
