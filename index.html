@@ -24,7 +24,6 @@
     "step5_1": "دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂.",
     "step5_2": "صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور",
     "step5_3": "صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير.",
-    "step5_4": "وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه",
     
     "step6_q": "وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "
   };
@@ -48,7 +47,6 @@
     --shadow: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* النمط الليلي التلقائي عندما يتغير المظهر مع تقدم القراءة */
   body.ambient-dark {
     --bg-gradient: linear-gradient(135deg, #1F1216 0%, #0D0507 100%);
     --card-bg: rgba(30, 18, 22, 0.8);
@@ -72,11 +70,12 @@
     position:relative;
     transition: background 1.5s var(--shadow), color 1.2s var(--shadow);
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* تغيير لضمان عمل السكرول بشكل مثالي */
     justify-content: center;
+    padding-top: 2vh;
+    padding-bottom: 5vh;
   }
 
-  /* شبكة فخمة ناعمة في الخلفية تضفي عمق هندسي للموقع */
   body::before{
     content:"";
     position:fixed; inset:0;
@@ -108,12 +107,11 @@
   .letter-wrap{
     width: 100%;
     max-width:640px;
-    padding:4vh 20px;
+    padding:2vh 20px;
     position:relative;
     z-index:10;
   }
 
-  /* مؤشر التقدم السينمائي الفخم السفلي المدمج */
   .modern-progress {
     display: none;
     justify-content: space-between;
@@ -144,7 +142,6 @@
     letter-spacing: 1px;
   }
 
-  /* اللوح الزجاجي المصقول الفاخر */
   .container{
     background: var(--card-bg);
     backdrop-filter: blur(20px);
@@ -162,31 +159,71 @@
   .step{ display:none; animation: cinematicFadeIn 0.8s var(--shadow) forwards; }
   .step.active{ display:block; }
 
-  /* تأثير الدخول السينمائي مع الضبابية */
   @keyframes cinematicFadeIn {
       from { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
       to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   }
 
-  /* إطار الصور السينمائي الراقي */
+  /* ======================================================== */
+  /* إطار الصور بتأثير الـ Polaroid مع اللزقة الشفافة الراقية */
+  /* ======================================================== */
   .premium-frame{
     position: relative;
     width: fit-content;
-    margin: 0 auto 30px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 45px rgba(42, 26, 30, 0.15);
-    border: 1px solid rgba(255,255,255,0.2);
+    margin: 25px auto 35px;
+    padding: 10px 10px 22px 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    box-shadow: 
+      0 20px 40px rgba(42, 26, 30, 0.15),
+      0 2px 5px rgba(0,0,0,0.05);
     transition: transform 0.5s var(--shadow);
   }
-  .premium-frame:hover {
-    transform: scale(1.02) translateY(-4px);
+
+  .premium-frame::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 110px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 
+      0 2px 8px rgba(0,0,0,0.05), 
+      inset 0 0 0 1px rgba(255,255,255,0.7);
+    z-index: 10;
   }
+
+  .premium-frame:hover {
+    transform: scale(1.03) translateY(-6px) rotate(1.5deg);
+  }
+
   .premium-frame img, .premium-frame video {
     max-width: 280px;
     width: 100%;
     display: block;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.03);
   }
+
+  /* كلاس جديد للفيديو لإلغاء تأثير اللزقة وإرجاعه للشكل الأنيق السابق */
+  .premium-frame.no-tape {
+    padding: 0;
+    margin: 0 auto 30px;
+    border-radius: 16px;
+    background: transparent;
+  }
+  .premium-frame.no-tape::before {
+    display: none;
+  }
+  .premium-frame.no-tape video {
+    border: none;
+    border-radius: 16px;
+  }
+  /* ======================================================== */
 
   h1{
     font-size:2.2em;
@@ -212,21 +249,6 @@
     margin:40px 0 20px;
   }
 
-  /* صندوق الاقتباس الأنيق جداً */
-  .hadith-box{
-    background: rgba(199, 166, 107, 0.06);
-    border-right:3px solid var(--gold);
-    padding: 30px;
-    margin: 40px 0;
-    border-radius: 4px 16px 16px 4px;
-    font-weight:700;
-    font-size:1.25em;
-    text-align:center;
-    color:var(--text-main);
-    line-height: 1.8;
-  }
-
-  /* عداد تنازلي عصري ومبتكر */
   #countdown-container{
     background: rgba(255,255,255,0.2);
     border-radius:20px;
@@ -272,7 +294,6 @@
     font-size:1.5em;
   }
 
-  /* أزرار عصرية بتأثيرات فاخرة */
   .buttons-container{
     display:flex;
     justify-content:center;
@@ -318,7 +339,6 @@
     color: #fff;
   }
 
-  /* الختم الشمعي الفاخر (3D Wax Seal) */
   .seal-wrap{
     display:flex;
     flex-direction:column;
@@ -362,7 +382,6 @@
     color:var(--text-muted);
   }
 
-  /* بطاقة الهدية الفاخرة المدمجة */
   .gift-card{
     background: rgba(255,255,255,0.4);
     border: 1px solid var(--card-border);
@@ -547,11 +566,6 @@
       </div>
 
       <p class="seq-item dynamic-text" data-type="text" data-key="step5_3"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step5_4"></p>
-
-      <div class="hadith-box seq-item" data-type="media" style="display:none; opacity:0;">
-        "ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
-      </div>
 
       <div class="buttons-container">
         <button class="btn btn-back" onclick="prevStep(5)">🔙 رجوع</button>
@@ -571,7 +585,7 @@
 
       <div class="finale-video-wrap" id="finale-video-wrap">
         <p class="finale-intro-text">🎬 ولأنك تستاهلي أكثر من كلمات...</p>
-        <div class="premium-frame" style="transform:rotate(0deg);">
+        <div class="premium-frame no-tape" style="transform:rotate(0deg);">
           <video id="finale-video-player" controls playsinline preload="metadata">
             <source src="video.mp4" type="video/mp4">
             متصفحك ما بيدعم تشغيل الفيديو.
@@ -590,6 +604,9 @@
 </div>
 
 <script>
+  /* ── ذاكرة الصفحات عشان ما يرجع يكتب الكلام اللي انقرأ ── */
+  let visitedSteps = new Set([1]); // الخطوة الأولى دايماً ظاهرة
+
   /* ── تعبئة النصوص تلقائياً من الصندوق فوق ── */
   window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.dynamic-text').forEach(el => {
@@ -600,12 +617,12 @@
     });
   });
 
-  /* ── إدارة الأجواء البصرية والمظهر الديناميكي (Ambient Themes) ── */
+  /* ── إدارة الأجواء البصرية والمظهر الديناميكي ── */
   const ambientThemes = {
     1: { dark: false, bg: 'linear-gradient(135deg, #FBF4EC 0%, #EADCC9 100%)' },
     2: { dark: false, bg: 'linear-gradient(135deg, #FFF0F2 0%, #EADCC9 100%)' }, 
     3: { dark: false, bg: 'linear-gradient(135deg, #F5EBEF 0%, #E3D3D8 100%)' }, 
-    4: { dark: true,  bg: 'linear-gradient(135deg, #23151A 0%, #0D0507 100%)' }, // الليل والعمق الفخم للرسالة الشخصية
+    4: { dark: true,  bg: 'linear-gradient(135deg, #23151A 0%, #0D0507 100%)' }, 
     5: { dark: true,  bg: 'linear-gradient(135deg, #1B1218 0%, #0A0306 100%)' }, 
     6: { dark: true,  bg: 'linear-gradient(135deg, #140D12 0%, #050103 100%)' }  
   };
@@ -683,19 +700,26 @@
   let step2Phase = 'initial'; 
 
   function initStep2(){
-    step2Phase = 'initial';
-    const btn = document.getElementById('btn-step2-go');
-    if(btn) btn.textContent = 'متابعة ✨';
-    const rev = document.getElementById('step2-reveal');
-    if(rev){ rev.classList.remove('shown'); rev.style.display='none'; }
-    const card = document.getElementById('step2-card');
-    if(card){
-      card.style.opacity='1';
-      card.style.transform='none';
-    }
     const nav = document.getElementById('step2-btns');
-    if(nav){
-      nav.style.display='flex'; nav.style.opacity='1';
+    
+    // إذا كان زار الخطوة من قبل، اعرض الصورة فوراً
+    if(visitedSteps.has(2)) {
+      step2Phase = 'revealed';
+      const rev = document.getElementById('step2-reveal');
+      if(rev) { 
+        rev.style.display = 'block'; 
+        rev.classList.add('shown'); 
+      }
+      const btn = document.getElementById('btn-step2-go');
+      if(btn) btn.textContent = 'كملي القراءة ❤️';
+      if(nav){ nav.style.display='flex'; nav.style.opacity='1'; }
+    } else {
+      step2Phase = 'initial';
+      const btn = document.getElementById('btn-step2-go');
+      if(btn) btn.textContent = 'متابعة ✨';
+      const rev = document.getElementById('step2-reveal');
+      if(rev){ rev.classList.remove('shown'); rev.style.display='none'; }
+      if(nav){ nav.style.display='flex'; nav.style.opacity='1'; }
     }
   }
 
@@ -706,6 +730,7 @@
       void rev.offsetWidth;
       rev.classList.add('shown');
       step2Phase = 'revealed';
+      visitedSteps.add(2); // أضفها للذاكرة
       playChimeSound();
       const btn = document.getElementById('btn-step2-go');
       setTimeout(()=>{ btn.textContent = 'كملي القراءة ❤️'; }, 600);
@@ -714,11 +739,38 @@
     }
   }
 
-  /* ── تأثير الكتابة التلقائية الاحترافي والسلس ── */
+  /* ── تأثير الكتابة التلقائية الاحترافي والسلس مع الذاكرة ── */
   function playSequence(stepId){
     const step = document.getElementById('step'+stepId);
     const items = step.querySelectorAll('.seq-item');
     const navBtns = step.querySelector('.buttons-container');
+
+    // إذا تمت زيارة الصفحة مسبقاً، اعرض كل شيء فوراً بدون كتابة
+    if(visitedSteps.has(stepId)) {
+      items.forEach(target => {
+        if(target.getAttribute('data-type') === 'text'){ 
+          target.textContent = target.getAttribute('data-text'); 
+          target.style.display = 'block'; 
+        } else {
+          target.style.display = 'block'; 
+        }
+        target.style.opacity = '1';
+        target.style.transition = 'none';
+      });
+      if(navBtns){ navBtns.style.display='flex'; navBtns.style.opacity='1'; }
+      if(stepId === 6){
+        const btnNo=document.getElementById('btn-no');
+        if(btnNo) { btnNo.style.display='inline-block'; btnNo.style.opacity='1'; btnNo.style.transform='translate(0,0) rotate(0deg)'; }
+        const btnYes=document.getElementById('btn-yes');
+        if(btnYes){ btnYes.style.display='inline-block'; btnYes.style.opacity='1'; }
+        const fv=document.getElementById('finale-video-wrap');
+        // لا تظهر الفيديو المخبأ إلا إذا احتفلنا
+      }
+      return;
+    }
+
+    // إذا كانت زيارة جديدة، احفظها بالذاكرة وابدأ الكتابة
+    visitedSteps.add(stepId);
 
     if(navBtns){ navBtns.style.display='none'; navBtns.style.opacity='0'; }
 
@@ -768,7 +820,7 @@
         const iv=setInterval(()=>{
           cs+=text.charAt(ci); target.textContent=cs; ci++;
           if(ci>=text.length){ clearInterval(iv); cur++; setTimeout(showNext,250); }
-        }, 35); // سرعة كتابة مريحة جداً وسينمائية للعين
+        }, 35);
       } else {
         target.style.display='block';
         void target.offsetWidth;
@@ -790,6 +842,9 @@
   }
 
   function nextStep(current){
+    // الصعود للأعلى بسلاسة
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     document.getElementById('step'+current).classList.remove('active');
     const next=current+1;
     applyAmbientTheme(next);
@@ -805,6 +860,9 @@
   }
 
   function prevStep(current){
+    // الصعود للأعلى بسلاسة
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     document.getElementById('step'+current).classList.remove('active');
     const prev=current-1;
     applyAmbientTheme(prev);
