@@ -244,7 +244,7 @@ body[data-step="7"]::before {
 .dot.active { background: var(--gold); box-shadow: 0 0 10px var(--gold-glow); transform: scale(1.45); }
 
 /* ════════════════════════════════════════
-   CARD
+   CARD (Glassmorphism Enhanced)
    ════════════════════════════════════════ */
 .card {
   background: var(--surface);
@@ -252,6 +252,7 @@ body[data-step="7"]::before {
   -webkit-backdrop-filter: blur(24px);
   border-radius: 28px;
   padding: clamp(32px, 7vw, 56px) clamp(24px, 6vw, 48px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
     0 32px 72px rgba(42, 26, 30, .09),
     0 0 0 1px var(--border) inset;
@@ -259,7 +260,12 @@ body[data-step="7"]::before {
   min-height: 420px;
   transition:
     background 1s var(--ease-out),
+    border 1s var(--ease-out),
     box-shadow 1s var(--ease-out);
+}
+
+body.dark .card {
+  border: 1px solid rgba(199, 166, 107, 0.12);
 }
 
 /* ════════════════════════════════════════
@@ -293,7 +299,8 @@ body[data-step="7"]::before {
 .body-line {
   font-family: 'Noto Naskh Arabic', serif;
   font-size: clamp(1.12em, 3vw, 1.28em);
-  line-height: 2.3;
+  line-height: 1.85; /* Improved readability */
+  letter-spacing: 0.3px; /* Added slight spacing */
   color: var(--ink-3);
   font-weight: 500;
   margin-bottom: 26px;
@@ -449,7 +456,10 @@ body[data-step="7"]::before {
   font-style: italic;
   font-size: 3em;
   color: rgba(255,255,255,.88);
-  text-shadow: -1px -1px 2px rgba(0,0,0,.4), 1px 1px 2px rgba(255,255,255,.15);
+  /* Enhanced text shadow for an engraved look */
+  text-shadow: 
+    -1px -1px 2px rgba(255,255,255,0.2), 
+     1px  1px 3px rgba(0,0,0,0.7);
   position: relative;
   z-index: 1;
 }
@@ -474,7 +484,7 @@ body[data-step="7"]::before {
   box-shadow:
     0 22px 44px rgba(42,26,30,.14),
     0 2px 6px rgba(0,0,0,.05);
-  transition: transform .45s var(--ease-out);
+  transition: transform .45s var(--ease-out), box-shadow .45s ease;
 }
 
 /* Tape strip */
@@ -493,7 +503,13 @@ body[data-step="7"]::before {
   z-index: 5;
 }
 
-.polaroid:hover { transform: scale(1.04) translateY(-7px) rotate(1.2deg); }
+/* Enhanced Hover for polaroid */
+.polaroid:hover { 
+  transform: scale(1.04) translateY(-8px) rotate(1.4deg); 
+  box-shadow:
+    0 32px 60px rgba(42,26,30,.22),
+    0 4px 10px rgba(0,0,0,.08);
+}
 
 body.dark .polaroid {
   background: rgba(38,24,30,.97);
@@ -503,6 +519,12 @@ body.dark .polaroid {
 body.dark .polaroid::before {
   background: rgba(255,255,255,.12);
   box-shadow: 0 2px 8px rgba(0,0,0,.1), inset 0 0 0 1px rgba(255,255,255,.25);
+}
+
+body.dark .polaroid:hover {
+  box-shadow:
+    0 32px 60px rgba(0,0,0,.55),
+    0 0 30px rgba(196,162,94,.1);
 }
 
 .polaroid img {
@@ -607,6 +629,19 @@ body.dark .polaroid::before {
   background: var(--ink);
   color: var(--surface);
   box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+  pointer-events: none;
 }
 
 .btn-primary:hover {
@@ -615,6 +650,8 @@ body.dark .polaroid::before {
   background: var(--gold);
   color: #fff;
 }
+
+.btn-primary:hover::after { transform: translateX(120%); }
 
 .btn-primary:active { transform: scale(.96); }
 
@@ -710,6 +747,35 @@ body.dark .polaroid::before {
 }
 
 .btn-no:hover { background: rgba(199,166,107,.12); color: var(--ink); }
+
+/* ════════════════════════════════════════
+   MUTE BUTTON
+   ════════════════════════════════════════ */
+.mute-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.mute-btn:hover {
+  transform: scale(1.1);
+  background: var(--gold-glow);
+  color: #fff;
+}
 
 /* ════════════════════════════════════════
    CELEBRATION
@@ -813,96 +879,18 @@ body.dark .polaroid::before {
 }
 
 /* ════════════════════════════════════════
-   AMBIENT BACKGROUNDS per step — deep & layered
-   ════════════════════════════════════════ */
-body[data-step="1"]::before {
-  background:
-    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255,220,200,.35) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 65% at 50% 0%, #FBF4EC 0%, #E8D6C0 100%);
-}
-body[data-step="2"]::before {
-  background:
-    radial-gradient(ellipse 55% 40% at 20% 30%, rgba(255,200,210,.3) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 65% at 50% 0%, #FFF0F3 0%, #EDD4D8 100%);
-}
-body[data-step="3"]::before {
-  background:
-    radial-gradient(ellipse 50% 35% at 75% 25%, rgba(220,180,190,.3) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 65% at 50% 0%, #F6EBF0 0%, #E2D0D5 100%);
-}
-body[data-step="4"]::before {
-  background:
-    radial-gradient(ellipse 45% 35% at 50% 0%, rgba(180,80,100,.18) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(100,20,40,.35) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, #1E1218, #080305);
-}
-body[data-step="5"]::before {
-  background:
-    radial-gradient(ellipse 40% 30% at 50% 0%, rgba(160,70,90,.16) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(80,10,30,.4) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, #181018, #060204);
-}
-body[data-step="6"]::before {
-  background:
-    radial-gradient(ellipse 40% 28% at 50% 0%, rgba(196,162,94,.12) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 55% at 50% 100%, rgba(60,10,25,.45) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, #150C12, #050103);
-}
-body[data-step="7"]::before {
-  background:
-    radial-gradient(ellipse 50% 35% at 50% 5%, rgba(196,162,94,.15) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 50% 95%, rgba(50,8,20,.5) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, #120A0F, #040102);
-}
-
-/* ════════════════════════════════════════
    REDUCED MOTION
    ════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 
-/* ════════════════════════════════════════
-   ENHANCED HOVER — shimmer on primary btn
-   ════════════════════════════════════════ */
-.btn-primary {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform .55s ease;
-  pointer-events: none;
-}
-
-.btn-primary:hover::after { transform: translateX(120%); }
-
-/* Polaroid: deeper shadow + warmth on hover */
-.polaroid {
-  transition: transform .45s var(--ease-out), box-shadow .45s ease;
-}
-
-.polaroid:hover {
-  transform: scale(1.04) translateY(-8px) rotate(1.4deg);
-  box-shadow:
-    0 32px 60px rgba(42,26,30,.22),
-    0 4px 10px rgba(0,0,0,.08);
-}
-
-body.dark .polaroid:hover {
-  box-shadow:
-    0 32px 60px rgba(0,0,0,.55),
-    0 0 30px rgba(196,162,94,.1);
-}
 </style>
 </head>
 <body data-step="1">
+
+<!-- Mute / Unmute Button -->
+<button id="muteBtn" class="mute-btn" onclick="toggleMute()" aria-label="تشغيل/إيقاف الموسيقى" style="display:none;">🔊</button>
 
 <!-- Particle layer -->
 <div class="float-layer" id="floatLayer" aria-hidden="true"></div>
@@ -951,7 +939,7 @@ body.dark .polaroid:hover {
       <div class="gift-card">
         <p class="gift-tag">🎀 هدية من القلب</p>
         <p class="gift-text">
-          هذا هدية ما كلفتني مال،<br>
+          هذي هدية ما كلفتني مال،<br>
           كلفتني شوية مهارات انا بعرفها<br>
           وشوية وقت ما بعني اشي<br>
           عشان يرسم بسمة على وجهك الحلو 🥰
@@ -1213,7 +1201,7 @@ function burstParticles(n = 5) {
 }
 
 /* ══════════════════════════════════════════
-   AUDIO
+   AUDIO & MUTE CONTROL
    ══════════════════════════════════════════ */
 function getCtx() {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1274,6 +1262,18 @@ async function startMusic() {
   } catch(e) { console.log('Audio blocked:', e); }
 }
 
+function toggleMute() {
+  const bgm = document.getElementById('bgm');
+  const btn = document.getElementById('muteBtn');
+  if (bgm.muted) {
+    bgm.muted = false;
+    btn.textContent = '🔊';
+  } else {
+    bgm.muted = true;
+    btn.textContent = '🔇';
+  }
+}
+
 /* ══════════════════════════════════════════
    STEP 2 LOGIC
    ══════════════════════════════════════════ */
@@ -1312,14 +1312,14 @@ function handleStep2() {
 }
 
 /* ══════════════════════════════════════════
-   TYPEWRITER SEQUENCE — slower, with cursor
+   TYPEWRITER SEQUENCE
    ══════════════════════════════════════════ */
 
 /* Speed tiers — chars/ms */
 const TW_SPEED = {
-  heading:  55,   /* section headings — measured, deliberate */
-  body:     42,   /* body paragraphs — comfortable reading pace */
-  quote:    70,   /* English quote — slower, more weight */
+  heading:  55,   
+  body:     42,   
+  quote:    70,   
 };
 
 function getTypingSpeed(el) {
@@ -1333,17 +1333,17 @@ function playSequence(stepId) {
   const items   = stepEl.querySelectorAll('.seq-item');
   const navBtns = stepEl.querySelector('.btn-row, .yn-row');
 
-  /* Already visited → instant display */
+  /* Already visited → Smooth fade-in display */
   if (visitedSteps.has(stepId)) {
     items.forEach(el => {
       if (el.dataset.type === 'text') {
         el.textContent = el.dataset.text || '';
-        el.style.display = 'block';
-      } else {
-        el.style.display = 'block';
       }
+      el.style.display = 'block';
+      el.style.opacity = '0'; 
+      void el.offsetWidth;
+      el.style.transition = 'opacity 0.4s ease';
       el.style.opacity = '1';
-      el.style.transition = 'none';
     });
     if (navBtns) { navBtns.style.display = 'flex'; navBtns.style.opacity = '1'; }
     if (stepId === 7) restoreStep7Buttons();
@@ -1414,12 +1414,10 @@ function playSequence(stepId) {
       const speed = getTypingSpeed(el);
       let ci = 0;
 
-      /* Blinking cursor while typing */
       el.dataset.typing = '1';
 
       const iv = setInterval(() => {
-        /* Type 1-2 chars per tick for smoother feel on fast text */
-        const chunk = el.classList.contains('final-q') ? 1 : 1;
+        const chunk = 1;
         for (let i = 0; i < chunk && ci < text.length; i++) {
           el.textContent += text.charAt(ci);
           ci++;
@@ -1428,7 +1426,6 @@ function playSequence(stepId) {
           clearInterval(iv);
           delete el.dataset.typing;
           cur++;
-          /* Pause between paragraphs feels more human */
           const pause = el.classList.contains('section-heading') ? 400 : 300;
           setTimeout(showNext, pause);
         }
@@ -1463,6 +1460,8 @@ function openLetter() {
   seal.classList.add('cracking');
   playFlip();
   startMusic();
+  // Show mute button when letter is opened
+  document.getElementById('muteBtn').style.display = 'flex';
   setTimeout(() => goToStep(1, 2), 480);
 }
 
@@ -1488,6 +1487,8 @@ function goToStep(from, to, isBack = false) {
     if (seal) seal.classList.remove('cracking');
     const bgm = document.getElementById('bgm');
     bgm.pause(); bgm.currentTime = 0;
+    // Hide mute button if back to start
+    document.getElementById('muteBtn').style.display = 'none';
   } else if (to === 2) {
     initStep2();
   } else {
@@ -1529,7 +1530,6 @@ function dodgeNo(e) {
   const vw      = window.innerWidth;
   const vh      = window.innerHeight;
 
-  // Safe margins: how much room is available in each direction
   const safeLeft  = Math.max(10, btnRect.left - 16);
   const safeRight = Math.max(10, vw - btnRect.right - 16);
   const safeUp    = Math.max(10, btnRect.top - 70);
@@ -1570,7 +1570,6 @@ function celebrate() {
       <h2 class="celeb-title">وأنا بوعدك أضل معك دايماً ❤️</h2>
       <p class="celeb-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>
     `;
-    /* Insert before the yn-row, not inside it */
     const ynRow = document.getElementById('finalBtns');
     ynRow.parentNode.insertBefore(msg, ynRow);
   }
@@ -1601,7 +1600,10 @@ function celebrate() {
 /* Pause BGM when finale video plays */
 document.getElementById('finaleVideo')?.addEventListener('play', () => {
   const bgm = document.getElementById('bgm');
-  if (bgm && !bgm.paused) bgm.pause();
+  if (bgm && !bgm.paused) {
+    bgm.pause();
+    document.getElementById('muteBtn').textContent = '🔇';
+  }
 });
 </script>
 </body>
