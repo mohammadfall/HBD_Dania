@@ -2,30 +2,29 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>HBD Dania </title>
 
 <!-- ========================================== -->
-<!-- 📝 صندوق النصوص: عدّل كلامك من هون براحتك 📝 -->
+<!-- 📝 صندوق النصوص — عدّل كلامك من هون 📝   -->
 <!-- ========================================== -->
 <script>
   const siteContent = {
     "step3_1": "قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي.",
     "step3_2": "ما لقيت الا هالطريقة البسيطة جداً.",
-    "step3_3": "اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع 😼",
-    
+    "step3_3": "اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع ",
+
     "step4_1": "دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج.",
     "step4_2": "احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها.",
-    "step4_3": "ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، ",
+    "step4_3": "ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك،",
     "step4_4": "كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)",
     "step4_h2": "حتسأليني ليش؟ ليش انا؟",
     "step4_5": "ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك.",
-    
-    "step5_1": "دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂.",
+
+    "step5_1": "دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق، بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂.",
     "step5_2": "صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور",
     "step5_3": "صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير.",
-    
-    /* ── الصفحة الجديدة: الشكر والاعتذار ── */
+
     "step6_1": "هذا شكرٌ لك.. شكراً على إنه دايماً بتسايريني وبتعطيني من وقتك.",
     "step6_2": "عارف إنه أنا شخص مش كويس، وأحياناً ما بستاهل كل هذا..",
     "step6_3": "You are truly the best gift I never expected.",
@@ -34,443 +33,923 @@
     "step6_5": "بعتذر عجهلي بكثير أشياء بالتعامل.. وكثير ممنونلك، وجد هاد من الأشياء اللي شو ما أعمل ما بردلك حقك فيها.",
     "step6_6": "جد أنا مش شخص مثالي وكلي أغلاط، بس شكراً لأنك بتكوني حدا متسامح دايماً 🤍",
 
-    "step7_q": "وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "
+    "step7_q": "وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟"
   };
 </script>
 <!-- ========================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Tajawal:wght@700;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
-  :root{
-    --bg-gradient: linear-gradient(135deg, #FBF4EC 0%, #EADCC9 100%);
-    --card-bg: rgba(255, 253, 248, 0.85);
-    --card-border: rgba(199, 166, 107, 0.25);
-    --text-main: #4A3138;
-    --text-muted: #8C5560;
-    --text-body: #5A4045;
-    --gold: #C7A66B;
-    --gold-glow: rgba(199, 166, 107, 0.3);
-    --shadow: cubic-bezier(0.16, 1, 0.3, 1);
-  }
+/* ════════════════════════════════════════
+   DESIGN TOKENS
+   ════════════════════════════════════════ */
+:root {
+  /* Light palette */
+  --bg:           #FBF4EC;
+  --bg-2:         #EADCC9;
+  --surface:      rgba(255, 253, 248, 0.88);
+  --surface-2:    rgba(255, 255, 255, 0.55);
+  --border:       rgba(199, 166, 107, 0.22);
+  --ink:          #3D2830;
+  --ink-2:        #7C4D56;
+  --ink-3:        #5A4045;
+  --gold:         #C4A25E;
+  --gold-hi:      #E2C98A;
+  --gold-glow:    rgba(196, 162, 94, 0.35);
+  --rose:         #B97D86;
+  --rose-deep:    #8C5560;
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-  body.ambient-dark {
-    --bg-gradient: linear-gradient(135deg, #1F1216 0%, #0D0507 100%);
-    --card-bg: rgba(30, 18, 22, 0.8);
-    --card-border: rgba(199, 166, 107, 0.15);
-    --text-main: #FCF5EB;
-    --text-muted: #D1A7B0;
-    --text-body: #E6D5D8;
-    --gold: #E2C593;
-    --gold-glow: rgba(226, 197, 147, 0.4);
-  }
+body.dark {
+  --bg:           #160D11;
+  --bg-2:         #0A0305;
+  --surface:      rgba(26, 15, 20, 0.82);
+  --surface-2:    rgba(255, 255, 255, 0.04);
+  --border:       rgba(199, 166, 107, 0.14);
+  --ink:          #F7EEE5;
+  --ink-2:        #CEA8B4;
+  --ink-3:        #E0D0D4;
+  --gold:         #DFC08A;
+  --gold-hi:      #F0D9A8;
+  --gold-glow:    rgba(223, 192, 138, 0.4);
+}
 
-  *{ box-sizing:border-box; }
+/* ════════════════════════════════════════
+   RESET & BASE
+   ════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body{
-    margin:0;
-    overflow-x:hidden;
-    font-family:'Tajawal', sans-serif;
-    color:var(--text-main);
-    min-height:100vh;
-    background: var(--bg-gradient);
-    position:relative;
-    transition: background 1.5s var(--shadow), color 1.2s var(--shadow);
-    display: flex;
-    align-items: flex-start; 
-    justify-content: center;
-    padding-top: 2vh;
-    padding-bottom: 5vh;
-  }
+html { scroll-behavior: smooth; }
 
-  body::before{
-    content:"";
-    position:fixed; inset:0;
-    background-image: 
-      linear-gradient(rgba(199, 166, 107, 0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(199, 166, 107, 0.015) 1px, transparent 1px);
-    background-size: 30px 30px;
-    pointer-events:none;
-    z-index:1;
-  }
+body {
+  font-family: 'Noto Naskh Arabic', serif;
+  color: var(--ink);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 32px) 16px clamp(40px, 8vw, 80px);
+  transition: color 1s var(--ease-out);
+}
 
-  .floating-element{
-    position:absolute;
-    animation:floatUp linear infinite;
-    opacity:.4;
-    z-index:2;
-    pointer-events:none;
-    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
-    transition: opacity 1s ease;
-  }
+/* Animated gradient background — separate element for performance */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg) 0%, var(--bg-2) 100%);
+  z-index: -2;
+  transition: background 1.4s var(--ease-out);
+}
 
-  @keyframes floatUp{
-    0%{ transform:translate(0,100vh) scale(.6) rotate(0deg); opacity:0; }
-    15%{ opacity:.7; }
-    85%{ opacity:.7; }
-    100%{ transform:translate(var(--drift,0), -20vh) scale(1.1) rotate(360deg); opacity:0; }
-  }
+/* ════════════════════════════════════════
+   AMBIENT BACKGROUNDS per step — deep & layered
+   ════════════════════════════════════════ */
 
-  .letter-wrap{
-    width: 100%;
-    max-width:640px;
-    padding:2vh 20px;
-    position:relative;
-    z-index:10;
-  }
+/* Vignette overlay on all steps */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(74,20,40,.07) 0%, transparent 70%),
+    linear-gradient(rgba(199,166,107,.010) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199,166,107,.010) 1px, transparent 1px);
+  background-size: auto, 28px 28px, 28px 28px;
+  z-index: -1;
+  pointer-events: none;
+  transition: background 1.4s var(--ease-out);
+}
 
-  .modern-progress {
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    padding: 0 10px;
-    animation: fadeIn 1s ease;
-  }
-  .progress-bar-container {
-    flex: 1;
-    height: 2px;
-    background: rgba(199, 166, 107, 0.15);
-    margin-left: 20px;
-    position: relative;
-    border-radius: 2px;
-  }
-  .progress-bar-fill {
-    position: absolute; top: 0; right: 0; height: 100%;
-    width: 0%;
-    background: var(--gold);
-    box-shadow: 0 0 8px var(--gold-glow);
-    transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  .progress-text {
-    font-size: 0.85em;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-  }
+body[data-step="1"]::before {
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255,220,200,.35) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 50% 0%, #FBF4EC 0%, #E8D6C0 100%);
+}
+body[data-step="2"]::before {
+  background:
+    radial-gradient(ellipse 55% 40% at 20% 30%, rgba(255,200,210,.3) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 50% 0%, #FFF0F3 0%, #EDD4D8 100%);
+}
+body[data-step="3"]::before {
+  background:
+    radial-gradient(ellipse 50% 35% at 75% 25%, rgba(220,180,190,.3) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 50% 0%, #F6EBF0 0%, #E2D0D5 100%);
+}
+body[data-step="4"]::before {
+  background:
+    radial-gradient(ellipse 45% 35% at 50% 0%, rgba(180,80,100,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(100,20,40,.35) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #1E1218, #080305);
+}
+body[data-step="5"]::before {
+  background:
+    radial-gradient(ellipse 40% 30% at 50% 0%, rgba(160,70,90,.16) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(80,10,30,.4) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #181018, #060204);
+}
+body[data-step="6"]::before {
+  background:
+    radial-gradient(ellipse 40% 28% at 50% 0%, rgba(196,162,94,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 50% 100%, rgba(60,10,25,.45) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #150C12, #050103);
+}
+body[data-step="7"]::before {
+  background:
+    radial-gradient(ellipse 50% 35% at 50% 5%, rgba(196,162,94,.15) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 50% 95%, rgba(50,8,20,.5) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #120A0F, #040102);
+}
 
-  .container{
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 50px 40px;
-    border-radius: 28px;
-    box-shadow: 
-      0 30px 70px rgba(42, 26, 30, 0.08),
-      0 0 0 1px var(--card-border) inset;
-    position:relative;
-    min-height:440px;
-    transition: background 1s var(--shadow), border 1s var(--shadow), box-shadow 1s var(--shadow);
-  }
+/* ════════════════════════════════════════
+   FLOATING PARTICLES
+   ════════════════════════════════════════ */
+.float-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
 
-  .step{ display:none; animation: cinematicFadeIn 0.8s var(--shadow) forwards; }
-  .step.active{ display:block; }
+.fp {
+  position: absolute;
+  bottom: -60px;
+  animation: fp-rise linear forwards;
+  will-change: transform, opacity;
+}
 
-  @keyframes cinematicFadeIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
-      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-  }
+@keyframes fp-rise {
+  0%   { transform: translate(0, 0) scale(.7) rotate(0deg); opacity: 0; }
+  12%  { opacity: .65; }
+  88%  { opacity: .65; }
+  100% { transform: translate(var(--dx, 0px), -110vh) scale(1.1) rotate(var(--rot, 360deg)); opacity: 0; }
+}
 
-  /* إطار الصور بتأثير الـ Polaroid مع اللزقة الشفافة */
-  .premium-frame{
-    position: relative;
-    width: fit-content;
-    margin: 25px auto 35px;
-    padding: 10px 10px 22px 10px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 4px;
-    box-shadow: 0 20px 40px rgba(42, 26, 30, 0.15), 0 2px 5px rgba(0,0,0,0.05);
-    transition: transform 0.5s var(--shadow);
-  }
+/* ════════════════════════════════════════
+   LAYOUT SHELL
+   ════════════════════════════════════════ */
+.shell {
+  width: 100%;
+  max-width: 620px;
+  position: relative;
+  z-index: 10;
+}
 
-  .premium-frame::before {
-    content: "";
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-3deg);
-    width: 110px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.7);
-    z-index: 10;
-  }
+/* ════════════════════════════════════════
+   PROGRESS DOTS
+   ════════════════════════════════════════ */
+.progress-bar {
+  display: none;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding: 0 4px;
+  animation: fade-up .6s var(--ease-out) both;
+}
 
-  .premium-frame:hover { transform: scale(1.03) translateY(-6px) rotate(1.5deg); }
+.progress-label {
+  font-size: .78em;
+  font-weight: 700;
+  color: var(--ink-2);
+  letter-spacing: .5px;
+  white-space: nowrap;
+  min-width: 36px;
+}
 
-  .premium-frame img, .premium-frame video {
-    max-width: 280px;
-    width: 100%;
-    display: block;
-    border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.03);
-  }
+.dots-row {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
 
-  /* كلاس الفيديو لإلغاء تأثير اللزقة */
-  .premium-frame.no-tape {
-    padding: 0; margin: 0 auto 30px; border-radius: 16px; background: transparent;
-  }
-  .premium-frame.no-tape::before { display: none; }
-  .premium-frame.no-tape video { border: none; border-radius: 16px; }
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 1px solid rgba(199,166,107,.25);
+  transition: all .45s var(--ease-spring);
+}
 
-  h1{
-    font-size:2.2em;
-    font-weight:900;
-    margin-bottom:20px;
-    color:var(--text-main);
-    line-height:1.4;
-    letter-spacing: -0.5px;
-  }
+.dot.done   { background: rgba(196,162,94,.4); transform: scale(1); }
+.dot.active { background: var(--gold); box-shadow: 0 0 10px var(--gold-glow); transform: scale(1.45); }
 
-  p.seq-item{
-    font-size:1.25em;
-    line-height:2;
-    color:var(--text-body);
-    margin-bottom:24px;
-    font-weight: 500;
-  }
+/* ════════════════════════════════════════
+   CARD
+   ════════════════════════════════════════ */
+.card {
+  background: var(--surface);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 28px;
+  padding: clamp(32px, 7vw, 56px) clamp(24px, 6vw, 48px);
+  box-shadow:
+    0 32px 72px rgba(42, 26, 30, .09),
+    0 0 0 1px var(--border) inset;
+  position: relative;
+  min-height: 420px;
+  transition:
+    background 1s var(--ease-out),
+    box-shadow 1s var(--ease-out);
+}
 
-  h2.seq-item{
-    font-size:1.6em;
-    font-weight: 800;
-    color:var(--text-muted);
-    margin:40px 0 20px;
-  }
+/* ════════════════════════════════════════
+   STEPS
+   ════════════════════════════════════════ */
+.step { display: none; }
 
-  /* تنسيق الجملة الإنجليزية */
-  .eng-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: var(--gold) !important;
-    text-align: center;
-    font-size: 1.45em !important;
-    margin: 35px 0 !important;
-    direction: ltr;
-  }
+.step.active {
+  display: block;
+  animation: step-in .75s var(--ease-out) both;
+}
 
-  #countdown-container{
-    background: rgba(255,255,255,0.2);
-    border-radius:20px;
-    padding:25px;
-    margin:35px 0;
-    border:1px solid var(--card-border);
-  }
-  #countdown-title{
-    font-weight:700;
-    color:var(--text-muted);
-    margin-bottom:20px;
-    font-size:1.1em;
-  }
-  #countdown{
-    display:flex;
-    justify-content:center;
-    gap:14px;
-  }
-  .c-chip{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    background: var(--card-bg);
-    border-radius:16px;
-    padding:14px;
-    min-width:75px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.02);
-  }
-  .c-num{ font-size:1.8em; font-weight: 900; color:var(--gold); }
-  .c-label{ font-size:.8em; color:var(--text-muted); margin-top:4px; font-weight: 700; }
-  .c-done{ font-weight:900; color:var(--gold); font-size:1.5em; }
+@keyframes step-in {
+  from { opacity: 0; transform: translateY(18px) scale(.985); filter: blur(3px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
 
-  .buttons-container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-    margin-top:45px;
-    flex-wrap:wrap;
-  }
+/* ════════════════════════════════════════
+   TYPOGRAPHY
+   ════════════════════════════════════════ */
+.page-title {
+  font-family: 'Tajawal', sans-serif;
+  font-size: clamp(1.75em, 5vw, 2.2em);
+  font-weight: 900;
+  line-height: 1.4;
+  letter-spacing: -.4px;
+  color: var(--ink);
+  margin-bottom: 22px;
+}
 
-  .btn{
-    background: var(--text-main);
-    color: var(--card-bg);
-    border:none;
-    padding:16px 42px;
-    font-size:1.1em;
-    font-weight:700;
-    border-radius:16px;
-    cursor:pointer;
-    transition:all .3s var(--shadow);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  }
-  .btn:hover{
-    transform:translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    background: var(--gold);
-    color: #fff;
-  }
+.body-line {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.12em, 3vw, 1.28em);
+  line-height: 2.3;
+  color: var(--ink-3);
+  font-weight: 500;
+  margin-bottom: 26px;
+}
 
-  .btn-back{
-    background: transparent;
-    color:var(--text-muted);
-    border: 1px solid var(--card-border);
-    box-shadow: none;
-  }
-  .btn-back:hover{
-    background: rgba(199, 166, 107, 0.1);
-    color: var(--text-main);
-    border-color: var(--gold);
-  }
+.section-heading {
+  font-family: 'Tajawal', sans-serif;
+  font-size: clamp(1.3em, 4vw, 1.6em);
+  font-weight: 800;
+  color: var(--ink-2);
+  margin: 38px 0 18px;
+}
 
-  /* تصميم أزرار النهاية الفخمة */
-  #btn-yes {
-    background: linear-gradient(135deg, #C7A66B 0%, #9F7E46 100%);
-    color: #fff;
-    padding: 16px 50px;
-    font-size: 1.3em;
-    font-weight: 900;
-    border-radius: 40px;
-    box-shadow: 0 10px 25px rgba(199, 166, 107, 0.4), inset 0 2px 5px rgba(255,255,255,0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  #btn-yes:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(199, 166, 107, 0.6), inset 0 2px 5px rgba(255,255,255,0.4);
-  }
-  #btn-no {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-muted);
-    border: 1px solid rgba(199, 166, 107, 0.3);
-    padding: 16px 40px;
-    font-size: 1.1em;
-    border-radius: 40px;
-    backdrop-filter: blur(5px);
-    position: relative; 
-    z-index: 100;
-    box-shadow: none;
-  }
-  #btn-no:hover {
-    background: rgba(199, 166, 107, 0.15);
-    color: var(--text-main);
-  }
+/* English italic quote */
+.eng-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--gold) !important;
+  text-align: center;
+  font-size: clamp(1.2em, 3.5vw, 1.45em) !important;
+  margin: 34px auto !important;
+  direction: ltr;
+  line-height: 1.7;
+  letter-spacing: .3px;
+}
 
-  .seal-wrap{
-    display:flex; flex-direction:column; align-items:center; gap:15px;
-  }
-  .wax-seal{
-    width:100px; height:100px; border:none; cursor:pointer; border-radius:50%;
-    background: radial-gradient(circle at 35% 35%, #C2547A, #8C5560 70%, #4A3138);
-    box-shadow: 0 15px 35px rgba(140, 85, 96, 0.3), inset 0 -8px 15px rgba(0,0,0,0.3), inset 0 4px 10px rgba(255,255,255,0.2);
-    display:flex; align-items:center; justify-content:center; position:relative;
-    transition: transform 0.4s var(--shadow);
-  }
-  .wax-seal:hover{ transform: scale(1.08); }
-  .wax-seal.crack{ animation: premiumCrack 0.6s var(--shadow) forwards; }
-  
-  .seal-mono{
-    font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.8em; color: rgba(255,255,255,0.85);
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.4), 1px 1px 1px rgba(255,255,255,0.2);
-  }
-  @keyframes premiumCrack {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.15) rotate(-5deg); filter: blur(0); }
-    100% { transform: scale(0) rotate(45deg); opacity:0; filter: blur(8px); }
-  }
+/* ════════════════════════════════════════
+   COUNTDOWN
+   ════════════════════════════════════════ */
+.countdown-wrap {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px 20px;
+  margin: 30px 0;
+}
 
-  .seal-label{ font-size:1em; font-weight: 700; color:var(--text-muted); }
+.countdown-title {
+  font-weight: 700;
+  color: var(--ink-2);
+  margin-bottom: 18px;
+  font-size: 1em;
+  text-align: center;
+}
 
-  .gift-card{
-    background: rgba(255,255,255,0.4); border: 1px solid var(--card-border);
-    border-radius:24px; padding:40px; margin:15px 0; text-align:center;
-  }
-  .gift-tag-label{
-    font-size:.9em; font-weight:900; color:var(--gold); text-transform:uppercase; margin-bottom:20px; letter-spacing: 2px;
-  }
-  .gift-text{ font-size:1.35em; line-height:2.2; color:var(--text-body); font-weight:700; margin:0; }
+.countdown-chips {
+  display: flex;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 14px);
+  flex-wrap: nowrap;
+}
 
-  .reveal-drop{
-    opacity:0; transform: translateY(30px) scale(0.95); transition: all 1s var(--shadow);
-    margin:25px auto 0; width:fit-content; display:none;
-  }
-  .reveal-drop.shown{ opacity:1; transform: translateY(0) scale(1); }
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: clamp(10px, 2vw, 14px) clamp(8px, 2vw, 14px);
+  flex: 1;
+  max-width: 82px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.03);
+}
 
-  .finale-video-wrap{
-    opacity:0; display:none; margin-top:40px; transition: opacity 1.5s ease;
-  }
-  .finale-video-wrap.visible{ opacity:1; }
-  .finale-intro-text{
-    font-size:1.1em; color:var(--text-muted); font-weight:700; margin-bottom:20px; text-align:center;
-  }
+.chip-num {
+  font-size: clamp(1.4em, 4vw, 1.8em);
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
 
-  .final-question{
-    font-size:2.4em; color:var(--text-main); margin-bottom:45px; font-weight: 900; text-align:center;
-  }
+.chip-lbl {
+  font-size: clamp(.68em, 2vw, .8em);
+  color: var(--ink-2);
+  margin-top: 5px;
+  font-weight: 700;
+}
 
-  #final-buttons { position: relative; min-height: 90px; }
-  .dodge-hint{
-    font-size:1em; color:var(--text-muted); opacity:0; transition: opacity .4s ease;
-    margin-bottom:15px; font-weight: 700; text-align:center;
-  }
+.chip-done {
+  font-weight: 900;
+  color: var(--gold);
+  font-size: 1.4em;
+  text-align: center;
+  padding: 8px;
+}
 
-  .date-stamp{
-    text-align:center; margin-top:35px; font-size:.85em; color:var(--text-muted);
-    opacity:.8; line-height:2; font-weight: 500;
-  }
-  .date-stamp .ds-date{ font-weight:900; color:var(--gold); }
+/* ════════════════════════════════════════
+   WAX SEAL
+   ════════════════════════════════════════ */
+.seal-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 36px;
+}
 
-  @media (max-width:480px){
-    .container{ padding:40px 24px; min-height: 460px; }
-    h1{ font-size:1.8em; }
-    .final-question{ font-size:1.6em; }
-    p.seq-item{ font-size:1.15em; }
-    .gift-text{ font-size:1.2em; }
-    .eng-quote { font-size: 1.25em !important; }
-  }
+.wax-seal {
+  width: 104px;
+  height: 104px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  background: radial-gradient(circle at 33% 33%, #C9587E 0%, #8C5560 65%, #4A3138 100%);
+  box-shadow:
+    0 18px 40px rgba(140, 85, 96, .32),
+    inset 0 -10px 18px rgba(0,0,0,.28),
+    inset 0 5px 12px rgba(255,255,255,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform .35s var(--ease-spring), box-shadow .35s ease;
+  animation: seal-pulse 2.8s ease-in-out infinite;
+  outline: none;
+}
+
+.wax-seal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,.22) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.wax-seal:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 22px 50px rgba(140, 85, 96, .45),
+    inset 0 -10px 18px rgba(0,0,0,.28),
+    inset 0 5px 12px rgba(255,255,255,.18);
+  animation-play-state: paused;
+}
+
+.wax-seal:active { transform: scale(.96); }
+
+@keyframes seal-pulse {
+  0%, 100% { box-shadow: 0 18px 40px rgba(140,85,96,.32), inset 0 -10px 18px rgba(0,0,0,.28), inset 0 5px 12px rgba(255,255,255,.18), 0 0 0 0 rgba(194,84,122,0); }
+  50%       { box-shadow: 0 18px 40px rgba(140,85,96,.45), inset 0 -10px 18px rgba(0,0,0,.28), inset 0 5px 12px rgba(255,255,255,.18), 0 0 0 14px rgba(194,84,122,0); }
+}
+
+.wax-seal.cracking { animation: seal-crack .55s var(--ease-out) forwards; }
+
+@keyframes seal-crack {
+  0%   { transform: scale(1) rotate(0deg); filter: none; }
+  35%  { transform: scale(1.18) rotate(-6deg); }
+  100% { transform: scale(0) rotate(50deg); opacity: 0; filter: blur(10px); }
+}
+
+.seal-mono {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 3em;
+  color: rgba(255,255,255,.88);
+  text-shadow: -1px -1px 2px rgba(0,0,0,.4), 1px 1px 2px rgba(255,255,255,.15);
+  position: relative;
+  z-index: 1;
+}
+
+.seal-hint {
+  font-size: .9em;
+  font-weight: 700;
+  color: var(--ink-2);
+  text-align: center;
+}
+
+/* ════════════════════════════════════════
+   POLAROID FRAME
+   ════════════════════════════════════════ */
+.polaroid {
+  position: relative;
+  width: fit-content;
+  margin: 24px auto 32px;
+  padding: 10px 10px 24px;
+  background: rgba(255,255,255,.97);
+  border-radius: 4px;
+  box-shadow:
+    0 22px 44px rgba(42,26,30,.14),
+    0 2px 6px rgba(0,0,0,.05);
+  transition: transform .45s var(--ease-out);
+}
+
+/* Tape strip */
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2.5deg);
+  width: 108px;
+  height: 30px;
+  background: rgba(255,255,255,.42);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), inset 0 0 0 1px rgba(255,255,255,.7);
+  z-index: 5;
+}
+
+.polaroid:hover { transform: scale(1.04) translateY(-7px) rotate(1.2deg); }
+
+body.dark .polaroid {
+  background: rgba(38,24,30,.97);
+  box-shadow: 0 22px 44px rgba(0,0,0,.42), 0 2px 6px rgba(0,0,0,.2);
+}
+
+body.dark .polaroid::before {
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,.1), inset 0 0 0 1px rgba(255,255,255,.25);
+}
+
+.polaroid img {
+  max-width: clamp(220px, 55vw, 280px);
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+
+/* No-tape variant for video */
+.polaroid-clean {
+  padding: 0;
+  margin: 0 auto 30px;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.polaroid-clean::before { display: none; }
+
+.polaroid-clean video {
+  border: none;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+/* ════════════════════════════════════════
+   GIFT CARD (step 2)
+   ════════════════════════════════════════ */
+.gift-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: clamp(28px, 6vw, 42px);
+  margin: 16px 0;
+  text-align: center;
+}
+
+.gift-tag {
+  font-size: .82em;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 18px;
+}
+
+.gift-text {
+  font-size: clamp(1.1em, 3vw, 1.35em);
+  line-height: 2.3;
+  color: var(--ink-3);
+  font-weight: 700;
+}
+
+/* ════════════════════════════════════════
+   REVEAL PHOTO (step 2)
+   ════════════════════════════════════════ */
+.reveal-wrap {
+  opacity: 0;
+  transform: translateY(28px) scale(.96);
+  transition: all .9s var(--ease-out);
+  margin: 24px auto 0;
+  width: fit-content;
+  display: none;
+}
+
+.reveal-wrap.shown {
+  opacity: 1;
+  transform: none;
+}
+
+/* ════════════════════════════════════════
+   BUTTONS
+   ════════════════════════════════════════ */
+.btn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 44px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: 'Tajawal', sans-serif;
+  font-size: clamp(.95em, 2.5vw, 1.1em);
+  font-weight: 700;
+  padding: 15px clamp(24px, 5vw, 40px);
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: transform .28s var(--ease-spring), box-shadow .28s ease, background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  outline: none;
+}
+
+/* Primary */
+.btn-primary {
+  background: var(--ink);
+  color: var(--surface);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0,0,0,.18);
+  background: var(--gold);
+  color: #fff;
+}
+
+.btn-primary:active { transform: scale(.96); }
+
+/* Back */
+.btn-back {
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.btn-back:hover {
+  background: rgba(199,166,107,.1);
+  border-color: var(--gold);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════
+   FINAL QUESTION BUTTONS
+   ════════════════════════════════════════ */
+.final-q {
+  font-size: clamp(1.5em, 5vw, 2.3em);
+  font-weight: 900;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 44px;
+  line-height: 1.55;
+}
+
+.dodge-hint {
+  font-size: .95em;
+  font-weight: 700;
+  color: var(--ink-2);
+  text-align: center;
+  margin-bottom: 16px;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--gold-hi) 0%, var(--gold) 50%, #9F7E46 100%);
+  color: #fff;
+  padding: 17px clamp(32px, 8vw, 54px);
+  font-size: clamp(1.1em, 3vw, 1.3em);
+  font-weight: 900;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 12px 30px rgba(196,162,94,.4), inset 0 2px 6px rgba(255,255,255,.25);
+  animation: heartbeat 2s ease-in-out infinite;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  transition: transform .28s var(--ease-spring), box-shadow .28s ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.btn-yes:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(196,162,94,.58), inset 0 2px 6px rgba(255,255,255,.3);
+  animation-play-state: paused;
+}
+
+.btn-yes:active { transform: scale(.96); }
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.06); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.03); }
+  56%       { transform: scale(1); }
+}
+
+.btn-no {
+  background: var(--surface-2);
+  color: var(--ink-2);
+  border: 1px solid rgba(199,166,107,.3);
+  padding: 15px clamp(24px, 5vw, 38px);
+  font-size: clamp(.95em, 2.5vw, 1.1em);
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform .22s var(--ease-spring), background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  touch-action: none;
+  will-change: transform;
+  z-index: 50;
+}
+
+.btn-no:hover { background: rgba(199,166,107,.12); color: var(--ink); }
+
+/* ════════════════════════════════════════
+   CELEBRATION
+   ════════════════════════════════════════ */
+.celeb-msg {
+  text-align: center;
+  margin-bottom: 28px;
+  animation: fade-up .7s var(--ease-out) both;
+}
+
+.celeb-title {
+  color: var(--gold);
+  font-size: clamp(1.5em, 4vw, 2em);
+  margin-bottom: 12px;
+}
+
+.celeb-sub {
+  color: var(--ink-3);
+  font-size: clamp(1em, 2.5vw, 1.2em);
+}
+
+/* ════════════════════════════════════════
+   STEP 7 — YES/NO layout + isolated back btn
+   ════════════════════════════════════════ */
+
+/* Yes/No: centered row, no clutter */
+.yn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  position: relative;
+  min-height: 72px;
+  flex-wrap: wrap;
+}
+
+/* Back button on step7: quiet, separate, centered below */
+.step7-back-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.btn-back-step7 {
+  font-size: .88em !important;
+  padding: 10px 26px !important;
+  opacity: .7;
+  transition: opacity .3s ease, transform .25s var(--ease-spring) !important;
+}
+
+.btn-back-step7:hover {
+  opacity: 1;
+  transform: translateY(-2px) !important;
+}
+
+/* ════════════════════════════════════════
+   FINALE VIDEO
+   ════════════════════════════════════════ */
+.finale-wrap {
+  opacity: 0;
+  display: none;
+  margin-top: 40px;
+  transition: opacity 1.4s ease;
+}
+
+.finale-wrap.visible { opacity: 1; }
+
+.finale-intro {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--ink-2);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ════════════════════════════════════════
+   DATE STAMP
+   ════════════════════════════════════════ */
+.date-stamp {
+  text-align: center;
+  margin-top: 32px;
+  font-size: .82em;
+  color: var(--ink-2);
+  line-height: 2;
+  font-weight: 500;
+  opacity: .85;
+}
+
+.date-stamp strong {
+  font-weight: 900;
+  color: var(--gold);
+}
+
+/* ════════════════════════════════════════
+   UTILITY ANIMATIONS
+   ════════════════════════════════════════ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ════════════════════════════════════════
+   AMBIENT BACKGROUNDS per step — deep & layered
+   ════════════════════════════════════════ */
+body[data-step="1"]::before {
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255,220,200,.35) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 50% 0%, #FBF4EC 0%, #E8D6C0 100%);
+}
+body[data-step="2"]::before {
+  background:
+    radial-gradient(ellipse 55% 40% at 20% 30%, rgba(255,200,210,.3) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 50% 0%, #FFF0F3 0%, #EDD4D8 100%);
+}
+body[data-step="3"]::before {
+  background:
+    radial-gradient(ellipse 50% 35% at 75% 25%, rgba(220,180,190,.3) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 50% 0%, #F6EBF0 0%, #E2D0D5 100%);
+}
+body[data-step="4"]::before {
+  background:
+    radial-gradient(ellipse 45% 35% at 50% 0%, rgba(180,80,100,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(100,20,40,.35) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #1E1218, #080305);
+}
+body[data-step="5"]::before {
+  background:
+    radial-gradient(ellipse 40% 30% at 50% 0%, rgba(160,70,90,.16) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(80,10,30,.4) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #181018, #060204);
+}
+body[data-step="6"]::before {
+  background:
+    radial-gradient(ellipse 40% 28% at 50% 0%, rgba(196,162,94,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 50% 100%, rgba(60,10,25,.45) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #150C12, #050103);
+}
+body[data-step="7"]::before {
+  background:
+    radial-gradient(ellipse 50% 35% at 50% 5%, rgba(196,162,94,.15) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 50% 95%, rgba(50,8,20,.5) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #120A0F, #040102);
+}
+
+/* ════════════════════════════════════════
+   REDUCED MOTION
+   ════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* ════════════════════════════════════════
+   ENHANCED HOVER — shimmer on primary btn
+   ════════════════════════════════════════ */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after { transform: translateX(120%); }
+
+/* Polaroid: deeper shadow + warmth on hover */
+.polaroid {
+  transition: transform .45s var(--ease-out), box-shadow .45s ease;
+}
+
+.polaroid:hover {
+  transform: scale(1.04) translateY(-8px) rotate(1.4deg);
+  box-shadow:
+    0 32px 60px rgba(42,26,30,.22),
+    0 4px 10px rgba(0,0,0,.08);
+}
+
+body.dark .polaroid:hover {
+  box-shadow:
+    0 32px 60px rgba(0,0,0,.55),
+    0 0 30px rgba(196,162,94,.1);
+}
 </style>
 </head>
-<body>
+<body data-step="1">
 
-<div id="floating-container"></div>
+<!-- Particle layer -->
+<div class="float-layer" id="floatLayer" aria-hidden="true"></div>
 
-<audio id="bg-music" loop>
+<!-- Background music -->
+<audio id="bgm" loop preload="none">
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<div class="letter-wrap">
+<div class="shell">
 
-  <div class="modern-progress" id="progressVine">
-    <div class="progress-text" id="pageLabel"></div>
-    <div class="progress-bar-container">
-      <div class="progress-bar-fill" id="vineFill"></div>
+  <!-- ── Progress dots ── -->
+  <nav class="progress-bar" id="progressBar" aria-label="التقدم في الرسالة">
+    <span class="progress-label" id="progressLabel"></span>
+    <div class="dots-row" id="dotsRow"></div>
+  </nav>
+
+  <!-- ════════════════════════════════════════
+       CARD
+       ════════════════════════════════════════ -->
+  <div class="card">
+
+    <!-- ── Step 1: Cover ── -->
+    <div id="step1" class="step active" role="main">
+      <div class="polaroid" style="margin-top:4px;">
+        <img src="HBD.png" alt="Happy Birthday Dania" loading="eager">
+      </div>
+
+      <h1 class="page-title">كل عام وأنتِ بألف خير دندن 💖</h1>
+
+      <div class="countdown-wrap" aria-live="polite" aria-atomic="true">
+        <p class="countdown-title">باقي لتصيري ٢٠ سنة:</p>
+        <div class="countdown-chips" id="countdown">جاري الحساب...</div>
+      </div>
+
+      <div class="seal-area">
+        <button class="wax-seal" id="waxSeal" onclick="openLetter()" aria-label="افتحي الرسالة بكسر الختم الشمعي">
+          <span class="seal-mono" aria-hidden="true">D</span>
+        </button>
+        <p class="seal-hint">اضغطي على الختم الشمعي لفتح الرسالة ✨</p>
+      </div>
     </div>
-  </div>
 
-  <div class="container">
-
-    <div id="step1" class="step active">
-      <div class="premium-frame">
-        <img src="HBD.png" alt="HBD Dania">
-      </div>
-      <h1>كل عام وأنتِ بألف خير دندن 💖</h1>
-
-      <div id="countdown-container">
-        <div id="countdown-title">باقي لتصيري ٢٠ سنة:</div>
-        <div id="countdown">جاري الحساب...</div>
-      </div>
-
-      <div class="buttons-container">
-        <div class="seal-wrap">
-          <button class="wax-seal" id="waxSeal" onclick="openLetter()" aria-label="افتحي الرسالة"><span class="seal-mono">D</span></button>
-          <p class="seal-label">اضغطي على الختم الشمعي لفتح الرسالة ✨</p>
-        </div>
-      </div>
-    </div>
-
+    <!-- ── Step 2: Gift intro ── -->
     <div id="step2" class="step">
-      <div id="step2-card" class="gift-card">
-        <div class="gift-tag-label">🎀 هدية من القلب</div>
+      <div class="gift-card">
+        <p class="gift-tag">🎀 هدية من القلب</p>
         <p class="gift-text">
           هذا هدية ما كلفتني مال،<br>
           كلفتني شوية مهارات انا بعرفها<br>
@@ -479,95 +958,103 @@
         </p>
       </div>
 
-      <div id="step2-reveal" class="reveal-drop">
-        <div class="premium-frame">
-          <img src="IMG_7660.jpeg.JPG" alt="Dania">
+      <div class="reveal-wrap" id="step2Reveal">
+        <div class="polaroid">
+          <img src="IMG_7660.jpeg.JPG" alt="Dania" loading="lazy">
         </div>
       </div>
 
-      <div class="buttons-container" id="step2-btns" style="display:none; opacity:0;">
+      <div class="btn-row" id="step2Btns" style="display:none; opacity:0;">
         <button class="btn btn-back" onclick="prevStep(2)">🔙 رجوع</button>
-        <button class="btn" id="btn-step2-go" onclick="handleStep2()">متابعة ✨</button>
+        <button class="btn btn-primary" id="btnStep2Go" onclick="handleStep2()">متابعة ✨</button>
       </div>
     </div>
 
+    <!-- ── Step 3: Opening ── -->
     <div id="step3" class="step">
-      <h1>دانية العزيزة 🌸</h1>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step3_1"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step3_2"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step3_3"></p>
+      <h1 class="page-title">دانية العزيزة 🌸</h1>
+      <p class="body-line seq-item" data-type="text" data-key="step3_1"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step3_2"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step3_3"></p>
 
-      <div class="buttons-container">
+      <div class="btn-row">
         <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(3)">التالي ✨</button>
+        <button class="btn btn-primary" onclick="nextStep(3)">التالي ✨</button>
       </div>
     </div>
 
+    <!-- ── Step 4: Why her ── -->
     <div id="step4" class="step">
-      <p class="seq-item dynamic-text" data-type="text" data-key="step4_1"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step4_2"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step4_3"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step4_4"></p>
-      <h2 class="seq-item dynamic-text" data-type="text" data-key="step4_h2"></h2>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step4_5"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step4_1"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step4_2"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step4_3"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step4_4"></p>
+      <h2 class="section-heading seq-item" data-type="text" data-key="step4_h2"></h2>
+      <p class="body-line seq-item" data-type="text" data-key="step4_5"></p>
 
-      <div class="buttons-container">
+      <div class="btn-row">
         <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(4)">كملي قراءة ❤️</button>
+        <button class="btn btn-primary" onclick="nextStep(4)">كملي قراءة ❤️</button>
       </div>
     </div>
 
+    <!-- ── Step 5: Always there ── -->
     <div id="step5" class="step">
-      <p class="seq-item dynamic-text" data-type="text" data-key="step5_1"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step5_2"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step5_1"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step5_2"></p>
 
-      <div class="premium-frame seq-item" data-type="media" style="display:none; opacity:0;">
-        <img src="dumb-smart.png" alt="dumb-smart">
+      <div class="polaroid seq-item" data-type="media" style="display:none; opacity:0;">
+        <img src="dumb-smart.png" alt="" loading="lazy">
       </div>
 
-      <p class="seq-item dynamic-text" data-type="text" data-key="step5_3"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step5_3"></p>
 
-      <div class="buttons-container">
+      <div class="btn-row">
         <button class="btn btn-back" onclick="prevStep(5)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(5)">التالي 💌</button>
+        <button class="btn btn-primary" onclick="nextStep(5)">التالي 💌</button>
       </div>
     </div>
 
-    <!-- الصفحة الجديدة: الاعتذار والامتنان -->
+    <!-- ── Step 6: Thanks & apology ── -->
     <div id="step6" class="step">
-      <p class="seq-item dynamic-text" data-type="text" data-key="step6_1"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step6_2"></p>
-      
-      <!-- النص الإنجليزي بتنسيق فخم -->
-      <p class="seq-item dynamic-text eng-quote" data-type="text" data-key="step6_3"></p>
-      
-      <h2 class="seq-item dynamic-text" data-type="text" data-key="step6_h2"></h2>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step6_4"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step6_5"></p>
-      <p class="seq-item dynamic-text" data-type="text" data-key="step6_6"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step6_1"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step6_2"></p>
+      <p class="body-line eng-quote seq-item" data-type="text" data-key="step6_3"></p>
+      <h2 class="section-heading seq-item" data-type="text" data-key="step6_h2"></h2>
+      <p class="body-line seq-item" data-type="text" data-key="step6_4"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step6_5"></p>
+      <p class="body-line seq-item" data-type="text" data-key="step6_6"></p>
 
-      <div class="buttons-container">
+      <div class="btn-row">
         <button class="btn btn-back" onclick="prevStep(6)">🔙 رجوع</button>
-        <button class="btn" onclick="nextStep(6)">الصفحة الأخيرة ✨</button>
+        <button class="btn btn-primary" onclick="nextStep(6)">الصفحة الأخيرة ✨</button>
       </div>
     </div>
 
-    <!-- الصفحة الأخيرة صارت رقم 7 -->
+    <!-- ── Step 7: Final question ── -->
     <div id="step7" class="step">
-      <h1 class="final-question seq-item dynamic-text" data-type="text" data-key="step7_q"></h1>
+      <p class="final-q seq-item" data-type="text" data-key="step7_q"></p>
 
-      <p class="dodge-hint" id="dodge-hint">ولا حتى رح تقدري تمسكيني 😏</p>
+      <p class="dodge-hint" id="dodgeHint">ولا حتى رح تقدري تمسكيني 😏</p>
 
-      <div class="buttons-container" id="final-buttons" style="display:none; opacity:0;">
-        <button class="btn btn-back" onclick="prevStep(7)">🔙 رجوع</button>
-        <button class="btn" id="btn-yes" onclick="celebrate()">أكيد 💍</button>
-        <button class="btn" id="btn-no" onmouseenter="dodgeNo(event)" ontouchstart="dodgeNo(event)">لا 🏃🏻‍♀️</button>
+      <!-- Yes / No row — centered, no back button here -->
+      <div class="yn-row" id="finalBtns" style="display:none; opacity:0;">
+        <button class="btn-yes" id="btnYes" onclick="celebrate()" style="display:none; opacity:0;">ان شاء الله</button>
+        <button class="btn-no" id="btnNo"
+                onmouseenter="dodgeNo(event)"
+                ontouchstart="dodgeNo(event)"
+                ontouchmove="dodgeNo(event)">لا 🏃🏻‍♀️</button>
       </div>
 
-      <div class="finale-video-wrap" id="finale-video-wrap">
-        <p class="finale-intro-text">🎬 ولأنك بتستاهلي أكثر من كلمات...</p>
-        <div class="premium-frame no-tape" style="transform:rotate(0deg);">
-          <video id="finale-video-player" controls playsinline preload="metadata">
+      <!-- Back button — quiet, separate, below -->
+      <div class="step7-back-row" id="step7BackRow" style="display:none; opacity:0;">
+        <button class="btn btn-back btn-back-step7" onclick="prevStep(7)">🔙 رجوع</button>
+      </div>
+
+      <div class="finale-wrap" id="finaleWrap">
+        <p class="finale-intro">🎬 ولأنك بتستاهلي أكثر من كلمات...</p>
+        <div class="polaroid polaroid-clean">
+          <video id="finaleVideo" controls playsinline preload="metadata">
             <source src="video.mp4" type="video/mp4">
             متصفحك ما بيدعم تشغيل الفيديو.
           </video>
@@ -575,381 +1062,547 @@
       </div>
     </div>
 
-  </div>
+  </div><!-- /card -->
 
-  <div class="date-stamp">
-    <span class="ds-date">صُمم بتاريخ ٢٠ / ٦ / ٢٠٢٦</span><br>
-    بس عشان تعرفي إني مفكر بهالاشي من زمان ومجهز هالشي من قبل، وقت كنت اجهز فيه كنا نحكي كول واحكيلك بكبس عالكمبيوتر 💌
-  </div>
+  <p class="date-stamp">
+    <strong>صُمم بتاريخ ٢٠ / ٦ / ٢٠٢٦</strong><br>
+    بس عشان تعرفي إني مفكر بهالاشي من زمان ومجهز هالشي من قبل،
+    وقت كنت اجهز فيه كنا نحكي كول واحكيلك بكبس عالكمبيوتر 💌
+  </p>
 
-</div>
+</div><!-- /shell -->
 
 <script>
-  /* ── ذاكرة الصفحات ── */
-  let visitedSteps = new Set([1]); 
+/* ══════════════════════════════════════════
+   GLOBALS
+   ══════════════════════════════════════════ */
+const TOTAL_STEPS  = 7;
+const CONTENT_STEPS = 6; // steps 2–7 shown in progress
+let visitedSteps   = new Set([1]);
+let step2Phase     = 'initial';
+let audioCtx       = null;
+let particleTimer  = null;
 
-  /* ── تعبئة النصوص ── */
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.dynamic-text').forEach(el => {
-      const key = el.getAttribute('data-key');
-      if (siteContent[key]) {
-        el.setAttribute('data-text', siteContent[key]);
-      }
+/* ══════════════════════════════════════════
+   BOOT: inject data-text attributes
+   ══════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const val = siteContent[el.dataset.key];
+    if (val) el.dataset.text = val;
+  });
+  startCountdown();
+  startParticles();
+  buildDots();
+});
+
+/* ══════════════════════════════════════════
+   ARABIC NUMERAL CONVERTER
+   ══════════════════════════════════════════ */
+function toAr(n) {
+  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
+
+/* ══════════════════════════════════════════
+   PROGRESS DOTS
+   ══════════════════════════════════════════ */
+function buildDots() {
+  const row = document.getElementById('dotsRow');
+  row.innerHTML = '';
+  for (let i = 1; i <= CONTENT_STEPS; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.id = 'dot-' + i;
+    row.appendChild(d);
+  }
+}
+
+function updateProgress(stepId) {
+  const bar = document.getElementById('progressBar');
+  if (stepId === 1) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+
+  const page = stepId - 1;
+  document.getElementById('progressLabel').textContent = toAr(page) + ' / ' + toAr(CONTENT_STEPS);
+
+  for (let i = 1; i <= CONTENT_STEPS; i++) {
+    const d = document.getElementById('dot-' + i);
+    if (!d) continue;
+    d.className = 'dot' + (i < page ? ' done' : i === page ? ' active' : '');
+  }
+}
+
+/* ══════════════════════════════════════════
+   AMBIENT THEME
+   ══════════════════════════════════════════ */
+const darkSteps = new Set([4, 5, 6, 7]);
+
+function applyTheme(stepId) {
+  document.body.dataset.step = stepId;
+  document.body.classList.toggle('dark', darkSteps.has(stepId));
+}
+
+/* ══════════════════════════════════════════
+   COUNTDOWN
+   ══════════════════════════════════════════ */
+function startCountdown() {
+  const target = new Date('July 17, 2026 00:00:00').getTime();
+  const el     = document.getElementById('countdown');
+
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      el.innerHTML = '<div class="chip-done">صار عمرك ٢٠ سنة! 🎉</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    const s = Math.floor((diff % 60000)    / 1000);
+
+    el.innerHTML =
+      chip(d, 'يوم')   +
+      chip(h, 'ساعة')  +
+      chip(m, 'دقيقة') +
+      chip(s, 'ثانية');
+  }
+
+  function chip(n, lbl) {
+    return `<div class="chip"><span class="chip-num">${toAr(n)}</span><span class="chip-lbl">${lbl}</span></div>`;
+  }
+
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* ══════════════════════════════════════════
+   FLOATING PARTICLES
+   ══════════════════════════════════════════ */
+const EMOJIS = ['🌹','✨','🤍','🌸','💌'];
+
+function spawnParticle() {
+  if (document.hidden) return;
+  const layer = document.getElementById('floatLayer');
+  const el    = document.createElement('div');
+  el.className = 'fp';
+  el.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+  el.style.cssText = `
+    left: ${Math.random() * 100}vw;
+    --dx: ${(Math.random() * 70 - 35)}px;
+    --rot: ${Math.random() > 0.5 ? 360 : -360}deg;
+    font-size: ${Math.random() * 10 + 15}px;
+    animation-duration: ${Math.random() * 5 + 7}s;
+  `;
+  layer.appendChild(el);
+  setTimeout(() => el.remove(), 13000);
+}
+
+function startParticles() {
+  particleTimer = setInterval(spawnParticle, 1300);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { clearInterval(particleTimer); }
+    else { particleTimer = setInterval(spawnParticle, 1300); }
+  });
+}
+
+/* Burst on transition */
+function burstParticles(n = 5) {
+  for (let i = 0; i < n; i++) {
+    setTimeout(() => spawnParticle(), i * 100);
+  }
+}
+
+/* ══════════════════════════════════════════
+   AUDIO
+   ══════════════════════════════════════════ */
+function getCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playFlip() {
+  try {
+    const ctx = getCtx();
+    if (ctx.state === 'suspended') ctx.resume();
+    const dur = 0.14;
+    const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
+    const d   = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 2.6);
+    const src = ctx.createBufferSource(); src.buffer = buf;
+    const bp  = ctx.createBiquadFilter(); bp.type = 'bandpass';
+    bp.frequency.setValueAtTime(3200, ctx.currentTime);
+    bp.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + dur);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.13, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+    src.connect(bp).connect(g).connect(ctx.destination);
+    src.start(); src.stop(ctx.currentTime + dur);
+  } catch(e) {}
+}
+
+function playChime() {
+  try {
+    const ctx = getCtx();
+    if (ctx.state === 'suspended') ctx.resume();
+    [950, 1250, 1500].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const g   = ctx.createGain();
+      osc.type = 'sine'; osc.frequency.value = freq;
+      const t = ctx.currentTime + i * 0.09;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.09, t + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
+      osc.connect(g).connect(ctx.destination);
+      osc.start(t); osc.stop(t + 0.65);
     });
+  } catch(e) {}
+}
+
+async function startMusic() {
+  const bgm = document.getElementById('bgm');
+  try {
+    const ctx = getCtx();
+    if (ctx.state === 'suspended') await ctx.resume();
+    bgm.volume = 0;
+    await bgm.play();
+    let v = 0;
+    const fade = setInterval(() => {
+      v = Math.min(v + 0.04, 0.65);
+      bgm.volume = v;
+      if (v >= 0.65) clearInterval(fade);
+    }, 120);
+  } catch(e) { console.log('Audio blocked:', e); }
+}
+
+/* ══════════════════════════════════════════
+   STEP 2 LOGIC
+   ══════════════════════════════════════════ */
+function initStep2() {
+  const nav = document.getElementById('step2Btns');
+  const rev = document.getElementById('step2Reveal');
+  const btn = document.getElementById('btnStep2Go');
+
+  if (visitedSteps.has(2)) {
+    step2Phase = 'revealed';
+    rev.style.display = 'block'; rev.classList.add('shown');
+    btn.textContent = 'كملي القراءة ❤️';
+    nav.style.display = 'flex'; nav.style.opacity = '1';
+  } else {
+    step2Phase = 'initial';
+    btn.textContent = 'متابعة ✨';
+    rev.classList.remove('shown'); rev.style.display = 'none';
+    nav.style.display = 'flex'; nav.style.opacity = '1';
+  }
+}
+
+function handleStep2() {
+  if (step2Phase === 'initial') {
+    const rev = document.getElementById('step2Reveal');
+    rev.style.display = 'block';
+    void rev.offsetWidth;
+    rev.classList.add('shown');
+    step2Phase = 'revealed';
+    visitedSteps.add(2);
+    playChime();
+    const btn = document.getElementById('btnStep2Go');
+    setTimeout(() => { btn.textContent = 'كملي القراءة ❤️'; }, 650);
+  } else {
+    nextStep(2);
+  }
+}
+
+/* ══════════════════════════════════════════
+   TYPEWRITER SEQUENCE — slower, with cursor
+   ══════════════════════════════════════════ */
+
+/* Speed tiers — chars/ms */
+const TW_SPEED = {
+  heading:  55,   /* section headings — measured, deliberate */
+  body:     42,   /* body paragraphs — comfortable reading pace */
+  quote:    70,   /* English quote — slower, more weight */
+};
+
+function getTypingSpeed(el) {
+  if (el.classList.contains('section-heading')) return TW_SPEED.heading;
+  if (el.classList.contains('eng-quote'))       return TW_SPEED.quote;
+  return TW_SPEED.body;
+}
+
+function playSequence(stepId) {
+  const stepEl  = document.getElementById('step' + stepId);
+  const items   = stepEl.querySelectorAll('.seq-item');
+  const navBtns = stepEl.querySelector('.btn-row, .yn-row');
+
+  /* Already visited → instant display */
+  if (visitedSteps.has(stepId)) {
+    items.forEach(el => {
+      if (el.dataset.type === 'text') {
+        el.textContent = el.dataset.text || '';
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'block';
+      }
+      el.style.opacity = '1';
+      el.style.transition = 'none';
+    });
+    if (navBtns) { navBtns.style.display = 'flex'; navBtns.style.opacity = '1'; }
+    if (stepId === 7) restoreStep7Buttons();
+    return;
+  }
+
+  visitedSteps.add(stepId);
+
+  /* Hide nav initially */
+  const ynRow   = stepEl.querySelector('.yn-row');
+  const backRow = document.getElementById('step7BackRow');
+  if (navBtns)  { navBtns.style.display = 'none'; navBtns.style.opacity = '0'; }
+  if (backRow)  { backRow.style.display = 'none'; backRow.style.opacity = '0'; }
+
+  /* Step 7 initial state */
+  if (stepId === 7) {
+    const btnNo = document.getElementById('btnNo');
+    btnNo.style.display = 'inline-block'; btnNo.style.opacity = '1';
+    btnNo.style.transform = 'translate(0,0) rotate(0deg)';
+    document.getElementById('dodgeHint').style.opacity = '0';
+    const btnYes = document.getElementById('btnYes');
+    btnYes.style.display = 'none'; btnYes.style.opacity = '0';
+    const fw = document.getElementById('finaleWrap');
+    fw.classList.remove('visible'); fw.style.display = 'none';
+  }
+
+  items.forEach(el => {
+    if (el.dataset.type === 'text') { el.textContent = ''; el.style.display = 'block'; }
+    else { el.style.opacity = '0'; el.style.display = 'none'; }
   });
 
-  /* ── الأجواء البصرية ── */
-  const ambientThemes = {
-    1: { dark: false, bg: 'linear-gradient(135deg, #FBF4EC 0%, #EADCC9 100%)' },
-    2: { dark: false, bg: 'linear-gradient(135deg, #FFF0F2 0%, #EADCC9 100%)' }, 
-    3: { dark: false, bg: 'linear-gradient(135deg, #F5EBEF 0%, #E3D3D8 100%)' }, 
-    4: { dark: true,  bg: 'linear-gradient(135deg, #23151A 0%, #0D0507 100%)' }, 
-    5: { dark: true,  bg: 'linear-gradient(135deg, #1B1218 0%, #0A0306 100%)' }, 
-    6: { dark: true,  bg: 'linear-gradient(135deg, #180D14 0%, #080205 100%)' }, 
-    7: { dark: true,  bg: 'linear-gradient(135deg, #140D12 0%, #050103 100%)' }  
-  };
+  let cur = 0;
+  function showNext() {
+    if (cur >= items.length) {
+      /* Show nav buttons */
+      if (ynRow) {
+        ynRow.style.display = 'flex';
+        setTimeout(() => { ynRow.style.transition = 'opacity .7s ease'; ynRow.style.opacity = '1'; }, 60);
+      } else if (navBtns) {
+        navBtns.style.display = 'flex';
+        setTimeout(() => { navBtns.style.transition = 'opacity .7s ease'; navBtns.style.opacity = '1'; }, 60);
+      }
 
-  function applyAmbientTheme(stepId) {
-    const theme = ambientThemes[stepId] || ambientThemes[1];
-    document.body.style.background = theme.bg;
-    if(theme.dark) {
-      document.body.classList.add('ambient-dark');
-    } else {
-      document.body.classList.remove('ambient-dark');
-    }
-  }
-
-  function toAr(n){
-    const map=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-    return String(n).split('').map(d => map[d]!==undefined?map[d]:d).join('');
-  }
-
-  /* ── شريط التقدم ── */
-  function updateProgress(stepId){
-    const vine = document.getElementById('progressVine');
-    if(stepId===1){ vine.style.display='none'; return; }
-    vine.style.display='flex';
-    const page = stepId - 1;        
-    const total = 6; /* زادوا صاروا 6 أجزاء بعد إضافة الصفحة */
-    document.getElementById('vineFill').style.width = ((page) / total * 100) + '%';
-    document.getElementById('pageLabel').textContent = 'الجزء ' + toAr(page) + ' / ' + toAr(total);
-  }
-
-  /* ── المؤثرات الصوتية ── */
-  let audioCtx;
-  function getAudioCtx(){
-    if(!audioCtx) audioCtx = new(window.AudioContext||window.webkitAudioContext)();
-    return audioCtx;
-  }
-
-  function playFlipSound(){
-    try{
-      const ctx = getAudioCtx();
-      if(ctx.state==='suspended') ctx.resume();
-      const dur=0.15, buf=ctx.createBuffer(1,Math.floor(ctx.sampleRate*dur),ctx.sampleRate);
-      const d=buf.getChannelData(0);
-      for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2.5);
-      const src=ctx.createBufferSource(); src.buffer=buf;
-      const bp=ctx.createBiquadFilter(); bp.type='bandpass';
-      bp.frequency.setValueAtTime(3000,ctx.currentTime);
-      bp.frequency.exponentialRampToValueAtTime(1000,ctx.currentTime+dur);
-      const g=ctx.createGain();
-      g.gain.setValueAtTime(0.15,ctx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
-      src.connect(bp).connect(g).connect(ctx.destination);
-      src.start(); src.stop(ctx.currentTime+dur);
-    }catch(e){}
-  }
-
-  function playChimeSound(){
-    try{
-      const ctx = getAudioCtx();
-      if(ctx.state==='suspended') ctx.resume();
-      [950, 1200, 1450].forEach((freq,i)=>{
-        const osc=ctx.createOscillator(), g=ctx.createGain();
-        osc.type='sine'; osc.frequency.value=freq;
-        const t=ctx.currentTime+i*0.08;
-        g.gain.setValueAtTime(0,t);
-        g.gain.linearRampToValueAtTime(0.1,t+0.03);
-        g.gain.exponentialRampToValueAtTime(0.001,t+0.5);
-        osc.connect(g).connect(ctx.destination);
-        osc.start(t); osc.stop(t+0.6);
-      });
-    }catch(e){}
-  }
-
-  /* ── الخطوة الثانية ── */
-  let step2Phase = 'initial'; 
-
-  function initStep2(){
-    const nav = document.getElementById('step2-btns');
-    if(visitedSteps.has(2)) {
-      step2Phase = 'revealed';
-      const rev = document.getElementById('step2-reveal');
-      if(rev) { rev.style.display = 'block'; rev.classList.add('shown'); }
-      const btn = document.getElementById('btn-step2-go');
-      if(btn) btn.textContent = 'كملي القراءة ❤️';
-      if(nav){ nav.style.display='flex'; nav.style.opacity='1'; }
-    } else {
-      step2Phase = 'initial';
-      const btn = document.getElementById('btn-step2-go');
-      if(btn) btn.textContent = 'متابعة ✨';
-      const rev = document.getElementById('step2-reveal');
-      if(rev){ rev.classList.remove('shown'); rev.style.display='none'; }
-      if(nav){ nav.style.display='flex'; nav.style.opacity='1'; }
-    }
-  }
-
-  function handleStep2(){
-    if(step2Phase === 'initial'){
-      const rev = document.getElementById('step2-reveal');
-      rev.style.display = 'block';
-      void rev.offsetWidth;
-      rev.classList.add('shown');
-      step2Phase = 'revealed';
-      visitedSteps.add(2); 
-      playChimeSound();
-      const btn = document.getElementById('btn-step2-go');
-      setTimeout(()=>{ btn.textContent = 'كملي القراءة ❤️'; }, 600);
-    } else {
-      nextStep(2);
-    }
-  }
-
-  /* ── تأثير الكتابة مع الذاكرة ── */
-  function playSequence(stepId){
-    const step = document.getElementById('step'+stepId);
-    const items = step.querySelectorAll('.seq-item');
-    const navBtns = step.querySelector('.buttons-container');
-
-    // إذا قرأ الصفحة مسبقاً يعرضها فوراً
-    if(visitedSteps.has(stepId)) {
-      items.forEach(target => {
-        if(target.getAttribute('data-type') === 'text'){ 
-          target.textContent = target.getAttribute('data-text'); 
-          target.style.display = 'block'; 
-        } else {
-          target.style.display = 'block'; 
+      if (stepId === 7) {
+        /* Show back row quietly */
+        if (backRow) {
+          backRow.style.display = 'flex';
+          setTimeout(() => { backRow.style.transition = 'opacity .8s ease'; backRow.style.opacity = '1'; }, 400);
         }
-        target.style.opacity = '1';
-        target.style.transition = 'none';
-      });
-      if(navBtns){ navBtns.style.display='flex'; navBtns.style.opacity='1'; }
-      if(stepId === 7){
-        const btnNo=document.getElementById('btn-no');
-        if(btnNo) { btnNo.style.display='inline-block'; btnNo.style.opacity='1'; btnNo.style.transform='translate(0,0) rotate(0deg)'; }
-        const btnYes=document.getElementById('btn-yes');
-        if(btnYes){ btnYes.style.display='inline-block'; btnYes.style.opacity='1'; }
+        /* Reveal Yes button after brief pause */
+        const btnYes = document.getElementById('btnYes');
+        setTimeout(() => {
+          btnYes.style.display = 'inline-block';
+          void btnYes.offsetWidth;
+          btnYes.style.transition = 'opacity .6s ease';
+          btnYes.style.opacity = '1';
+        }, 1100);
       }
       return;
     }
 
-    visitedSteps.add(stepId);
-    if(navBtns){ navBtns.style.display='none'; navBtns.style.opacity='0'; }
+    const el   = items[cur];
+    const type = el.dataset.type;
 
-    if(stepId===7){
-      const btnNo=document.getElementById('btn-no');
-      btnNo.style.display='inline-block'; btnNo.style.opacity='1';
-      btnNo.style.transform='translate(0,0) rotate(0deg)';
-      const hint=document.getElementById('dodge-hint');
-      if(hint) hint.style.opacity='0';
-      const btnYes=document.getElementById('btn-yes');
-      if(btnYes){ btnYes.style.display='none'; btnYes.style.opacity='0'; }
-      const fv=document.getElementById('finale-video-wrap');
-      if(fv){ fv.classList.remove('visible'); fv.style.display='none'; }
-    }
+    if (type === 'text') {
+      const text  = el.dataset.text || '';
+      if (!text) { cur++; showNext(); return; }
+      const speed = getTypingSpeed(el);
+      let ci = 0;
 
-    items.forEach(item=>{
-      if(item.getAttribute('data-type')==='text'){ item.textContent=''; item.style.display='block'; }
-      else{ item.style.opacity='0'; item.style.display='none'; }
-    });
+      /* Blinking cursor while typing */
+      el.dataset.typing = '1';
 
-    let cur=0;
-    function showNext(){
-      if(cur>=items.length){
-        if(navBtns){
-          navBtns.style.display='flex';
-          setTimeout(()=>{ navBtns.style.transition='opacity .6s ease'; navBtns.style.opacity='1'; },50);
+      const iv = setInterval(() => {
+        /* Type 1-2 chars per tick for smoother feel on fast text */
+        const chunk = el.classList.contains('final-q') ? 1 : 1;
+        for (let i = 0; i < chunk && ci < text.length; i++) {
+          el.textContent += text.charAt(ci);
+          ci++;
         }
-        if(stepId===7){
-          const btnYes=document.getElementById('btn-yes');
-          if(btnYes){
-            setTimeout(()=>{
-              btnYes.style.display='inline-block';
-              btnYes.style.transition='opacity .5s ease';
-              void btnYes.offsetWidth;
-              btnYes.style.opacity='1';
-            },800);
-          }
+        if (ci >= text.length) {
+          clearInterval(iv);
+          delete el.dataset.typing;
+          cur++;
+          /* Pause between paragraphs feels more human */
+          const pause = el.classList.contains('section-heading') ? 400 : 300;
+          setTimeout(showNext, pause);
         }
-        return;
-      }
-      const target=items[cur];
-      const type=target.getAttribute('data-type');
-      if(type==='text'){
-        const text=target.getAttribute('data-text');
-        if(!text){ cur++; showNext(); return; }
-        let ci=0, cs='';
-        const iv=setInterval(()=>{
-          cs+=text.charAt(ci); target.textContent=cs; ci++;
-          if(ci>=text.length){ clearInterval(iv); cur++; setTimeout(showNext,250); }
-        }, 35);
-      } else {
-        target.style.display='block';
-        void target.offsetWidth;
-        target.style.transition='opacity 1s cubic-bezier(0.25, 1, 0.5, 1)';
-        target.style.opacity='1';
-        cur++; setTimeout(showNext,600);
-      }
-    }
-    showNext();
-  }
-
-  /* ── التنقل ── */
-  function openLetter(){
-    const seal=document.getElementById('waxSeal');
-    seal.classList.add('crack');
-    playFlipSound();
-    document.getElementById('bg-music').play().catch(e=>console.log(e));
-    setTimeout(()=> nextStep(1), 500);
-  }
-
-  function nextStep(current){
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // الصعود لأعلى
-    document.getElementById('step'+current).classList.remove('active');
-    const next=current+1;
-    applyAmbientTheme(next);
-    document.getElementById('step'+next).classList.add('active');
-    updateProgress(next);
-    playFlipSound();
-
-    if(next===2){ initStep2(); } else { playSequence(next); }
-  }
-
-  function prevStep(current){
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // الصعود لأعلى
-    document.getElementById('step'+current).classList.remove('active');
-    const prev=current-1;
-    applyAmbientTheme(prev);
-    document.getElementById('step'+prev).classList.add('active');
-    updateProgress(prev);
-    playFlipSound();
-
-    if(prev===1){
-      const seal=document.getElementById('waxSeal');
-      if(seal){ seal.classList.remove('crack'); }
-      document.getElementById('bg-music').pause();
-      document.getElementById('bg-music').currentTime=0;
-    } else if(prev===2){
-      initStep2();
+      }, speed);
     } else {
-      playSequence(prev);
+      el.style.display = 'block';
+      void el.offsetWidth;
+      el.style.transition = 'opacity 1s var(--ease-out)';
+      el.style.opacity    = '1';
+      cur++; setTimeout(showNext, 700);
     }
   }
+  showNext();
+}
 
-  /* ── العداد التنازلي ── */
-  function startCountdown(){
-    const target=new Date("July 17, 2026 00:00:00").getTime();
-    const el=document.getElementById("countdown");
-    setInterval(()=>{
-      const dist=target-Date.now();
-      if(dist<0){ el.innerHTML='<div class="c-done">صار عمرك ٢٠ سنة! 🎉</div>'; return; }
-      const d=Math.floor(dist/86400000);
-      const h=Math.floor((dist%86400000)/3600000);
-      const m=Math.floor((dist%3600000)/60000);
-      const s=Math.floor((dist%60000)/1000);
-      el.innerHTML=
-        '<div class="c-chip"><span class="c-num">'+toAr(d)+'</span><span class="c-label">يوم</span></div>'+
-        '<div class="c-chip"><span class="c-num">'+toAr(h)+'</span><span class="c-label">ساعة</span></div>'+
-        '<div class="c-chip"><span class="c-num">'+toAr(m)+'</span><span class="c-label">دقيقة</span></div>'+
-        '<div class="c-chip"><span class="c-num">'+toAr(s)+'</span><span class="c-label">ثانية</span></div>';
-    },1000);
+function restoreStep7Buttons() {
+  const btnYes = document.getElementById('btnYes');
+  const btnNo  = document.getElementById('btnNo');
+  const ynRow  = document.getElementById('finalBtns');
+  const backRow = document.getElementById('step7BackRow');
+  if (btnYes)  { btnYes.style.display = 'inline-block'; btnYes.style.opacity = '1'; }
+  if (btnNo)   { btnNo.style.display = 'inline-block'; btnNo.style.opacity = '1'; btnNo.style.transform = 'translate(0,0) rotate(0deg)'; }
+  if (ynRow)   { ynRow.style.display = 'flex'; ynRow.style.opacity = '1'; }
+  if (backRow) { backRow.style.display = 'flex'; backRow.style.opacity = '1'; }
+}
+
+/* ══════════════════════════════════════════
+   NAVIGATION
+   ══════════════════════════════════════════ */
+function openLetter() {
+  const seal = document.getElementById('waxSeal');
+  seal.classList.add('cracking');
+  playFlip();
+  startMusic();
+  setTimeout(() => goToStep(1, 2), 480);
+}
+
+function nextStep(current) { goToStep(current, current + 1); }
+function prevStep(current) { goToStep(current, current - 1, true); }
+
+function goToStep(from, to, isBack = false) {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('step' + from).classList.remove('active');
+
+  /* Reset step7 state when going back from it */
+  if (isBack && from === 7) resetStep7();
+
+  applyTheme(to);
+  updateProgress(to);
+  playFlip();
+  burstParticles(4);
+
+  document.getElementById('step' + to).classList.add('active');
+
+  if (to === 1) {
+    const seal = document.getElementById('waxSeal');
+    if (seal) seal.classList.remove('cracking');
+    const bgm = document.getElementById('bgm');
+    bgm.pause(); bgm.currentTime = 0;
+  } else if (to === 2) {
+    initStep2();
+  } else {
+    playSequence(to);
   }
-  startCountdown();
+}
 
-  /* ── العناصر الطائرة ── */
-  function createFloatingElements(){
-    const container=document.getElementById('floating-container');
-    const els=['🌹','✨','🤍','🌸'];
-    setInterval(()=>{
-      const el=document.createElement('div');
-      el.innerHTML=els[Math.floor(Math.random()*els.length)];
-      el.classList.add('floating-element');
-      el.style.left=Math.random()*100+'vw';
-      el.style.setProperty('--drift',(Math.random()*60-30)+'px');
-      el.style.animationDuration=(Math.random()*5+7)+'s';
-      el.style.fontSize=(Math.random()*10+16)+'px';
-      container.appendChild(el);
-      setTimeout(()=>el.remove(),11000);
-    },1200);
+/* ══════════════════════════════════════════
+   STEP 7 RESET (going back)
+   ══════════════════════════════════════════ */
+function resetStep7() {
+  const vid  = document.getElementById('finaleVideo');
+  const wrap = document.getElementById('finaleWrap');
+  if (vid)  { vid.pause(); vid.currentTime = 0; }
+  if (wrap) { wrap.classList.remove('visible'); wrap.style.display = 'none'; }
+
+  const celebMsg = document.getElementById('celebMsg');
+  if (celebMsg) celebMsg.remove();
+
+  const btnYes  = document.getElementById('btnYes');
+  const btnNo   = document.getElementById('btnNo');
+  const backRow = document.getElementById('step7BackRow');
+  if (btnYes)  { btnYes.style.display = 'inline-block'; btnYes.style.opacity = '1'; }
+  if (btnNo)   { btnNo.style.display = 'inline-block'; btnNo.style.transform = 'translate(0,0) rotate(0deg)'; }
+  if (backRow) { backRow.style.display = 'none'; backRow.style.opacity = '0'; backRow.style.transition = 'none'; }
+
+  document.getElementById('dodgeHint').style.opacity = '0';
+  visitedSteps.delete(7);
+}
+
+/* ══════════════════════════════════════════
+   DODGE BUTTON — stays inside viewport
+   ══════════════════════════════════════════ */
+function dodgeNo(e) {
+  if (e && e.cancelable) e.preventDefault();
+
+  const btn     = document.getElementById('btnNo');
+  const btnRect = btn.getBoundingClientRect();
+  const vw      = window.innerWidth;
+  const vh      = window.innerHeight;
+
+  // Safe margins: how much room is available in each direction
+  const safeLeft  = Math.max(10, btnRect.left - 16);
+  const safeRight = Math.max(10, vw - btnRect.right - 16);
+  const safeUp    = Math.max(10, btnRect.top - 70);
+  const safeDown  = Math.max(10, vh - btnRect.bottom - 16);
+
+  const maxH = Math.min(safeLeft, safeRight, 120);
+  const maxV = Math.min(safeUp,   safeDown,  50);
+
+  const dx  = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * maxH + 25);
+  const dy  = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * maxV + 12);
+  const rot = (Math.random() * 28 - 14);
+
+  btn.style.transition = 'transform .22s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  btn.style.transform  = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
+
+  document.getElementById('dodgeHint').style.opacity = '1';
+}
+
+/* ══════════════════════════════════════════
+   CELEBRATE
+   ══════════════════════════════════════════ */
+function celebrate() {
+  const btnYes  = document.getElementById('btnYes');
+  const btnNo   = document.getElementById('btnNo');
+  const hint    = document.getElementById('dodgeHint');
+  const backRow = document.getElementById('step7BackRow');
+
+  btnYes.style.display = 'none';
+  btnNo.style.display  = 'none';
+  if (hint)    hint.style.display    = 'none';
+  if (backRow) backRow.style.display = 'none';
+
+  if (!document.getElementById('celebMsg')) {
+    const msg     = document.createElement('div');
+    msg.id        = 'celebMsg';
+    msg.className = 'celeb-msg';
+    msg.innerHTML = `
+      <h2 class="celeb-title">وأنا بوعدك أضل معك دايماً ❤️</h2>
+      <p class="celeb-sub">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>
+    `;
+    /* Insert before the yn-row, not inside it */
+    const ynRow = document.getElementById('finalBtns');
+    ynRow.parentNode.insertBefore(msg, ynRow);
   }
-  createFloatingElements();
 
-  /* ── زر الهروب الذكي ── */
-  function dodgeNo(e){
-    if(e&&e.cancelable) e.preventDefault();
-    const btn=document.getElementById('btn-no');
-    const wrap=document.getElementById('final-buttons');
-    const rect=wrap.getBoundingClientRect();
-    const maxX=Math.min(130,rect.width*.7);
-    const x=(Math.random()-.5)*2*maxX;
-    const y=(Math.random()-.8)*2*40;
-    const rot=(Math.random()*24-12);
-    btn.style.transform='translate('+x+'px,'+y+'px) rotate('+rot+'deg)';
-    const hint=document.getElementById('dodge-hint');
-    if(hint) hint.style.opacity='1';
-  }
+  /* Confetti burst */
+  const end = Date.now() + 3800;
+  (function frame() {
+    confetti({ particleCount: 5, angle: 60,  spread: 62, origin: { x: 0 }, colors: ['#C7A66B','#B97D86','#ffffff','#F0D9A8'] });
+    confetti({ particleCount: 5, angle: 120, spread: 62, origin: { x: 1 }, colors: ['#C7A66B','#B97D86','#ffffff','#F0D9A8'] });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  }());
 
-  /* ── الاحتفال ── */
-  function celebrate(){
-    // إخفاء أزرار الإجابة فقط وإبقاء زر الرجوع
-    document.getElementById('btn-yes').style.display = 'none';
-    document.getElementById('btn-no').style.display = 'none';
-    
-    if(!document.getElementById('celeb-msg')){
-        const msg = document.createElement('div');
-        msg.id = 'celeb-msg';
-        msg.style.width = '100%';
-        msg.style.textAlign = 'center';
-        msg.style.marginBottom = '25px';
-        msg.innerHTML = '<h2 class="celebrate-title" style="color:var(--gold); font-size:2em;">وأنا بوعدك أضل معك دايماً ❤️</h2><p class="celebrate-sub" style="color:var(--text-body); font-size:1.2em;">دايما بشتاقلك وزمان ما شفت وجهك الحلو زي هيك 🤍</p>';
-        document.getElementById('final-buttons').prepend(msg);
+  /* Show video after confetti */
+  setTimeout(() => {
+    const wrap = document.getElementById('finaleWrap');
+    if (wrap) {
+      wrap.style.display = 'block';
+      void wrap.offsetWidth;
+      wrap.classList.add('visible');
+      const bgm = document.getElementById('bgm');
+      const vid = document.getElementById('finaleVideo');
+      if (bgm) bgm.pause();
+      if (vid) vid.play().catch(() => {});
     }
+  }, 2400);
+}
 
-    const hint=document.getElementById('dodge-hint');
-    if(hint) hint.style.display='none';
-
-    var duration = 3500;
-    var end = Date.now() + duration;
-
-    (function frame() {
-      confetti({ particleCount: 5, angle: 60, spread: 60, origin: { x: 0 }, colors: ['#C7A66B', '#B97D86', '#ffffff'] });
-      confetti({ particleCount: 5, angle: 120, spread: 60, origin: { x: 1 }, colors: ['#C7A66B', '#B97D86', '#ffffff'] });
-      if (Date.now() < end) { requestAnimationFrame(frame); }
-    }());
-
-    setTimeout(()=>{
-      const wrap=document.getElementById('finale-video-wrap');
-      if(wrap){
-        wrap.style.display='block';
-        void wrap.offsetWidth;
-        wrap.classList.add('visible');
-
-        const bgm=document.getElementById('bg-music');
-        const vid=document.getElementById('finale-video-player');
-        if(bgm) bgm.pause();
-        if(vid) vid.play().catch(e=>console.log(e));
-      }
-    }, 2200);
-  }
-
-  const finVid=document.getElementById('finale-video-player');
-  if(finVid){
-    finVid.addEventListener('play',()=>{
-      const bgm=document.getElementById('bg-music');
-      if(bgm&&!bgm.paused) bgm.pause();
-    });
-  }
+/* Pause BGM when finale video plays */
+document.getElementById('finaleVideo')?.addEventListener('play', () => {
+  const bgm = document.getElementById('bgm');
+  if (bgm && !bgm.paused) bgm.pause();
+});
 </script>
 </body>
 </html>
