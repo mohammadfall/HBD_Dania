@@ -4,6 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HBD Dania 🌹</title>
+
+<!-- ========================================== -->
+<!-- 📝 صندوق النصوص: عدّل كلامك من هون براحتك 📝 -->
+<!-- ========================================== -->
+<script>
+  const siteContent = {
+    "step3_1": "قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي.",
+    "step3_2": "ما لقيت الا هالطريقة البسيطة جداً.",
+    "step3_3": "اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع 😼",
+    
+    "step4_1": "دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج.",
+    "step4_2": "احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها.",
+    "step4_3": "ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، ",
+    "step4_4": "كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)",
+    "step4_h2": "حتسأليني ليش؟ ليش انا؟",
+    "step4_5": "ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك.",
+    
+    "step5_1": "دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂.",
+    "step5_2": "صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور",
+    "step5_3": "صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير.",
+    "step5_4": "وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه",
+    
+    "step6_q": "وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "
+  };
+</script>
+<!-- ========================================== -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Rakkas&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -85,7 +112,6 @@
     z-index: 10;
   }
 
-  /* GPU-Accelerated Progress Bar */
   .modern-progress {
     display: none;
     justify-content: space-between;
@@ -393,7 +419,7 @@
       <div id="step2-card" class="gift-card">
         <div class="gift-tag-label">🎀 هدية من القلب</div>
         <p class="gift-text">
-          هذا هدية ما كلفتني مال،<br>
+          هذي هدية ما كلفتني مال،<br>
           كلفتني شوية مهارات انا بعرفها<br>
           وشوية وقت ما بعني اشي<br>
           عشان يرسم بسمة على وجهك الحلو 🥰
@@ -412,9 +438,9 @@
 
     <div id="step3" class="step">
       <h1>دانية العزيزة 🌸</h1>
-      <p class="seq-item" data-type="text" data-text="قعدت فترة بفكر ايش اجيب هدية الك، بكل افكاري ما كان بنفع اقدم الي بخطرلي."></p>
-      <p class="seq-item" data-type="text" data-text="ما لقيت الا هالطريقة البسيطة جداً."></p>
-      <p class="seq-item" data-type="text" data-text="اسف عالكتابه البطيئه بس حبيت احط شخصيتي كمان وانا اعمل الموقع 😼"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step3_1"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step3_2"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step3_3"></p>
       <div class="buttons-container" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-back" onclick="prevStep(3)">🔙 رجوع</button>
         <button class="btn" onclick="nextStep(3)">التالي ✨</button>
@@ -422,12 +448,12 @@
     </div>
 
     <div id="step4" class="step">
-      <p class="seq-item" data-type="text" data-text="دايما كنتي الشخص الي بكون معي بكل مكان وبكل ظرف من السيء للاشياء الي ما رح انساها. من وقت كنت مكتئب ومش قادر اعيش لوقت التخرج."></p>
-      <p class="seq-item" data-type="text" data-text="احداث كثير ما حدا بعرفها غيري وغيرك، خناقات ومصالحات ما حدا بعرفها."></p>
-      <p class="seq-item" data-type="text" data-text="ما بتعرفي كم انتي حدا كثير مهم بحياتي وكم بحبك، "></p>
-      <p class="seq-item" data-type="text" data-text="كشخص مثلي ما عمري كنت انتبه للتفاصيل معك صرت احاول ادقق (لسا مبتدئ ولكن بحاول :)"></p>
-      <h2 class="seq-item" data-type="text" data-text="حتسأليني ليش؟ ليش انا؟"></h2>
-      <p class="seq-item" data-type="text" data-text="ببساطة؟ لانك دانية، لانك دانية حبيتك ما عندي سبب اقوى من هيك."></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step4_1"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step4_2"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step4_3"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step4_4"></p>
+      <h2 class="seq-item dynamic-text" data-type="text" data-key="step4_h2"></h2>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step4_5"></p>
       <div class="buttons-container" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-back" onclick="prevStep(4)">🔙 رجوع</button>
         <button class="btn" onclick="nextStep(4)">كملي قراءة ❤️</button>
@@ -435,13 +461,13 @@
     </div>
 
     <div id="step5" class="step">
-      <p class="seq-item" data-type="text" data-text="دايما بحكيلك ودايما بأكدلك انا معك عالمر والحلو، ايدي دايما ممدوده الك. لاني بنبسط وانا معك بنفس الطريق, بنبسط وانا بساعدك، بنبسط بس اسمع صوتك، بنبسط بس تتنمري علي 😂."></p>
-      <p class="seq-item" data-type="text" data-text="صح بحبش كثير لما تحرجيني، بس فعالياتك هاي بتحسسني بشعور هيك اني مرتاح بتمنى يكون عندك نفس الشعور"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step5_1"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step5_2"></p>
       <div class="premium-frame seq-item" data-type="media" style="display:none; opacity:0; transition: opacity 0.8s ease;">
         <img src="dumb-smart.png" alt="dumb-smart" loading="lazy">
       </div>
-      <p class="seq-item" data-type="text" data-text="صح انه انا احيانا بكون غبي وتصرفاتي غبية بس معلش هو هيك مخي قد ما احاول ما بتغير."></p>
-      <p class="seq-item" data-type="text" data-text="وجد بتمنى دايما تضلي بخير ودايما بدعيلك بصلاتي، هي هيك الحياه"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step5_3"></p>
+      <p class="seq-item dynamic-text" data-type="text" data-key="step5_4"></p>
       <div class="hadith-box seq-item" data-type="media" style="display:none; opacity:0; transition: opacity 0.8s ease;">
         "ما أصابك لم يكن ليخطئك وما أخطأك لم يكن ليصيبك.. دايماً تذكريه."
       </div>
@@ -452,7 +478,7 @@
     </div>
 
     <div id="step6" class="step">
-      <h1 class="final-question seq-item" data-type="text" data-text="وبالنهايه هذا سؤال... ممكن نضل دايما مع بعض؟ "></h1>
+      <h1 class="final-question seq-item dynamic-text" data-type="text" data-key="step6_q"></h1>
       <p class="dodge-hint" id="dodge-hint">ولا حتى رح تقدري تمسكيني 😏</p>
       <div class="buttons-container" id="final-buttons" style="display:none; opacity:0; transition: opacity 0.5s ease;">
         <button class="btn btn-yes" id="btn-yes" onclick="celebrate()">أكيد</button>
@@ -477,11 +503,20 @@
 </div>
 
 <script>
+  /* ── تعبئة النصوص تلقائياً من الصندوق فوق ── */
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.dynamic-text').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if (siteContent[key]) {
+        el.setAttribute('data-text', siteContent[key]);
+      }
+    });
+  });
+
   /* ── CSS/DOM Optimization Utilities ── */
   const D = document;
   const byId = (id) => D.getElementById(id);
   
-  // Force Reflow proper method without layout thrashing
   function triggerRepaint(callback) {
     requestAnimationFrame(() => { requestAnimationFrame(callback); });
   }
@@ -515,7 +550,6 @@
     const page = stepId - 1;        
     const total = 5;
     
-    // GPU Accelerated Transform instead of Width
     byId('vineFill').style.transform = `scaleX(${page / total})`;
     byId('pageLabel').textContent = `الجزء ${toAr(page)} / ${toAr(total)}`;
   }
@@ -581,7 +615,7 @@
   }
 
   /* ── Memory-Optimized Typewriter ── */
-  let currentSequenceInterval = null; // Prevent memory leaks by storing interval reference
+  let currentSequenceInterval = null;
 
   function playSequence(stepId) {
     if(currentSequenceInterval) clearInterval(currentSequenceInterval);
@@ -596,7 +630,7 @@
       const btnNo = byId('btn-no'), hint = byId('dodge-hint'), btnYes = byId('btn-yes'), fv = byId('finale-video-wrap');
       btnNo.style.display = 'inline-block'; btnNo.style.opacity = '1'; btnNo.style.transform = 'translate(0,0) rotate(0deg)';
       if(hint) hint.style.opacity = '0';
-      if(btnYes) { btnYes.style.display = 'inline-block'; btnYes.style.opacity = '0'; } // Keep in flow but hidden
+      if(btnYes) { btnYes.style.display = 'inline-block'; btnYes.style.opacity = '0'; }
       if(fv) { fv.classList.remove('visible'); fv.style.display = 'none'; }
     }
 
@@ -648,7 +682,6 @@
   /* ── Routing Engine ── */
   function openLetter() {
     byId('waxSeal').classList.add('crack');
-    // Init Audio Context properly on user interaction
     getAudioCtx();
     playFlipSound();
     byId('bg-music').play().catch(e => console.warn('BGM blocked:', e));
@@ -706,7 +739,6 @@
   const floatingContainer = byId('floating-container');
   const flElements = ['🌹','✨','🤍','🌸'];
   setInterval(() => {
-    // Limit to 25 objects to prevent memory leak / tab crashing
     if(floatingContainer.childElementCount > 25) return; 
     
     const el = D.createElement('div');
@@ -718,7 +750,6 @@
     el.style.fontSize = `${Math.random() * 10 + 16}px`;
     floatingContainer.appendChild(el);
     
-    // Auto-cleanup securely
     setTimeout(() => { if(el.parentNode) el.remove(); }, 11000);
   }, 1500);
 
